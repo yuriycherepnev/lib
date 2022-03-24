@@ -1,0 +1,1725 @@
+---------------------------------------------------------- 
+настройка файлов для запуска проекта на лок.сервере:
+
+common/config/db.php
+
+$host = 'localhost';
+$dbName = 'tyres';
+
+common/config/dbUrlNumber.php
+
+$host = 'localhost';
+$dbName = 'url';
+
+common/config/env.php
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'dev');
+
+common/config/kibanaLogging.php
+return 0;
+
+common/config/main.php
+if (YII_ENV_DEV) {
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = 'yii\debug\Module';
+
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = 'yii\gii\Module';
+
+    $config['components']['assetManager']['forceCopy'] = true;
+}
+----------------------------------------------------------
+включить debug и gii панель:
+
+/frontend/web/index.php
+
+, '/^debug/', '/^gii/'];
+
+----------------------------------------------------------
+работа mysql через консоль:
+
+mysql -u root -p  (подключение)
+mysql> set global sql_mode='';  (установить глобальную переменную в консоли)
+
+Загрузить базу данных:
+mysql -u root -p
+CREATE DATABASE new_database;
+use new_database;
+source ~/database/tyres.sql;
+source ~/database/cars.sql;
+
+mysql -u root -p root_pass db_name < db_name.sql
+sudo mysql -u root2 -p b2b < ~/Загрузки/opttyres.sql
+
+Закрыть оболочку MySQL:
+CTRL+D
+
+Перезагрузить Mysql:
+sudo service mysql restart
+
+mysql -u root -p
+CREATE DATABASE tyres;
+use tyres;
+source ~/database/tyres4010.sql;
+source ~/database/tyres2909.sql;
+
+----------------------------------------------------------
+Права доступа файла:
+chmod 744 koshka.txt
+
+Права доступа каталога:
+chmod -R 775 sobaki
+
+----------------------------------------------------------
+SQl запрос может положить сервер.
+Для перезапуска выполнить:
+
+sudo service php5.6-fpm reload
+
+sudo service php7.4-fpm reload
+
+sudo /etc/init.d/php7.4-fpm restart
+
+sudo systemctl restart mysql
+
+----------------------------------------------------------
+
+newfrontend/config/assetManager - сборка css 
+
+newfrontend/config/urlManager.php - правила построения url
+
+ctr shift f - поиск по всему проекту php storm
+shift shift - 
+
+----------------------------------------------------------
+Где mysql ищет свои конфиги (консольная команда):
+
+mysql --verbose --help
+
+Нужен фрагмент вывода вроде такого:
+
+Default options are read from the following files in the given order:
+/etc/my.cnf /etc/mysql/my.cnf /usr/etc/my.cnf ~/.my.cnf
+
+----------------------------------------------------------
+Добавить алиасы:
+
+git config --global alias.co checkout
+git config --global alias.ci commit
+git config --global alias.st status
+git config --global alias.br branch
+git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+git config --global alias.type 'cat-file -t'
+git config --global alias.dump 'cat-file -p'
+
+----------------------------------------------------------
+GIT
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+
+-----------------------------------------------------------
+очистка кеша:
+
+  php yii cache/flush-all
+
+  sudo rm -rf common/runtime/cache/*
+
+--------------------------------------------------------
+phpmyadmin:
+
+  http://localhost/phpmyadmin
+  user: root
+  password: root
+
+--------------------------------------------------------------
+Тесты:
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/wiki/tests
+
+прописать хосты для тестов в директории:
+/etc/hosts
+
+172.27.100.130 acceptance.tyres.spb.ru
+172.27.100.130 acceptance.test3.tyres.spb.ru
+
+Посмотреть результаты тестов на проде:
+
+http://acceptance.tyres.spb.ru/test_output/report.html
+http://acceptance.test3.tyres.spb.ru/test_output/report.html
+
+--------------------------------------------------------------
+Для тестов: 
+
+java -Dwebdriver.chrome.driver=tests/chromedriver -jar tests/selenium-server.jar запускается как процесс прослушки
+
+sudo vendor/bin/codecept run Запускается в новом окне или после скрытия первой команды в фон. 
+После run можно указать путь до определенного теста
+
+При наличии ошибки “Cannot call non W3C standard command while in W3C mode”: Добавить в acceptance.suite.yml в WebDriver следующие строки:
+
+  capabilities:
+    chromeOptions:
+      w3c: false
+
+--------------------------------------------------------------
+Дополнительно, необходимо указать в файлах acceptance.suite.yml и api.suite.yml путь до своего локального сайта
+
+tests/acceptance.suite.yml:
+
+class_name: AcceptanceTester
+modules:
+  enabled:
+  - WebDriver:
+      url: http://tyres
+      browser: chrome
+      window_size: maximize
+      wait: 1
+      capabilities:
+              chromeOptions:
+                w3c: false
+  - Yii2:
+      configFile: 'common/config/test-local.php'
+      part: init
+      cleanup: false
+
+------------------------------------------------------------------
+tests/api.suite.yml:
+
+actor: ApiTester
+modules:
+    enabled:
+        - \Helper\Api
+        - REST:
+              url: http://tyres/api/
+              depends: PhpBrowser
+              part: Json
+
+--------------------------------------------------------------
+Тест кабинета: 
+
+  sudo vendor/bin/codecept run - полное тестирование
+
+  sudo vendor/bin/codecept run tests/acceptance/CabinetCest.php - тесты кабинета
+
+  sudo vendor/bin/codecept run tests/api/CatalogCest.php - апи кабинета
+
+  sudo vendor/bin/codecept run tests/acceptance/ManagerCest.php - менеджер тесты
+  
+  sudo vendor/bin/codecept run tests/acceptance/MakeOrderByDeliveryCest.php
+
+Мобильные тесты:
+
+  sudo vendor/bin/codecept run  --env mobile
+
+------------------------------------------------------------------
+Результаты тестов на проде:
+
+http://acceptance.tyres.spb.ru/test_output/report.html
+
+------------------------------------------------------------------
+.gitignore: 
+
+common/runtime
+tests/api.suite.yml
+tests/acceptance.suite.yml
+common/config/dbUrlNumber.php
+common/config/cart.php
+common/config/kibanaLogging.php
+
+------------------------------------------------------------------
+Накатить миграции:
+
+php yii migrate
+
+Откатить миграции:
+
+yii migrate/down  
+
+------------------------------------------------------------------
+Обновить composer: 
+
+composer install
+
+-----------------------------------------------------------------
+Чтобы посмотреть подключенные файлы:
+
+<?php
+
+$files = get_included_files();
+
+echo '<pre>';
+foreach ($files as $file) {
+    if(stristr($file, 'vendor') !== FALSE) {
+        unset($file);
+    } else if(stristr($file, 'common') !== FALSE) {
+        unset($file);
+    } else {
+        var_dump($file);
+    }
+}
+echo '</pre>';
+
+?>
+
+-----------------------------------------------------------------
+Чтобы отключить кэширование в файлах прописываем:
+
+common/config/main.php
+
+if (YII_ENV_DEV) {
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = 'yii\debug\Module';
+
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = 'yii\gii\Module';
+
+    $config['components']['assetManager']['forceCopy'] = true;
+}
+
+newfrontend/config/assets.php
+
+    'assetManager' => [
+        'appendTimestamp' => true,
+        'basePath' => '@webroot/assets',
+        'baseUrl' => '@web/assets',
+    ],
+
+-----------------------------------------------------------------
+Для прав доступа rbac необходимо в файлах прописать соответствующие правила:
+
+console/config/rbacControllers.php
+[
+        'roles' => [User::ROLE_ADMIN, User::ROLE_ADMIN_MANAGER],
+        'module' => PermissionsHelper::ADMIN,
+        'controller' => 'block'
+    ],
+
+Генерация файла rbac:
+
+php yii rbac/init
+
+common/components/rbac/items.php
+
+'admin_block__controller' => [
+        'type' => 2,
+    ],
+
+-----------------------------------------------------------------
+Запуск геттера:
+php yii getter/parse-one tyre
+
+геттер контроллер:
+console/controllers/GetterController.php
+
+Provider:
+
+php yii provider/update-car-brand
+
+php yii provider/remains-mail
+
+-----------------------------------------------------------------
+
+Чек прогресс геттера:
+
+var_dump('parseOne');
+$this->service->parseOne($type);
+var_dump('validateGoods');
+$this->service->validateGoods();
+var_dump('matchingGoods');
+$this->service->matchingGoods();
+var_dump('saveGoods');
+$this->service->saveGoods();
+
+-----------------------------------------------------------------
+Запись в файл с геттера:
+
+$fp = fopen('disks.txt', 'w');
+fclose($fp);
+
+$fp = fopen('disks.txt', 'a');
+fwrite($fp, $validateGood["brand"] . ' / ' . $validateGood["model"] . PHP_EOL);
+fclose($fp);
+
+
+foreach ($goods as $good) {
+    $data = [];
+    foreach ($good as $key => $value) {
+        $data[] = '[' . $key . ' => ' . $value . ']';
+    }
+
+    $fp = fopen('getter.txt', 'a');
+    fwrite($fp, implode(PHP_EOL, $data) . PHP_EOL . PHP_EOL);
+    fclose($fp);
+}
+-------------------------------------------------------------------
+Как сделать запрос в БД без редиректа:
+
+die($this->view->returnDataJSON(
+                $this->model->insertData($url_array[1], $url_array[2], $url_array[3], $url_array[4],
+                    $url_array[5], $url_array[6], $url_array[7])
+            ));
+
+-------------------------------------------------------------------
+Переустановить phpstorm:
+
+sudo snap list
+sudo snap remove phpstorm
+
+cd ~/.config/
+
+cd JetBrains/
+ls
+sudo rm -r PhpStorm2021.1/
+
+rm -rf ~/.java/.userprefs/jetbrains
+rm -rf ~/.PhpStorm2021.2
+
+sudo snap install phpstorm --classic
+
+
+Обновить phpstorm не удаляя:
+
+cd ~/.config/
+
+cd JetBrains/
+ls
+sudo rm -r PhpStorm2021.1/
+
+rm -rf ~/.java/.userprefs/jetbrains
+rm -rf ~/.PhpStorm2019.2
+
+-------------------------------------------------------------------
+Заблокировать phpstorm в хостах:
+
+sudo gedit /etc/hosts
+
+0.0.0.0 account.jetbrains.com
+0.0.0.0 www.jetbrains.com
+0.0.0.0 www-weighted.jetbrains.com
+0.0.0.0 entry.prod-eu.w3jbcom.aws.intellij.net
+0.0.0.0 entry.prod.w3jbcom.aws.intellij.net
+
+::1 account.jetbrains.com
+::1 www.jetbrains.com
+::1 www-weighted.jetbrains.com
+::1 entry.prod-eu.w3jbcom.aws.intellij.net
+::1 entry.prod.w3jbcom.aws.intellij.net
+
+-------------------------------------------------------------------
+Хз зачем. Потом выясню.
+
+sudo chmod -R 777 common/runtime/cache/
+
+---------------------------------------------------------------------
+Способы обратиться к обьекту, если его имя начинается с цифры:
+
+$good->{1ctxt};
+        $good['1ctxt'];
+
+        $param = '1ctxt';
+        $good->$param;
+
+        $good->getAttribute('1ctxt');
+
+
+$paramsForCompare = [];
+        foreach (self::MASS as $mass) {
+            $paramsForCompare[$mass] = $good->$mass ? $good->$mass : 0;
+        }
+
+----------------------------------------------------------------------
+<?= аналог echo ;
+
+----------------------------------------------------------------------
+Добавить свой столбец в вывод sql:
+
+SELECT T1.Pole1, ..., "Приход" AS Тип
+
+----------------------------------------------------------------------
+Join + Concat
+        SELECT t1.name t1_name,
+       t2.name t2_name
+FROM table1 t1 LEFT JOIN
+     table2 t2 ON CONCAT(t1.country,  '.', t1.id ) = t2.code
+
+----------------------------------------------------------------------
+Having работает с результатом выполненного запроса.     
+
+------------------------------------------------------------------
+В безымянную функцию (callback) параметр можно передать через конструкцию USE:
+function () use ($var) { }
+
+------------------------------------------------------------------
+Найти html элемент в инструментах разработчика:
+
+ctrl + shift + c
+
+-------------------------------------------------------------------
+about:config
+Посмотреть IP компьютера
+
+permissions.default.image
+
+--------------------------------------------------------------------
+Отключить сборку:
+
+newfrontend/config/main.php
+$assetManager = [];
+
+--------------------------------------------------------------------
+Генерация YML файла.
+В консоли прописать:
+
+php frontend/web/admin/index.php generateymlnew generate yamarket
+
+Сгенерированный yml файл лежит по адресу:
+frontend/web/ya_widgets_new/yamarket.xml
+
+Таблица с товарами для яндекс маркета:
+goods_for_yamarket
+
+--------------------------------------------------------------------
+Удалить ветку git локально и удаленно:
+
+git branch -d <branch_name>
+
+git branch -D <branch_name> - принудительное удаление без проверки слияния
+
+git push <remote_name> --delete <branch_name>
+
+--------------------------------------------------------------------
+Конфиг для расчета стоимости доставки:
+
+common/config/deliveryApi.php
+
+<?php
+
+return [
+    'dellin' => [
+        'key' => '9242790C-C049-11E5-A0DE-00505683A6D3'
+    ],
+    'nrg' => [
+        'key' => 'O1eUW6P72YlTL1q89c7EobDpgP9i6kdLDUazY8f1vLAQinczuLWijSnkKpdHtC0q'
+    ],
+    'vozovoz' => [
+        'key' => 'vEV1DfXPEpKUt71BgZL0P1hVqYICpSsvmKbKFvKY'
+    ],
+    'gtd' => [
+        'key' => '5m4p3Wr9wdzrzor49Eh_eJuhQhY_-jZb '
+    ],
+    'baikal' => [
+        'key' => 'b9f9c2f50f4e1cf00e7e61d073f0f5dd'
+    ]
+];
+
+--------------------------------------------------------------------
+Время выполнения скрипта:
+
+$start = microtime(true);
+echo 'time: ' . (microtime(true) - $start) . ' sec.';
+
+--------------------------------------------------------------------
+Отправить юзера на 404 страницу:
+
+throw new NotFoundHttpException();
+
+--------------------------------------------------------------------
+upsert пример:
+
+Yii::$app->db->createCommand()
+    ->upsert('provider_file', [
+        'catalog' => $catalog,
+        'time' => date("Y-m-d H:i:s")
+    ], [
+        'time' => date("Y-m-d H:i:s"),
+    ])
+    ->execute();
+
+--------------------------------------------------------------------
+Как поднять проект:
+
+* Сделать git clone с удаленного репозитория в директорию: git clone https://github.com/libgit2/libgit2
+
+git clone https://git.tyres.spb.ru:3000/Exclusive/frontend.b2b.tyres.spb.ru
+
+* Создать конфиг файл для проекта: 
+
+sudo nano /etc/apache2/sites-available/phpmyadmin
+/etc/apache2/sites-available 
+
+* Включение виртуального хоста: 
+sudo a2ensite exsdample.conf
+sudo a2ensite 000-default.conf
+sudo a2ensite 000-default.conf.save
+
+* Перезапуск apache: systemctl reload apache2
+
+* Прописать сайт в хостах: /etc/hosts
+
+* Скачать базу данных и подключить ее в конфигах.
+
+Подключить нужную версию php и php-fpm
+Скачать все расширения для требуемой версии php.
+
+Установить права доступа на runtime и assets
+
+--------------------------------------------------------------------
+
+Создать файл/директорию:
+
+touch file.txt / mkdir dir1
+
+Удалить файл/директорию:
+
+sudo rm -r
+sudo rm -r dir1
+
+Открыть файл:
+
+nano nano_file.txt
+
+gedit gnome.txt
+
+Очистить папку:
+
+rm -rf /tmp/folder/*
+
+rm -rf /assets/*
+
+
+-------------------------------------------------------------------
+css ширина по контенту:
+width: fit-content;
+
+--------------------------------------------
+Получить айдишник последнего добавленного элемента в миграции
+(добавление связанных данных):
+
+$id = Yii::$app->db->getLastInsertID();
+
+--------------------------------------------------------------------
+shift + prtScreen - снимок выделенной области
+
+--------------------------------------------------------------------
+Переключить версию PHP:
+sudo update-alternatives --config php
+
+--------------------------------------------------------------------
+Сборка гульпа:
+gulp sassLayout
+
+--------------------------------------------------------------------
+Установить gulp:
+npm install --save-dev gulp-sass
+--------------------------------------------------------------------
+Посмотреть ip адрес в консоли:
+ifconfig
+
+--------------------------------------------------------------------
+Посмотреть индексы в таблице БД:
+SHOW INDEX FROM module_catalog_info;
+SHOW INDEX FROM module_catalog_disks;
+SHOW INDEX FROM module_catalog_tires;
+
+Использовать индекс:
+SELECT FROM table USE INDEX (name);
+
+Добавить/удалить индексы:
+
+CREATE INDEX season
+ON module_catalog_info (season);
+
+ALTER TABLE module_catalog_tires
+DROP INDEX turbo_boost;
+
+CREATE INDEX brand
+ON module_catalog_tires (season);
+
+ALTER TABLE module_catalog_tires
+DROP INDEX brand;
+
+ALTER TABLE module_catalog_tires
+DROP INDEX additional_param_index;
+
+--------------------------------------------------------------------
+Посмотреть Get параметры yii:
+
+Yii::$app->request->get();
+var_dump(Yii::$app->request->get());
+
+var_dump(Yii::$app->request->post());
+--------------------------------------------------------------------
+DropDownList:
+
+Форматируем класс ActiveRecord в массив.
+Выводим выпадающий список.
+
+$items = ArrayHelper::map($cat,'id','name');
+echo Html::dropDownList('cat', 'null', $items);
+
+
+echo Html::beginForm('index', 'post', ['method' => 'post', 'action' => 'user/create']);
+echo Html::dropDownList('news', 'null', $items);
+echo Html::submitButton('buttonName', [
+    'name' => 'name',
+    'value' => '777',
+    'class' => 'submit',
+    'data' =>
+        ['method' => 'post']
+
+]);
+echo Html::endForm();
+        
+--------------------------------------------------------------------
+Кнопки:
+
+<?= Html::button('Нажми меня!', ['class' => 'teaser']) ?>
+<?= Html::submitButton('Отправить', ['class' => 'submit']) ?>
+<?= Html::resetButton('Сбросить', ['class' => 'reset']) ?>
+
+--------------------------------------------------------------------
+Создать миграцию:
+
+yii migrate/create create_news_table
+
+--------------------------------------------------------------------
+Миграция на индексы:
+
+/**
+ * Class m210505_131214_add_index_22233_brand_and_brand_translit
+ */
+class m210505_131214_add_index_22233_brand_and_brand_translit extends Migration
+{
+    const INDEX_NAME = 'turbo_boost';
+    const DOUBLE_INDEX_NAME = 'turbo_double_boost';
+    const TABLE = 'module_catalog_disks';
+
+    public function safeUp()
+    {
+        $this->createIndex(self::INDEX_NAME, self::TABLE, ['brand', 'sorted']);
+        $this->createIndex(self::DOUBLE_INDEX_NAME, self::TABLE, ['model', 'brand', 'sorted', 'qnt']);
+    }
+
+    public function down()
+    {
+        $this->dropIndex(self::INDEX_NAME, self::TABLE);
+        $this->dropIndex(self::DOUBLE_INDEX_NAME, self::TABLE);
+    }
+}
+
+--------------------------------------------------------------------
+Миграция на update:
+
+<?php
+
+use yii\db\Migration;
+
+/**
+ * Class m210507_113202_change_synonym_eco_contact_6
+ */
+class m210507_113202_change_synonym_eco_contact_6 extends Migration
+{
+    const TABLE = 'automatic_brands_models';
+    /**
+     * {@inheritdoc}
+     */
+    public function safeUp()
+    {
+        $this->update(self::TABLE, ['model' => 'ContiEcoContact 6'], ['model' => 'EcoContact 6']);
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function safeDown()
+    {
+        $this->update(self::TABLE, ['model' => 'EcoContact 6'], ['model' => 'ContiEcoContact 6']);
+    }
+}
+
+--------------------------------------------------------------------
+Синонимы лежат в таблице:
+
+automatic_brands_models
+
+--------------------------------------------------------------------
+Валидация ноvера jquery (функция mask):
+
+$('#selector').on('keydown', function (e) { }).mask('+7 (999) 999-99-99', phoneMaskSettings);
+
+--------------------------------------------------------------------
+Ip Олега:
+172.27.178.64
+172.27.178.26
+
+172.27.178.64/tyres2909.sql
+172.27.178.64/severAutoTyre2010.xml
+
+172.27.178.64/1c_exchange.week3.sql
+172.27.178.78/1c_exchange.week3.sql
+172.27.178.78/1c2202.sql
+172.27.178.78/1c_exchange.sql
+
+172.27.178.78/tyres1702.sql
+--------------------------------------------------------------------
+Быстро установить закладку: F11
+Перейти к закладке: Shift+F11
+Дать имя закладке: Ctrl+F11
+
+--------------------------------------------------------------------
+Найти модель по имени таблицы:
+
+public static function tableName()
+{
+    return 'module_catalog_tires';
+}
+
+--------------------------------------------------------------------
+RabbitMq.
+
+Ссылка на статью:
+http://mindhalls.ru/rabbitmq-install-and-sample/
+
+Установка amqp:
+sudo apt install php-amqp -y
+
+1. Первый делом нужно установить RabbitMQ Server:
+apt-get install rabbitmq-server
+или:
+dpkg -i rabbitmq-server_3.6.9-1_all.deb
+После этого можно подключать библиотеку Rabbitа уже непосредственно в проект.
+
+2. Подключить RabbitMQ в проект с помощью Composer.
+Создаем в папке с проектом файл composer.json и пишем туда такое содержимое:
+
+{
+    "require" : {
+        "php-amqplib/php-amqplib" : ">=2.6.1"
+    }
+}
+
+3. Далее открываем папку с проектом и терминале и запускаем установку зависимостей:
+composer install
+После этого в корне проекта появится папка vendor с установленной в ней библиотекой RabbitMQ.
+
+Возможные проблемы! Иногда композер не может найти некоторые библиотеки в системе, например:
+php-bcmath и php-mbstring, установить их легко:
+apt-get install php-bcmath
+apt-get install php-mbstring
+
+4. Следующим шагом будет подключить файл autoloader.php в файлы исходного кода в своем проекте с помощью require_once, например, если файл script.php лежит в корне проекта, то строчка будет выглядеть вот так
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+С этого момента можно пользоваться библиотечными функциями.
+
+--------------------------------------------------------------------
+Установить пакеты для PHP (нужную версию прописать):
+
+sudo apt-get install libapache2-mod-php7.4 php7.4-common php7.4-gd php7.4-mysql php7.4-curl php7.4-intl php7.4-xsl php7.4-mbstring php7.4-zip php7.4-bcmath php7.4-soap php7.4-xdebug php7.4-imagick
+
+sudo apt install php5.6 php5.6-common php5.6-cli php5.6-fpm php5.6-gd php5.6-mysql php5.6-mbstring php5.6-curl php5.6-xml php5.6-zip php5.6-json php5.6-imagick php5.6-xmlrpc php5.6-bz2 php5.6-dev php5.6-opcache
+
+sudo apt install php8.0 php8.0-common php8.0-cli php8.0-fpm php8.0-gd php8.0-mysql php8.0-mbstring php8.0-curl php8.0-xml php8.0-zip php8.0-json php8.0-imagick php8.0-xmlrpc php8.0-bz2 php8.0-dev php8.0-opcache
+
+sudo apt-get install libapache2-mod-php8.0 php8.0-common php8.0-gd php8.0-mysql php8.0-curl php8.0-intl php8.0-xsl php8.0-mbstring php8.0-zip php8.0-bcmath php8.0-soap php8.0-xdebug php8.0-imagick
+
+--------------------------------------------------------------------
+Переключить версию composer:
+composer self-update --1 
+composer self-update --2
+
+--------------------------------------------------------------------
+При несовместимости плагинов и версии composer:
+
+composer install --ignore-platform-reqs
+composer update --ignore-platform-reqs
+
+
+И update каждого плагина по отдельности:
+composer update yiisoft/yii2-composer
+
+--------------------------------------------------------------------
+совместимые версии rabbit и erlang:
+https://www.rabbitmq.com/which-erlang.html
+
+Удалить rabbit:
+sudo apt-get purge rabbitmq-server
+sudo rm -fr /var/lib/rabbitmq/
+
+--------------------------------------------------------------------
+Посмотреть письма в mailer.
+Добавить папку mail в runtime.
+Прописать в mailer.php:
+
+<?php return [
+    'class' => 'yii\swiftmailer\Mailer',
+    'viewPath' => '@mail',
+    'useFileTransport' => true,
+    'fileTransportPath' => 'runtime/mail',
+    'transport' => [
+        'class' => 'Swift_SmtpTransport',
+        'host' => '',
+        'port' => ''
+    ]
+];
+
+--------------------------------------------------------------------
+Эмулятор айфона:
+https://appetize.io/demo?device=iphone6splus&scale=75&orientation=portrait&osVersion=13.7
+
+--------------------------------------------------------------------
+Указание обьекта в константе класса:
+
+use common\models\cars\Cars;
+
+class Model extends Model
+{
+    const MODULE_OBJECTS = [
+        Cars::class
+    ];
+}
+
+--------------------------------------------------------------------
+Команды для запуска модулей в frontend:
+
+php frontend/web/index.php sitemap vasyazapilimnesitemapda
+
+php frontend/web/index.php postman parseMtmXml
+
+php frontend/web/index.php postman updateCarDb
+
+php frontend/web/index.php getter compare
+
+php frontend/web/admin/index.php generateymlnew generate yamarket
+
+--------------------------------------------------------------------
+Проверка модуля postman:
+
+В frontend/web/modules/postman/PostmanModel.php / в public function getMtmXml() прописать:
+
+$xml = __DIR__ . '/min_auto.xml';
+return ['path' => $xml];
+
+$xml = __DIR__ . '/auto.xml';
+return ['path' => $xml];
+
+Остальное закоментировать.
+
+--------------------------------------------------------------------
+Экранирование символов в консольной команде:
+
+php frontend/web/admin/index.php generateymlnew generate e-katalog\ \(nadavi.net\)
+
+--------------------------------------------------------------------
+Main контроллер:
+
+newfrontend/controllers/MainController.php
+48 строка - actionIndex
+
+--------------------------------------------------------------------
+Обновить yii2:
+
+composer require "yiisoft/yii2:~2.0.42" --update-with-dependencies
+
+--------------------------------------------------------------------
+
+Вам нужно вызвать $this->redirect() после parent::init() , 
+так как $response свойство (используемое $this->redirect()) инициализируется там.
+
+--------------------------------------------------------------------
+
+Обработчик на динамически созданный элемент:
+
+$(document).ready(function () {
+    $(document).on('click','.className',function (e) {
+
+    });
+});
+--------------------------------------------------------------------
+
+Найти файл в linux:
+
+find filename
+
+--------------------------------------------------------------------
+
+ext-intl - расширение интернационализации (Intl) - это оболочка для библиотеки ICU, 
+набора библиотек C / C ++ и Java, которые обеспечивают поддержку Unicode и 
+глобализации для программных приложений. Это позволяет программистам 
+PHP выполнять в своих сценариях согласованную сортировку 
+UCA и форматирование даты / времени / числа / валюты.
+
+https://docs.moodle.org/311/en/admin/environment/php_extension/intl
+
+--------------------------------------------------------------------
+
+Чтобы добавить partition к таблице, первичный ключ должен 
+включать поля по которым идет разделение на сегменты.
+--------------------------------------------------------------------
+
+Удалить пакет composer:
+
+composer remove "codeception/codeception"
+
+composer remove "codeception/base"
+
+--------------------------------------------------------------------
+Получить запрос SQL:
+
+$object->createCommand()->getRawSql();
+
+--------------------------------------------------------------------
+Пути для img:
+
+/home/new-root/projects/tyres/frontend/web/admin/modules/cat/upload_img/aeolus_precisionace_ah01.jpg
+
+/home/new-root/projects/tyres/frontend/web/modules/catalog/img/goods/big/achilles_atr_sport.jpg
+
+--------------------------------------------------------------------
+Kibana:
+
+kibana.tyres.spb.ru
+Name: kibana
+Password: LPW4jB8EfW
+
+--------------------------------------------------------------------
+echo '<pre>';
+var_dump();
+echo '</pre>';
+die;
+
+--------------------------------------------------------------------
+Запустить службу Apache:
+sudo systemctl start apache2
+
+Остановить службу Apache:
+sudo systemctl stop apache2
+
+Перезапустить службу Apache:
+sudo systemctl restart apache2
+
+Статус:
+sudo systemctl status apache2
+
+--------------------------------------------------------------------
+Nginx:
+sudo ufw enable
+
+Статус:
+sudo ufw status
+
+Проверка работы веб-сервера:
+systemctl status nginx
+
+Остановить:
+sudo systemctl stop nginx
+
+Запуск:
+sudo systemctl start nginx
+
+Перезапуск:
+sudo systemctl restart nginx
+
+Перезагрузка:
+sudo systemctl reload nginx
+
+Отключить автоматичсекий запуск:
+sudo systemctl disable nginx
+
+Включить автозапуск:
+sudo systemctl enable nginx
+
+--------------------------------------------------------------------
+windows:
+
+https://wmcentre.net/search?searchstr=windows+10+pro
+
+--------------------------------------------------------------------
+Задача по ошибкам kibana:
+
+https://help.tyres.spb.ru/issues/26063
+
+--------------------------------------------------------------------
+Ошибка phpMyAdmin:
+
+$cfg['blowfish_secret'] = '12345678901234567890123456789012';
+
+--------------------------------------------------------------------
+1c_exchange
+
+php5.6 yii exchange 4 dbB2bTyres
+
+php yii exchange 4 dbB2bTyres
+
+php yii exchange 2 dbTrucktyres
+
+php yii exchange 1 dbTyres
+
+php yii import-config/set-stores-names
+
+php yii import-config/insert-dst-group
+
+--------------------------------------------------------------------
+.htaccess
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]
+
+
+RewriteEngine on
+# If a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Otherwise forward it to index.php
+RewriteRule . index.php
+
+--------------------------------------------------------------------
+.gitignore
+
+.idea
+vendor
+runtime
+
+--------------------------------------------------------------------
+Примеры сайтов:
+
+https://spb.allrad.ru/
+
+--------------------------------------------------------------------
+
+Хостинг:
+
+https://pq.hosting/
+
+--------------------------------------------------------------------
+Символьные ссылки:
+
+создание:
+ln -s ../api/web api
+
+ln -s ../../api/web/ api
+
+просмотр:
+ls -li
+
+--------------------------------------------------------------------
+Переопределить дефолтные REST функции:
+https://stackoverflow.com/questions/27648504/yii2-override-generic-create-action-in-rest-activecontroller/50744982#50744982
+
+В контроллере переопределите actions метод следующим образом:
+
+public function actions()
+{
+    $actions = parent::actions();
+    unset($actions['create']);
+    return $actions;
+}
+
+А затем вы можете определить свой метод создания в этом контроллере.
+
+public function actionCreate()
+{
+    // your code goes here
+}
+
+--------------------------------------------------------------------
+Генерация url карточки товара:
+
+$goodFactory = new GoodFactory();
+//tires
+$goodObject = $goodFactory->createGoodObject('disks');
+$good = $goodObject::findOne('37zWHS219518');
+var_dump($good->getCardUrl());
+die;
+
+
+Генерация uniqueId:
+
+$goodFactory = new GoodFactory();
+$goodObject = $goodFactory->createGoodObject('disks');
+$good = $goodObject::findOne('20863132210996');
+$generateId = $this->generateUnique($good, 'disks');
+var_dump($generateId);
+die;
+
+--------------------------------------------------------------------
+Запросы на b2b:
+
+b2b/api/notification/get
+
+b2b/api/notification/set
+
+b2b/api/notification/delete
+
+b2b/api/notification-template/get
+
+b2b/api/notification-template/set
+
+b2b/api/notification-template/delete
+
+--------------------------------------------------------------------
+Значение по умолчанию в миграции yii2:
+
+public function safeUp()
+{
+  'id' => $this->primaryKey(),
+  'text' => $this->string()->notNull()->defaultValue(false),
+}
+
+Текущее время по умолчанию:
+
+
+'createdAt' => $this->timestamp()->defaultValue(new \yii\db\Expression('NOW()'))
+'createdAt' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP')
+
+'createdAt' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP')
+
+SELECT unix_timestamp(now())
+
+--------------------------------------------------------------------
+Запущенные службы:
+
+sudo service --status--all
+
+--------------------------------------------------------------------
+Чек ошибок php:
+
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
+--------------------------------------------------------------------
+Запись данных в csv:
+
+создание:
+$data = ['unique_id', 'id', 'custom'];
+$file = fopen('model.csv', 'w');
+fputcsv($file, $data);
+fclose($file);
+
+Запись:
+$file = fopen('model.csv', 'a');
+$modelArray = Model::find()
+  ->select(['*'])
+  ->asArray()
+  ->all();
+
+foreach ($modelArray as $model) {
+  fputcsv($file, $model);
+}
+
+fclose($file);
+
+die;
+
+--------------------------------------------------------------------
+Вставка данных из CSV в бд:
+
+$handle = fopen('/home/new-root/projects/b2b/model.csv','r');
+$count = 0;
+while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+  $model = new Model();
+  $model->id = $data[0];
+  if ($data[1]) {
+    $model->id1c = $data[1];
+  }
+  $model->idBrand = $data[2];
+  $model->name = $data[3];
+  if(!$model->save()) {
+    var_dump($count++);
+    var_dump($data);
+  }
+}
+die;
+
+--------------------------------------------------------------------
+Сценарии:
+
+const SCENARIO_ADD = 'add';
+const SCENARIO_EDIT = 'edit';
+
+public function scenarios(): array
+{
+  $scenarios = parent::scenarios();
+  $scenarios[self::SCENARIO_ADD] = ['idBrand', 'text'];
+  $scenarios[self::SCENARIO_EDIT] = ['id', 'text'];
+  return $scenarios;
+}
+
+Добавление условий параметров для сценариев:
+
+[['id'], 'required', 'on' => [self::SCENARIO_DELETE]],
+[['idBrand'], 'unique', 'on' => [self::SCENARIO_ADD]],
+
+--------------------------------------------------------------------
+Регулярные выражения:
+
+Поиск слова:
+$regExp = "/\btext\b/i";
+
+\ba - начало слова
+a\b конец слова
+i - без учета регистра
+
+--------------------------------------------------------------------
+
+UrlRules для UrlManager restFull api:
+
+[
+  'class' => 'yii\rest\UrlRule',
+  'controller' => 'api/notification',
+  'extraPatterns' => [
+    'GET ' => '',
+    'POST ' => '',
+  ],
+    'pluralize' => false,
+],
+
+--------------------------------------------------------------------
+Парсинг файла continental:
+
+/console/models/getter/importCatalog/catalogs/continentalTyreCatalog.php
+
+private function initFilePath()
+{
+  $user = $this->pathFile['user'];
+  $pass = $this->pathFile['pass'];
+  $host = $this->pathFile['host'];
+  $restName = $this->pathFile['rest_name'];
+
+//$connection = ftp_connect($host);
+//ftp_login($connection, $user, $pass);
+//$files = ftp_nlist($connection, ".");
+//unset($files[array_search($restName, $files)]);
+//sort($files);
+//$catalogFileName = end($files);
+
+  $this->fileRest = 'ftp://' . $user . ':' . $pass . '@' . $host . '/' . $restName;
+  $this->filePath = 'ftp://change:Zg5NIuv86Q@172.27.178.44/Conti_PRICAT_RU_PL_Exclusive_20210822.csv';
+}
+
+--------------------------------------------------------------------
+bakashoff
+
+frontendb2b:
+aa@aa.aa
+aa
+
+Пароль:
+1q2w3e4r
+
+$2a$07$usesomesillystringforevS24D46kl/f51ZYNNhRsAHEC1JzgwCS
+
+Пароль для trucktyres:
+admin
+1q2w3e4r
+
+md5:
+5416d7cd6ef195a0f7622a9c56b55e84
+
+md5+соль:
+f362f06f1301e43430e14aca5829c4b7
+
+--------------------------------------------------------------------
+Посмотреть часы задачи:
+
+https://help.tyres.spb.ru/time_entries?utf8=%E2%9C%93&f%5B%5D=spent_on&op%5Bspent_on%5D=w&f%5B%5D=user_id&op%5Buser_id%5D=%3D&v%5Buser_id%5D%5B%5D=395&f%5B%5D=&c%5B%5D=project&c%5B%5D=spent_on&c%5B%5D=user&c%5B%5D=activity&c%5B%5D=issue&c%5B%5D=comments&c%5B%5D=hours
+
+--------------------------------------------------------------------
+Ограничение размеров загружаемых файлов:
+phpinfo();
+
+Поле (путь к файлу php.ini):
+Loaded Configuration File /etc/php/7.4/fpm/php.ini
+
+В файле php.ini ищем настройки (выставляем нужные значения):
+
+post_max_size равный или больше предполагаемому размеру post
+upload_max_filesize — для загрузки файлов побольше. обычно равный post
+max_execution_time и max_input_time побольше, чтобы скрипт не отвалился на долгой загрузке
+
+--------------------------------------------------------------------
+csrf token:
+
+ключ токена в массиве куки или сессии:
+(main.php или web.php)
+
+Yii::$app->request->csrfParam
+
+'request' => [
+  'csrfParam' => '_csrf-newfrontend',
+  'parsers' => [
+    'application/json' => 'yii\web\JsonParser',
+    ]
+  ],
+
+Включена ли валидация csrf на сайте:
+\Yii::$app->request->enableCsrfValidation
+
+получить значение:
+(здесь лежит захешированный токен)
+Yii::$app->request->getCsrfToken(); 
+Yii::$app->request->csrfToken;
+
+токен без хеша:
+\Yii::$app->request->getCookies()['_csrf-newfrontend']->value
+
+Валидация: 
+Yii::$app->request->validateCsrfToken();
+
+Куки:
+\Yii::$app->request->getCookies();
+
+Если значение true, хранится в куки:
+Yii::$app->request->enableCsrfCookie;
+
+Метод validateCsrfToken проверяет наличие токена в теле запроса или в заголовках:
+Yii::$app->request->getBodyParam($Yii::$app->request->csrfParam)
+Yii::$app->request->getCsrfTokenFromHeader()
+
+--------------------------------------------------------------------
+Сортировка вложенного массива:
+
+        $out= [
+            [
+                [ 'name'=>'Апельсины','count'=>7 ],
+                [ 'name'=>'Апельсины','count'=>13 ]
+            ],
+            [
+                [ 'name'=>'Апельсины','count'=>7 ],
+                [ 'name'=>'Апельсины','count'=>14 ]
+            ],
+            [
+                [ 'name'=>'Апельсины','count'=>7 ],
+                [ 'name'=>'Апельсины','count'=>12 ]
+            ],
+            [
+                [ 'name'=>'Мандарины','count'=> 9 ],
+                [ 'name'=>'Огурцы','count'=> 11 ]
+            ]
+        ];
+
+        $tmp= [];
+
+        foreach($out as $item){
+            $count = array_column($item, 'count');
+            $max = max($count);
+            $tmp['count'][]=$max;
+        }
+
+        array_multisort($tmp['count'],SORT_ASC, $out);
+
+        echo '<pre>';
+        var_dump($out);
+        echo '</pre>';
+        die;
+--------------------------------------------------------------------
+Наибольше значение вложенного массива:
+
+$maxRest = max(array_column($cartRests, "qnt"));
+
+--------------------------------------------------------------------
+Посмотреть ошибки записи и валидации:
+
+$goodObj->load($arr, '');
+$goodObj->save();
+$goodObj->getErrors();
+
+--------------------------------------------------------------------
+Поднять проект react:
+
+npm start
+
+1. Установка node.js:
+sudo apt update
+sudo apt install nodejs
+
+Посмотреть доступные версии:
+nvm list-remote
+
+2. Проверка:
+nodejs -v
+node -v
+
+Выбрать нужную версию nodejs:
+nvm list
+nvm use v16.3.0
+
+3. Диспетчер пакетов:
+sudo apt install npm
+
+4. Git clone проекта
+
+5. В репозитории проекта:
+npm install
+npm i -g json-server
+
+npm start
+npm run dev
+http://localhost:3000
+
+--------------------------------------------------------------------
+Отключить валидацию b2b:
+
+/home/new-root/projects/b2b/modules/api/controllers/BaseController.php
+
+
+//        $behaviors['authenticator']['except'] = ['options'];
+//        $behaviors['authenticator'] = [
+//            'class' => \sizeg\jwt\JwtHttpBearerAuth::class,
+//            'except' => array_merge(self::PUBLIC_ACTIONS, ['options'])
+//        ];
+
+--------------------------------------------------------------------
+
+Регулярка на год:
+
+<?php
+
+$values = [
+    'July 1967 USA',
+    '14 March 1979 France',
+    '23 June 1976 France',
+    'from the 21 October 2016',  
+];
+foreach ($values as $value) {
+    $pattern = '/(^|\s)(\d{4})(\s|$)/m';
+    preg_match($pattern, $value, $match);
+    echo $match[2] . "\n";
+}
+Output:
+
+1967
+1979
+1976
+2016
+
+--------------------------------------------------------------------
+Регулярка на цвет:
+
+$regExp = 'F\-\s\sSilver';
+$text = 'f-  silver';
+preg_match('/\b' . $regExp . '\b/i', $text, $matches);
+var_dump($matches);
+
+                ->andWhere(['>', Disk::tableName() . '.qnt', 0])
+                ->andWhere([Disk::tableName() . '.sorted' => 1])
+
+--------------------------------------------------------------------
+Регулярка несколько брендов без учета регистра:
+
+preg_match("/konig|advanti|mamba/i", $brand);
+
+--------------------------------------------------------------------
+Nginx:
+
+server {
+    index index.php;
+    server_name hello.dev;
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+        set $base_root /home/constantin/projects/b2bNew;
+        root $base_root/web;
+
+    location ~ .php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+.php)(/.+)$;
+        fastcgi_index index.php;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock; #подключаем сокет php-fpm
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+   location ~ /.ht {
+        deny all;
+    }
+    location ~ /.well-known {
+            allow all;
+    }
+location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+}
+
+fastcgi_pass php:9000;
+
+--------------------------------------------------------------------
+Форматирование даты react:
+
+const timestamp = Date.now(); // This would be the timestamp you want to format
+console.log(new Intl.DateTimeFormat('en-US', 
+{year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+).format(timestamp));
+
+--------------------------------------------------------------------
+Пуш без пароля.
+
+Чтобы не вводить постоянно пароль, клонирование проекта надо выполнять по ssh протоколу.
+Например:
+git clone ssh://gituser@git.tyres.spb.ru/Exclusive/back.b2b.tyres.spb.ru.git
+git clone ssh://gituser@git.tyres.spb.ru/Exclusive/tyres_satellites.git
+
+В репозитории:
+git remote -v 
+git add origin <url>
+git remote set-url origin <new-url>
+
+Статья на stackOverflow:
+https://ru.stackoverflow.com/questions/420040/%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F-git-%D0%B1%D0%B5%D0%B7-%D0%B2%D0%B2%D0%BE%D0%B4%D0%B0-%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D0%B5%D0%B9
+
+--------------------------------------------------------------------
+Добавить папку в реквест и игнорировать содержимое.
+.gitignore:
+
+*
+!.gitignore
+
+--------------------------------------------------------------------
+Пароль Wi-Fi:
+
+cagTUTs6bx
+
+--------------------------------------------------------------------
+connectionRabbit mq:
+
+return [
+    [
+        'host' => '127.0.0.1',
+        'port' => '5673',
+        'user' => 'admin',
+        'password' => 'admin',
+        'vhost' => '/',
+    ]
+];
+
+--------------------------------------------------------------------
+Test rabbit:
+
+php yii rabbit/test
+
+$producer->publish($message, 'tyres', '', ['correlation_id' => 666]);
+
+--------------------------------------------------------------------
+Поднять докер:
+
+sudo docker-compose up
+
+--------------------------------------------------------------------
+Запустить rabbit:
+
+bash rabbit.sh
+
+--------------------------------------------------------------------
+Url rabbit:
+
+http://127.0.0.1:15673/
+
+--------------------------------------------------------------------
+Конфиг rabbitMq:
+
+version: "3.2"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5673:5672
+        - 15673:15672
+    networks:
+        - rabbitmq_go_net
+    environment:
+        - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER:-admin}
+        - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS:-admin}
+
+networks:
+  rabbitmq_go_net:
+    driver: bridge
+
+--------------------------------------------------------------------
+phpMyAdmin отключить пароль:
+
+gedit /etc/phpmyadmin/config.inc.php
+
+раскоментировать:
+
+$cfg['Servers'][$i]['AllowNoPassword'] = TRUE;
+
+--------------------------------------------------------------------
+Проверка на существование процесса:
+
+    /**
+     * @return bool
+     */
+    private function processExistence()
+    {
+        exec('ps aux', $top);
+
+        $argv =& $_SERVER['argv'];
+        unset($argv[0]);
+        $regex = '';
+        foreach ($argv as $k => $v) {
+            $v = trim($v, '/');
+            $v = str_replace('/', '\/', $v);
+            $regex .= $v . '\s';
+        }
+
+        $regex = '/' . trim($regex, '\s') . '/';
+        $status = 0;
+        foreach ($top as $v) {
+            if (preg_match($regex, $v)) {
+                if (!preg_match('/.*\ssudo\s.*/', $v) && !preg_match('/.*\/bin\/sh\s\-c.*/', $v)) {
+                    $status++;
+                }
+            }
+        }
+        return ($status == 4);
+    }
+
+--------------------------------------------------------------------
+Отключить авторизацию phpMyAdmin:
+
+$cfg['Servers'][$i]['auth_type'] = 'config';
+/* Server parameters */
+$cfg['Servers'][$i]['user'] = 'root';
+$cfg['Servers'][$i]['password'] = '%mysqlrootpass%'
+
+--------------------------------------------------------------------
+Получение имени процесса по PID:
+
+exec('ps -p ' . getmypid() . ' -o command=', $output);
+
+Вывод определнных колонок:
+ps -eo pid,ppid,user,cmd
+
+--------------------------------------------------------------------
+CRON:
+
+Добавить команду:
+crontab -e
+
+Настрйоки cron:
+crontab -l
+
+Удалить все задачи:
+crontab -r
+
+Крон команда на каждую минуту:
+* * * * * php /home/new-root/projects/1c_exchange/yii exchange
+
+--------------------------------------------------------------------
+Найти коммит по хешу:
+
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b64299db7b3641f68b5ede9cb814c9b7e4534d34
+
+--------------------------------------------------------------------
+Очистка input перед вставкой:
+
+.on('paste', function (e) {
+    e.target.value = '';
+})

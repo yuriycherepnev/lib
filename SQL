@@ -1,0 +1,494 @@
+sudo apt-get install htop
+
+-------------------------------------------------------------------------------------
+
+Запрос Олега SQL формат:
+//джоин запрос на получение заблокированных товаров из module_catalog_disks 
+
+SELECT module_catalog_disks.*, (concat_id is not null) as ban_good 
+FROM module_catalog_disks 
+left join getter_ban 
+on getter_ban.concat_id = CONCAT(brand, model, d, w, lz) 
+where module_catalog_disks.sorted = 1 
+AND module_catalog_disks.qnt > 0 
+ORDER BY `ban_good` DESC
+
+-------------------------------------------------------------------------------------
+
+Запрос Олега query формат:
+
+$goodsArray = self::find() //, 'concat_id AS ban_good'
+    ->select(['*', '(concat_id is not null) as ban_good'])
+    ->join('LEFT JOIN', 'getter_ban', 'getter_ban.concat_id = CONCAT(brand, model, d, w, lz)')
+    ->asArray()
+    ->orderBy('concat_id DESC')
+    ->where(['sorted' => 1])
+    ->andWhere('qnt > 0')
+    ->orderBy('ban_good DESC')
+    ->asArray()
+    ->all(); //запрос Олега переделанный на query формат
+
+-------------------------------------------------------------------------------------
+
+Мои запросы в SQL и query форматах:
+//запрос на получение массива id заблокированных товаров
+
+$goodsArray = self::find() // 'concat_id AS ban_good'
+->select(['module_catalog_disks.id AS id'])
+    ->from('getter_ban')
+    ->join('LEFT JOIN', 'module_catalog_disks', 'CONCAT(brand, model, d, w, lz) = getter_ban.concat_id')
+    ->asArray()
+    ->where(['sorted' => 1])
+    ->andWhere('qnt > 0')
+    ->asArray()
+    ->all(); 
+
+-------------------------------------------------------------------------------------
+        
+SELECT module_catalog_tires.*, (concat_id is not null) as ban 
+FROM module_catalog_tires 
+left join getter_ban 
+on getter_ban.concat_id = CONCAT(d, w, h, c, brand, model_1c, index_speed, index_load, runFlat, homologation, markdown) 
+where module_catalog_tires.sorted = 1 
+AND module_catalog_tires.qnt > 0 
+ORDER BY `ban` DESC
+
+-------------------------------------------------------------------------------------
+
+SELECT * FROM `module_catalog_tires` WHERE CONCAT(d, w, h, c, brand, model_1c, index_speed, index_load, runFlat, homologation, markdown) = 'реплика(fr) 10279.51951124566.60'
+
+SELECT * FROM `module_catalog_disks` WHERE CONCAT(brand, model, w, d, lz, pcd, et, dia, markdown, color_name_from_text) = 'реплика(fr) 10279.51951124566.60'
+
+-------------------------------------------------------------------------------------
+
+SELECT CONCAT(d, w, h, c, brand, model_1c, index_speed, index_load, runFlat, homologation, markdown) FROM `module_catalog_tires` WHERE id = '12z9310468'
+SELECT concat_id FROM `getter_ban` WHERE id = '12z9310468'
+
+SELECT CONCAT(brand, model, w, d, lz, pcd, et, dia, markdown, color_name_from_text) FROM `module_catalog_disks` WHERE id = '20050101204467';
+SELECT concat_id FROM `getter_ban` WHERE id = '20050101204467'
+
+-------------------------------------------------------------------------------------
+
+SELECT CONCAT(brand, model, w, d, lz, pcd, et, dia, markdown, color_name_from_text) FROM `module_catalog_disks` WHERE id = 20177404089810
+SELECT CONCAT(d, w, h, c, brand, model_1c, index_speed, index_load, runFlat, homologation, markdown) FROM `module_catalog_tires` WHERE id = '12z0000800'
+
+SELECT CONCAT(d, w, h, c, brand, model_1c, index_speed, index_load, runFlat, homologation, markdown) 
+FROM `module_catalog_tires`
+WHERE id = '12z9273115'
+
+SELECT * FROM `module_catalog_tires` WHERE id = '12z9273115'
+
+-----------------------------------------------------------------------------------
+
+18235550landsailclv2v10400 php
+
+18235550landsailclv2v10400 php
+
+18235550Landsail    V10400 sql запрос
+
+-----------------------------------------------------------------------------------
+
+14_185_80_1_landsail_lsv88_0_0_0_0_0 php
+
+14 185 80 1 Landsail LSV88 null null 0 "" 0 массив из обьекта goodFactory
+
+14185801landsaillsv88 00 sql
+
+-----------------------------------------------------------------------------------
+Задача 22233:
+
+SELECT DISTINCT module_catalog_tires.brand, module_catalog_info.brand_translit  
+FROM module_catalog_tires 
+JOIN module_catalog_info ON module_catalog_info.brand = module_catalog_tires.brand 
+WHERE module_catalog_tires.sorted = 1 and module_catalog_tires.qnt > 0
+ORDER BY module_catalog_tires.brand
+
+-----------------------------------------------------------------------------------
+Join Запрос на бренды шин:
+
+SELECT DISTINCT module_catalog_tires.brand, module_catalog_info.brand_translit
+FROM module_catalog_tires 
+left join module_catalog_info
+on module_catalog_tires.brand = module_catalog_info.brand
+where module_catalog_tires.sorted = 1 
+AND module_catalog_tires.qnt > 0 
+ORDER BY module_catalog_tires.brand
+
+-----------------------------------------------------------------------------------
+Join Запрос на модели дисков по реплике:
+
+SELECT DISTINCT module_catalog_disks.model, module_catalog_info.model_translit
+FROM module_catalog_disks 
+left join module_catalog_info
+on module_catalog_disks.model = module_catalog_info.model
+WHERE module_catalog_disks.brand= 'Реплика'
+AND module_catalog_disks.sorted = 1 
+AND module_catalog_disks.qnt > 0 
+
+-----------------------------------------------------------------------------------
+Тот же запрос на activeQuery:
+
+$joinBrands = self::find()
+->select(['module_catalog_tires.brand', 'module_catalog_info.brand_translit'])
+    ->from('module_catalog_tires')
+    ->join('LEFT JOIN', 'module_catalog_info', 'module_catalog_tires.brand = module_catalog_info.brand')
+    ->where(['sorted' => 1])
+    ->andWhere('qnt > 0')
+    ->asArray()
+    ->orderBy('module_catalog_tires.brand')
+    ->all();
+
+-----------------------------------------------------------------------------------
+Плюс indexBy и OrderBy:
+
+return CatalogInfo::find()
+    ->select(['module_catalog_tires.model']) 
+    ->distinct()
+    ->join('RIGHT JOIN', 'module_catalog_tires', 'module_catalog_tires.model = module_catalog_info.model')
+    ->where(['module_catalog_tires.brand' => $originalBrand['brand']])
+    ->andWhere(['module_catalog_tires.sorted' => 1])
+    ->andWhere(['>', 'module_catalog_tires.qnt', 0])
+    ->asArray()
+    ->indexBy('model_translit')
+    ->orderBy('module_catalog_tires.model')
+    ->column();
+
+
+$originalBrand = catalogInfo::find()
+    ->select(['brand'])
+    ->filterWhere(['brand_translit' => $brand])
+    ->asArray()
+    ->one();
+return CatalogInfo::find()
+    ->select(['module_catalog_disks.model'])
+    ->distinct()
+    ->join('RIGHT JOIN', 'module_catalog_disks', 'module_catalog_disks.model = module_catalog_info.model')
+    ->where(['module_catalog_disks.brand' => $originalBrand['brand']])
+    ->andWhere(['module_catalog_disks.sorted' => 1])
+    ->andWhere(['>', 'module_catalog_disks.qnt', 0])
+    ->asArray()
+    ->indexBy('model_translit')
+    ->orderBy('module_catalog_disks.model')
+    ->column();
+
+-----------------------------------------------------------------------------------
+Доделанные join запросы для дисков:
+
+    public static function getDisksBrands()
+    {
+        return CatalogInfo::find()->alias('catalog')
+            ->select(['disks.brand'])
+            ->distinct()
+            ->leftJoin(Disk::tableName() . ' disks', 'disks.brand = catalog.brand')
+            ->where(['disks.sorted' => 1])
+            ->andWhere(['>', 'disks.qnt', 0])
+            ->asArray()
+            ->indexBy('brand_translit')
+            ->orderBy('disks.brand')
+            ->column();
+    }
+        public static function getDisksModels($brand)
+    {
+        $originalBrand = catalogInfo::find()
+            ->select(['brand'])
+            ->filterWhere(['brand_translit' => $brand])
+            ->one();
+        return CatalogInfo::find()->alias('catalog')
+            ->select(['disks.model'])
+            ->distinct()
+            ->leftJoin(Disk::tableName() . ' disks','disks.model = catalog.model')
+            ->where(['disks.brand' => $originalBrand['brand']])
+            ->andWhere(['disks.sorted' => 1])
+            ->andWhere(['>', 'disks.qnt', 0])
+            ->asArray()
+            ->indexBy('model_translit')
+            ->orderBy('disks.model')
+            ->column();
+    }
+
+-----------------------------------------------------------------------------------
+Запрос на модели шин по бренду:
+
+SELECT DISTINCT module_catalog_info.model_translit
+FROM module_catalog_tires 
+right join module_catalog_info
+on module_catalog_tires.brand = module_catalog_info.brand
+where module_catalog_tires.brand = 'Altenzo'
+and module_catalog_tires.sorted = 1 
+AND module_catalog_tires.qnt > 0 
+
+-----------------------------------------------------------------------------------
+Простой join:
+
+SELECT  module_cars.id
+FROM module_cars
+join module_cars_accums_mixed
+on module_cars.id = module_cars_accums_mixed.car_id
+WHERE module_cars.brand = ''
+
+-----------------------------------------------------------------------------------
+Миграция с добавлением составного primary key:
+ 
+public function safeUp()
+{
+  $this->dropTable(self::TABLE_HIDE_NOTIFICATION);
+
+  $this->createTable(self::TABLE_HIDE_NOTIFICATION, [
+    'id' => $this->integer()->notNull(),
+    'idUser' => $this->integer()->notNull()
+  ]);
+  $this->addPrimaryKey('hide_notification_key', self::TABLE_HIDE_NOTIFICATION, ['id', 'idUser']);
+
+  $this->addForeignKey(
+    'hide_user',
+    'hide_notification',
+    'id',
+    'notification',
+    'id'
+  );
+}
+
+-----------------------------------------------------------------------------------
+Составной уникальный не первичный ключ:
+
+Yii::$app->db->createCommand('ALTER TABLE hide_notification ADD UNIQUE hide_notification_key (idNotification, idUser)')
+->execute();
+
+$this->createIndex(
+    'user_good_key',
+    'cart',
+    ['idGood', 'idUser'],
+    true
+);
+
+-----------------------------------------------------------------------------------
+Поиск по regExp:
+
+SELECT * FROM module_catalog_tires
+WHERE model REGEXP'/\bSUV\b/i';
+
+SELECT * FROM module_catalog_tires
+WHERE model REGEXP'37z15713';
+
+select * from module_catalog_tires where regexp_like(model, '^(suv)');
+
+-----------------------------------------------------------------------------------
+Несколько LIKE:
+
+CREATE TEMPORARY TABLE patterns (
+  pattern VARCHAR(20)
+);
+
+INSERT INTO patterns VALUES ('%SUV %'), ('% SUV%'), ('%runflat%');
+
+SELECT DISTINCT m.* FROM module_catalog_tires m 
+JOIN patterns p ON (m.model LIKE p.pattern)
+WHERE (`m`.`custom`=0) 
+AND (`m`.`sorted`=1) 
+AND (`m`.`qnt` > 0);
+
+-----------------------------------------------------------------------------------
+
+Несколько LIKE Yii2:
+
+Yii::$app->db->createCommand('CREATE TEMPORARY TABLE patterns (pattern VARCHAR(20))')
+->execute();
+
+foreach (ValidTyre::PARAMS_IN_MODEL as $params) {
+    foreach ($params as $param) {
+      Yii::$app->db->createCommand("INSERT INTO patterns VALUES ('$param %'), ('% $param'), ('% $param %')")
+          ->execute();
+    }
+}
+
+$query = self::find()
+  ->select(['module_catalog_tires.*'])
+  ->distinct()
+  ->join('JOIN', 'patterns', '(module_catalog_tires.model LIKE patterns.pattern)')
+  ->where(['module_catalog_tires.custom' => 0])
+  ->andWhere(['module_catalog_tires.sorted' => 1])
+  ->andWhere(['>', 'module_catalog_tires.qnt', 0])
+  ->orderBy('module_catalog_tires.brand');
+
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+    'sort' => false
+]);
+
+-----------------------------------------------------------------------------------
+Несколько LIKE Yii2:
+
+foreach (ValidTyre::PARAMS_IN_MODEL as $params) {
+    foreach ($params as $param) {
+        $like[] = "% $param %";
+        $like[] = "% $param";
+        $like[] = "$param %";
+    }
+}
+
+$query = self::find()
+    ->where(['custom' => 0])
+    ->andWhere(['sorted' => 1])
+    ->andWhere(['>', 'qnt', 0])
+    ->andFilterWhere([
+        'OR LIKE', 'model', $like, false,
+    ])
+->orderBy('brand');
+
+----------------------------------------------------------------------------------
+Несколько LIKE, плюс group_by по бренду, модели и group_concat по id:
+
+foreach (ValidTyre::PARAMS_IN_MODEL as $params) {
+    foreach ($params as $param) {
+        $like[] = "% $param %";
+        $like[] = "% $param";
+        $like[] = "$param %";
+    }
+}
+
+$query = self::find()
+    ->select(['brand', 'model', "GROUP_CONCAT(id SEPARATOR ', ') id"])
+    ->where(['custom' => 0])
+    ->andWhere(['sorted' => 1])
+    ->andWhere(['>', 'qnt', 0])
+    ->andFilterWhere([
+        'OR LIKE', 'model', $like, false,
+    ])
+->groupBy(['brand', 'model']);
+
+----------------------------------------------------------------------------------
+Поиск по нескольким выражениям like, плюс leftJoin по модели, и отображение
+совпадения моделей через параметр matching который равен 1 или 0, при совпадении:
+
+        $modelParams = GoodName::DEFALT_MODEL_PARAMS_TYRE;
+        foreach ($modelParams as $paramName => $valueParam) {
+            if (!ArrayHelper::keyExists($paramName, ValidTyre::PARAMS_IN_MODEL)) {
+                continue;
+            }
+            foreach (ValidTyre::PARAMS_IN_MODEL[$paramName] as $param) {
+                $like[] = "% $param %";
+                $like[] = "% $param";
+                $like[] = "$param %";
+            }
+        }
+
+        $query = self::find()
+            ->select([self::tableName() . '.brand', self::tableName() . '.model', '(matching_models_with_params.model is not null) AS matching',
+                "GROUP_CONCAT(module_catalog_tires.id SEPARATOR ', ') id"])
+            ->leftJoin( ModelWithParams::tableName(), ModelWithParams::tableName().'.model = module_catalog_tires.model')
+            ->where(['custom' => 0])
+            ->andWhere(['sorted' => 1])
+            ->andWhere(['>', 'qnt', 0])
+            ->andFilterWhere([
+                'OR LIKE', 'module_catalog_tires.model', $like, false,
+            ])
+            ->groupBy(['module_catalog_tires.brand', 'module_catalog_tires.model']);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => false
+        ]);
+
+        $this->load($queryParams);
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+        $query->andFilterWhere(['like', 'id', $this->id]);
+        $query->andFilterWhere(['like', 'brand', $this->brand]);
+        $query->andFilterWhere(['like', 'model', $this->model]);
+        $query->andFilterHaving(['like', 'matching', $this->matching]);
+
+        return $dataProvider;
+
+----------------------------------------------------------------------------------
+Этот же запрос на чистом sql:
+
+SELECT `module_catalog_tires`.`brand`, `module_catalog_tires`.`model`, (matching_models_with_params.model is not null) 
+AS `matching`, GROUP_CONCAT(module_catalog_tires.id SEPARATOR ', ') 
+AS `id` FROM `module_catalog_tires` LEFT JOIN `matching_models_with_params` 
+ON matching_models_with_params.model = module_catalog_tires.model WHERE (`custom`=0) 
+AND (`sorted`=1) AND (`qnt` > 0) AND (`module_catalog_tires`.`model` LIKE '% RFT %' OR `module_catalog_tires`.`model` 
+LIKE '% RFT' OR `module_catalog_tires`.`model` LIKE 'RFT %' OR `module_catalog_tires`.`model` 
+LIKE '% ZP %' OR `module_catalog_tires`.`model` LIKE '% ZP' OR `module_catalog_tires`.`model` 
+GROUP BY `module_catalog_tires`.`brand`, `module_catalog_tires`.`model`
+
+----------------------------------------------------------------------------------
+Запрос дробных чисел:
+
+SELECT * FROM `car4`.`car_disk_size` WHERE `w` = 5 AND `et` LIKE '40.4' AND `d` = 15
+SELECT * FROM `car4`.`car_disk_size` WHERE `w` = 5 AND ABS(et - 40.4) < 0.01 AND `d` = 15
+
+----------------------------------------------------------------------------------
+
+Запрос на получение брендов находящихся в бане для юзера 1 и всех остальных брендов:
+
+SELECT brand.id, brand.name,
+       IF(idBrand IS NULL, FALSE, TRUE) as ban
+FROM brand_ban_list
+RIGHT JOIN users ON (idUser = users.id) AND idUser = 1
+RIGHT JOIN brand ON (idBrand = brand.id)
+WHERE idGoodType = 5
+ORDER BY users.id DESC
+
+Тоже самое на yii:
+
+return self::find()
+    ->select(['brand.id', 'brand.name'])
+    ->addSelect(['IF(idBrand IS NULL, FALSE, TRUE) as ban'])
+    ->rightJoin(Users::tableName() . ' users', 'idUser = ' . Users::tableName() . '.id')
+    ->rightJoin(Brand::tableName() . ' brand', 'idBrand = ' . Brand::tableName() . '.id')
+    ->where(['idGoodType' => 5])
+     ->asArray()
+    ->all();
+
+----------------------------------------------------------------------------------
+-||-||- на leftJoin:
+
+SELECT brand.id, brand.name,
+       IF(idBrand IS NULL, FALSE, TRUE) as ban
+FROM brand
+LEFT JOIN brand_ban_list ON (idBrand = brand.id) AND idUser = 1
+WHERE idGoodType = 5
+
+
+return Brand::find()
+    ->select(['brand.id', 'brand.name'])
+    ->addSelect(['IF(idBrand IS NULL, FALSE, TRUE) as ban'])
+    ->leftJoin(self::tableName(), 'idBrand = ' . Brand::tableName() . '.id AND idUser = ' . 1)
+    ->where(['idGoodType' => 5])
+    ->asArray()
+    ->all();
+
+----------------------------------------------------------------------------------
+or where
+
+$catalogInfo = CatalogInfo::find()
+    ->select(['brand', 'model'])
+    ->where(['or', ['goods_type' => 'summertires'], ['goods_type' => 'wintertires']])
+    ->andWhere(['>', 'model', ''])
+    ->orderBy('brand')
+    ->groupBy(['brand', 'model'])
+    ->all();
+
+
+SELECT `brand`, `model` FROM `module_catalog_info` 
+WHERE ((`goods_type`='summertires') OR (`goods_type`='wintertires')) 
+AND (`model` > '') GROUP BY `brand`, `model` ORDER BY `brand`
+
+
+----------------------------------------------------------------------------------
+Отключить проверку внешних ключей:
+
+SET foreign_key_checks = 0; 
+
+SET foreign_key_checks = 1; 
+
+----------------------------------------------------------------------------------
+Запрос на sql yii:
+
+\Yii::$app->getDb()->createCommand(
+    "SET FOREIGN_KEY_CHECKS=0"
+)->execute();
+
+\Yii::$app->getDb()->createCommand(
+    "TRUNCATE TABLE destination_option"
+)->execute();

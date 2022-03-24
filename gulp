@@ -1,0 +1,27 @@
+В домашней дериктории 
+
+1) curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
+
+Если нет curl сначала поставить его “sudo apt install curl”
+
+2) bash install_nvm.sh
+
+3) source .profile
+
+4) nvm ls-remote //Пролетят все версии node.js
+
+5) nvm install v
+
+6) nvm use v
+
+7) node -v; npm -v //Проверить установку
+
+8) npm install --global gulp-cli //Установить gulp-cli
+
+9) gulp -v //Проверить как установился
+
+10) Перейти в модуль и запустить команду npm install
+
+11) gulp - запустит локальный сервер, если посыпались ошибки смотри что из модулей не установилось и установи вручную через “npm”
+
+v - указать версию, например 13.9.2
