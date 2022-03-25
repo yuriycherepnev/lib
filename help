@@ -839,9 +839,10 @@ composer self-update --2
 composer install --ignore-platform-reqs
 composer update --ignore-platform-reqs
 
-
 И update каждого плагина по отдельности:
 composer update yiisoft/yii2-composer
+
+composer update exclusive/yii2-url-manager
 
 --------------------------------------------------------------------
 совместимые версии rabbit и erlang:
@@ -885,7 +886,7 @@ class Model extends Model
 }
 
 --------------------------------------------------------------------
-Команды для запуска модулей в frontend:
+Консольные команды для запуска модулей в frontend:
 
 php frontend/web/index.php sitemap vasyazapilimnesitemapda
 
@@ -894,6 +895,8 @@ php frontend/web/index.php postman parseMtmXml
 php frontend/web/index.php postman updateCarDb
 
 php frontend/web/index.php getter compare
+
+php frontend/web/index.php xlsgen generate
 
 php frontend/web/admin/index.php generateymlnew generate yamarket
 
