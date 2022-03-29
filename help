@@ -844,6 +844,8 @@ composer update yiisoft/yii2-composer
 
 composer update exclusive/yii2-url-manager
 
+composer update exclusive/yii2-order-api
+
 --------------------------------------------------------------------
 совместимые версии rabbit и erlang:
 https://www.rabbitmq.com/which-erlang.html
@@ -897,6 +899,8 @@ php frontend/web/index.php postman updateCarDb
 php frontend/web/index.php getter compare
 
 php frontend/web/index.php xlsgen generate
+
+php frontend/web/index.php xlsgen generateExel
 
 php frontend/web/admin/index.php generateymlnew generate yamarket
 
@@ -1726,3 +1730,40 @@ https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b64299db7b3641f68b5e
 .on('paste', function (e) {
     e.target.value = '';
 })
+
+--------------------------------------------------------------------
+phpstorm ключ:
+
+https://plati.ru/itm/jetbrains-all-products-pack-license-key/3282645
+
+https://ggsel.com/catalog/product/3296716
+
+https://www.avito.ru/moskva/bilety_i_puteshestviya/jetbrains_1_god_2376672021
+
+--------------------------------------------------------------------
+Убить процесс:
+
+Находим PID по порту:
+
+sudo apt install lsof
+sudo lsof -i :80
+
+sudo apt install psmisc
+sudo fuser 22/tcp
+
+Вывод всех прцоессов:
+ps axu
+
+Поиск по имени:
+ps axu | grep processName
+
+Убить процесс:
+
+kill 25609
+kill -9 25609
+
+Список всех сигналов к процессу:
+kill -l
+
+Убить все процессы с одним именем:
+killall gcalctool

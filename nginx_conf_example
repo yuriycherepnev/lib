@@ -1,0 +1,118 @@
+server {
+
+        listen   80;
+        server_name tyres;
+#deny all;
+
+    
+
+         set $base_root /home/new-root/projects/tyres;
+          root $base_root/frontend/web;
+
+        #auth_basic "Restricted area";
+        #auth_basic_user_file /etc/nginx/test3.htpasswd;
+
+        index index.php;
+        location ~ \.(jpg|jpeg|gif|png|ico|css|bmp|swf|js|html|txt|xls|doc|pdf|zip|gzip|tgz|rar|kml|woff2|ttf|xml|woff|svg|htm)$ {
+                access_log off;
+#               expires max;
+                log_not_found off;
+        }
+
+
+        location / {
+#               proxy_pass   http://127.0.0.1:8080;
+#                proxy_set_header Host tyres.spb.ru;
+                proxy_set_header Range "";
+                proxy_set_header Request-Range "";
+
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+#               proxy_set_header X-Server-Address $server_addr;
+                try_files $uri $uri/ /index.php?$query_string;
+        }
+
+                 location /backend/ {
+                root    $base_root/backend/web;
+        try_files $uri /backend/index.php$is_args$args;
+            }
+
+             location /admin/ {
+                root  $base_root/frontend/web/admin;
+                try_files $uri /admin/index.php$is_args$args;
+
+           }
+
+
+           location /api/ {
+                root  $base_root/frontend/web/api;
+                try_files $uri /api/index.php$is_args$args;
+
+           }
+
+      location /cabinet/ {
+         root   $base_root/cabinet/web;
+        try_files $uri /cabinet/index.php$is_args$args;
+    }
+
+
+        #ROBOTS
+        location = /robots.txt {
+                rewrite ^ /robots/https.tyres.spb.ru.txt;
+        }
+
+        #SITEMAP
+        location = /sitemap.xml {
+                rewrite ^ /https.sitemap.xml;
+        }
+        location ~ ^/sitemap(?<index>.*)\.xml$ {
+                rewrite ^ /https.sitemap$index.xml;
+        }
+
+         location ~ /modules/getter {
+                deny all;
+                return 404;
+        }
+
+        location ~ /admin/modules/bet {
+                deny all;
+                return 404;
+        }
+
+         #OLD GENERATEYML
+        location ~ \/ya_widgets\/(?<xmlfile>.*\.xml) {
+                return 301 https://$host/ya_widgets_new/$xmlfile;
+        }
+
+         location /pscb/log.txt {
+                deny all;
+        }
+
+        location ~* \.php$ {
+              #  try_files $uri = 404;
+                fastcgi_buffer_size 64k;
+                fastcgi_buffers 4 64k;
+                fastcgi_connect_timeout 120;
+                fastcgi_send_timeout 300;
+                fastcgi_read_timeout 300;
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock; # подключаем сокет php-fpm
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params;
+        }
+
+    
+
+        #access_log  /var/log/tyres/tyres.spb.ru.nginx.access.https.log;
+        #error_log /var/log/tyres/tyres.spb.ru.nginx.error.https.log;
+
+        charset utf8;
+
+
+        location ~ /\. {
+                deny  all;
+        }
+}
