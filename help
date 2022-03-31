@@ -313,6 +313,8 @@ common/components/rbac/items.php
 Запуск геттера:
 php yii getter/parse-one tyre
 
+php yii getter/parse-one 
+
 геттер контроллер:
 console/controllers/GetterController.php
 
@@ -1767,3 +1769,10 @@ kill -l
 
 Убить все процессы с одним именем:
 killall gcalctool
+
+--------------------------------------------------------------------
+Реверт:
+
+git revert -m1578e08748
+
+git revert -m952261521c
