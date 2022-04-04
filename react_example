@@ -1,0 +1,62 @@
+mport React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from "react-router-dom";
+import Router from "./routes";
+import {SettingsProvider} from "./contexts/SettingsContext";
+import {Provider} from "react-redux";
+import {AppContextProvider} from "./contexts/AppContext";
+// import {AuthProvider} from "./contexts/JWTContext";
+
+// slick-carousel
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+// scroll bar
+import 'simplebar/src/simplebar.css';
+import store from "./store/store";
+import {AuthProvider} from "./contexts/JWTContext";
+
+const rootElement = document.getElementById('root');
+
+
+if (rootElement) {
+    if (rootElement.hasChildNodes()) {
+        ReactDOM.hydrate(
+            <React.StrictMode>
+                <Provider store={store}>
+                    <AppContextProvider>
+                        <SettingsProvider>
+                            <BrowserRouter>
+                                <AuthProvider>
+                                    <App/>
+                                </AuthProvider>
+                            </BrowserRouter>
+                        </SettingsProvider>
+                    </AppContextProvider>
+                </Provider>
+            </React.StrictMode>,
+            rootElement
+        );
+    } else {
+        //TODO сначала JWT затем роутер
+        ReactDOM.render(
+            <React.StrictMode>
+                <Provider store={store}>
+                    <AppContextProvider>
+                        <SettingsProvider>
+                            <BrowserRouter>
+                                <AuthProvider>
+                                    <App/>
+                                </AuthProvider>
+                            </BrowserRouter>
+                        </SettingsProvider>
+                    </AppContextProvider>
+                </Provider>
+            </React.StrictMode>,
+            rootElement
+        );
+    }
+}
