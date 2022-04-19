@@ -313,6 +313,8 @@ common/components/rbac/items.php
 Запуск геттера:
 php yii getter/parse-one tyre
 
+php yii getter/parse-one disk
+
 php yii getter/parse-one 
 
 геттер контроллер:
@@ -324,6 +326,7 @@ php yii provider/update-car-brand
 
 php yii provider/remains-mail
 
+php yii provider/yarshintorg-prices 1
 -----------------------------------------------------------------
 
 Чек прогресс геттера:

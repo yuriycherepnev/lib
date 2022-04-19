@@ -1,0 +1,10 @@
+SELECT `order`.*, `address`.`address` FROM `order` 
+LEFT JOIN `order_goods` ON `order`.`id` = `order_goods`.`idOrder` 
+LEFT JOIN `order_status` ON `order`.`idStatus` = `order_status`.`id` 
+LEFT JOIN `delivery_type` ON `order`.`idDeliveryType` = `delivery_type`.`id` 
+LEFT JOIN `contractor` ON `order`.`idContractor` = `contractor`.`id` 
+LEFT JOIN `pickup` ON `order`.`id` = `pickup`.`idOrder` 
+LEFT JOIN `storage` ON `storage`.`id` = `pickup`.`idStorage` 
+LEFT JOIN `sale_point` ON `sale_point`.`id` = `storage`.`idSalePoint` 
+LEFT JOIN `address` ON `sale_point`.`id` = `storage`.`idSalePoint` 
+
