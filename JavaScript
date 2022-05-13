@@ -209,3 +209,64 @@ export default function ControllerSelect<T extends { id?: number, name: string }
 }
 
 <ControllerSelect<TagItemInterface> items={tags} name={'idTag'} label={'Тип'}/>
+
+--------------------------------------------------------------------
+Вытащить ошибки из useForm:
+
+const {handleSubmit, reset, formState: { errors }} = methods;
+
+--------------------------------------------------------------------
+Кастомная валидация функцией yup:
+
+export function validTotalPrice(this: yup.NumberSchema, message: string) {
+    return this.test("totalPrice", message, function (totalPrice: number | undefined, validObject: yup.TestContext) {
+        const { path, createError } = this;
+        if (validObject.parent.idContractor && totalPrice && totalPrice > validObject.parent.idContractor.limit.limitReal) {
+            return createError({ path, message: message ?? 'Сумма заказа превышает лимит' });
+        }
+        return true;
+    });
+}
+
+yup.addMethod(yup.number, 'validTotalPrice', validTotalPrice);
+
+const ValidateSchema = yup.object().shape({
+    totalPrice: (yup as any).number().validTotalPrice(),
+})
+
+--------------------------------------------------------------------
+Скачивание файла реакт:
+
+const fetchApi = async (url: string, headers?: HeadersInit) => {
+    return fetch(process.env.REACT_APP_API + url, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            ...headers
+        }
+    })
+}
+
+export const downloadFileApi = async (filename: string, url: string, headers?: HeadersInit): Promise<boolean> => {
+    const response = await fetchApi(url, headers)
+
+    if (response.status === 200) {
+        const blob = await response.blob();
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        return true;
+    }
+
+    return false
+}
+
+--------------------------------------------------------------------
+
+Тип функция react:
+
+setPageCustom?: (value: number) => void;

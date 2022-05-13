@@ -852,14 +852,6 @@ composer update exclusive/yii2-url-manager
 composer update exclusive/yii2-order-api
 
 --------------------------------------------------------------------
-совместимые версии rabbit и erlang:
-https://www.rabbitmq.com/which-erlang.html
-
-Удалить rabbit:
-sudo apt-get purge rabbitmq-server
-sudo rm -fr /var/lib/rabbitmq/
-
---------------------------------------------------------------------
 Посмотреть письма в mailer.
 Добавить папку mail в runtime.
 Прописать в mailer.php:
@@ -998,6 +990,7 @@ Kibana:
 kibana.tyres.spb.ru
 Name: kibana
 Password: LPW4jB8EfW
+получить запрос
 
 --------------------------------------------------------------------
 echo '<pre>';
@@ -1278,6 +1271,10 @@ $regExp = "/\btext\b/i";
 \ba - начало слова
 a\b конец слова
 i - без учета регистра
+
+Поиск '/data/' в get запросе:
+
+preg_match('/\b\/data\/\b/i',  "$path");
 
 --------------------------------------------------------------------
 
@@ -1611,47 +1608,9 @@ return [
 ];
 
 --------------------------------------------------------------------
-Test rabbit:
-
-php yii rabbit/test
-
-$producer->publish($message, 'tyres', '', ['correlation_id' => 666]);
-
---------------------------------------------------------------------
 Поднять докер:
 
 sudo docker-compose up
-
---------------------------------------------------------------------
-Запустить rabbit:
-
-bash rabbit.sh
-
---------------------------------------------------------------------
-Url rabbit:
-
-http://127.0.0.1:15673/
-
---------------------------------------------------------------------
-Конфиг rabbitMq:
-
-version: "3.2"
-services:
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
-    container_name: 'rabbitmq'
-    ports:
-        - 5673:5672
-        - 15673:15672
-    networks:
-        - rabbitmq_go_net
-    environment:
-        - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER:-admin}
-        - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS:-admin}
-
-networks:
-  rabbitmq_go_net:
-    driver: bridge
 
 --------------------------------------------------------------------
 phpMyAdmin отключить пароль:
@@ -1783,3 +1742,52 @@ git revert -m952261521c
 --------------------------------------------------------------------
 Wifi exclusive private:
 cagTUTs6bx
+
+--------------------------------------------------------------------
+
+sudo service bluetooth restart
+
+
+--------------------------------------------------------------------
+Проверка на корректный путь:
+
+/**
+* @param string $name
+* @return array|yii\console\Response|yii\web\Response
+*/
+public function actionDownloadFile(string $name)
+{
+    $truePath = preg_match('/\b\/data\/\b/i',realpath(Yii::getAlias('@data') . "/files/$name"));
+    $files = glob(realpath(Yii::getAlias('@data') . "/files/$name"));
+    if ($truePath && count($files)) {
+        return Yii::$app->response->sendFile($files[0], "$name");
+    } else {
+        return Yii::$app->responseHandler->response(Yii::$app->responseHandler::STATUS_400);
+    }
+}
+
+--------------------------------------------------------------------
+Пароль на файл nginx:
+
+1. Сначала нужно установить утилитки, которые помогут сгенерить .htpasswd
+
+sudo apt install apache2-utils
+
+2. Теперь можно уже создать нужный файл
+
+sudo htpasswd -c /путь_до_проекта/.htpasswd admin
+
+Флажок -c указываем, когда только создаем .htpasswd, /etc/nginx/conf.d/.htpasswd - путь к файлику, а admin - нужный логин.
+
+3. Далее в конфиге nginx прописываем правило для пути к файлу.
+И ставим это правило в самом начале:
+
+location ~ /img_catalog/img_catalog_list.xml {
+    auth_basic "Enter password!";
+    auth_basic_user_file $base_root/.htpasswd;
+}
+
+Статья:
+https://webdevkin.ru/posts/raznoe/basic-auth
+
+

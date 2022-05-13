@@ -1,0 +1,77 @@
+Зайти в rabbit:
+http://127.0.0.1:15672/
+guest:guest
+
+--------------------------------------------------------------------
+
+Конфиг rabbitMq:
+
+version: "3.2"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5673:5672
+        - 15673:15672
+    networks:
+        - rabbitmq_go_net
+    environment:
+        - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER:-admin}
+        - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS:-admin}
+
+networks:
+  rabbitmq_go_net:
+    driver: bridge
+
+
+--------------------------------------------------------------------
+Url rabbit:
+
+http://127.0.0.1:15672
+
+http://127.0.0.1:15673
+
+--------------------------------------------------------------------
+Запустить rabbit:
+
+bash rabbit.sh
+
+bash rabbitReboot.sh
+
+--------------------------------------------------------------------
+Test rabbit:
+
+php yii rabbit/test-file
+
+php yii rabbit/test-order
+
+php yii rabbit/test-partner
+
+$producer->publish($message, 'tyres', '', ['correlation_id' => 666]);
+
+--------------------------------------------------------------------
+connectionRabbit mq:
+
+return [
+    [
+        'host' => '127.0.0.1',
+        'port' => '5672',
+        'user' => 'guest',
+        'password' => 'guest',
+        'vhost' => '/',
+    ]
+];
+
+--------------------------------------------------------------------
+совместимые версии rabbit и erlang:
+https://www.rabbitmq.com/which-erlang.html
+
+Удалить rabbit:
+sudo apt-get purge rabbitmq-server
+sudo rm -fr /var/lib/rabbitmq/
+
+--------------------------------------------------------------------
+Проверка rabbitMQ:
+
+sudo systemctl status rabbitmq-server
