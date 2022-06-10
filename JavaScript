@@ -270,3 +270,23 @@ export const downloadFileApi = async (filename: string, url: string, headers?: H
 Тип функция react:
 
 setPageCustom?: (value: number) => void;
+
+--------------------------------------------------------------------
+Загрузка html react:
+
+brandItem?.text && (
+    <Stack sx={{pt: 3}}>
+        <Card sx={{p: 1}}>
+            <Stack
+                className="view ql-editor"
+                dangerouslySetInnerHTML={{__html: brandItem.text}}/>
+            </Card>
+        </Stack>
+    )}
+
+--------------------------------------------------------------------
+Очистка поля перед вставкой:
+
+.on('paste', function (e) {
+    e.target.value = '';
+})

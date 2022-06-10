@@ -315,7 +315,7 @@ php yii getter/parse-one tyre
 
 php yii getter/parse-one disk
 
-php yii getter/parse-one 
+php yii getter/parse-one
 
 геттер контроллер:
 console/controllers/GetterController.php
@@ -1039,6 +1039,13 @@ sudo systemctl disable nginx
 Включить автозапуск:
 sudo systemctl enable nginx
 
+Все запущенные процессы nginx:
+ps -ax | grep nginx
+
+Создание нового сайта:
+sudo nano /etc/nginx/sites-available/your_domain
+sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+
 --------------------------------------------------------------------
 windows:
 
@@ -1478,12 +1485,21 @@ http://localhost:3000
 
 /home/new-root/projects/b2b/modules/api/controllers/BaseController.php
 
-
 //        $behaviors['authenticator']['except'] = ['options'];
 //        $behaviors['authenticator'] = [
 //            'class' => \sizeg\jwt\JwtHttpBearerAuth::class,
 //            'except' => array_merge(self::PUBLIC_ACTIONS, ['options'])
 //        ];
+
+--------------------------------------------------------------------
+Тесты b2b:
+
+npm run test:e2e
+
+--------------------------------------------------------------------
+Запуск билда:
+
+npm run build
 
 --------------------------------------------------------------------
 
@@ -1744,9 +1760,11 @@ Wifi exclusive private:
 cagTUTs6bx
 
 --------------------------------------------------------------------
+Перезапуск bluetooth:
 
 sudo service bluetooth restart
 
+sudo /etc/init.d/bluetooth restart 
 
 --------------------------------------------------------------------
 Проверка на корректный путь:
@@ -1787,7 +1805,14 @@ location ~ /img_catalog/img_catalog_list.xml {
     auth_basic_user_file $base_root/.htpasswd;
 }
 
+Доступ к файлу по урлу:
+
+http://admin:pass_007@tyres/img_catalog/img_catalog_list.xml
+
 Статья:
 https://webdevkin.ru/posts/raznoe/basic-auth
 
+--------------------------------------------------------------------
+Запуск тестов b2b:
 
+npm run test:e2e

@@ -482,6 +482,8 @@ SET foreign_key_checks = 0;
 
 SET foreign_key_checks = 1; 
 
+$this->execute("SET foreign_key_checks = 0;");
+
 ----------------------------------------------------------------------------------
 Запрос на sql yii:
 
@@ -492,3 +494,47 @@ SET foreign_key_checks = 1;
 \Yii::$app->getDb()->createCommand(
     "TRUNCATE TABLE destination_option"
 )->execute();
+
+
+----------------------------------------------------------------------------------
+groupBy с учетом регистра:
+
+self::$diskColors = DiskColor::find()
+    ->select('brand')
+    ->groupBy(['hex(brand)'])
+    ->column();
+
+MySQL HEX() возвращает строковое представление 
+шестнадцатеричного значения десятичного 
+или строкового значения, 
+указанного в качестве аргумента.
+
+
+----------------------------------------------------------------------------------
+upsert Миграция:
+
+const TABLE_ORDER_STATUS = 'order_status';
+
+const ORDER_STATUSES = [
+    1 => 'не обработан',
+    2 => 'в пути в магазин',
+    3 => 'приостановлен',
+    4 => 'в магазине',
+    5 => 'доставляется клиенту',
+    6 => 'выдан',
+    7 => 'готовится к отправке',
+    8 => 'ожидает сборки',
+    9 => 'отменён'
+];
+
+public function up()
+{
+    foreach (self::ORDER_STATUSES as $key => $value) {
+        Yii::$app->db->createCommand()->upsert(self::TABLE_ORDER_STATUS, [
+            'status' => $value,
+            'id' => $key
+        ], [
+            'status' => $value,
+        ], [])->execute();
+    }
+}
