@@ -1,0 +1,13 @@
+cdr всего 4970640 с 2021-05-20 03:45
+cdr distinct linkedid c 2021-05-20 03:45 : 459604
+cdr distinct linkedid c 2022-05-25 : 41068
+
+
+cel всего 1780427 с 2022-05-25 06:09
+cel distinct linkedid с 2022-05-25 06:09 : 41649
+
+
+Но звонки которые идут на каналы наших телефонов:
+cdr distinct linkedid c 2022-05-25 03:45 : 16022
+
+cdr distinct linkedid c 2022-05-25 03:45 : 21816

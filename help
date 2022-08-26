@@ -46,7 +46,10 @@ mysql -u root -p
 CREATE DATABASE new_database;
 use new_database;
 source ~/database/tyres.sql;
-source ~/database/cars.sql;
+source ~/database/tyres6002.sql;
+
+source ~/database/b2b.sql;
+
 
 mysql -u root -p root_pass db_name < db_name.sql
 sudo mysql -u root2 -p b2b < ~/Загрузки/opttyres.sql
@@ -102,7 +105,7 @@ Default options are read from the following files in the given order:
 /etc/my.cnf /etc/mysql/my.cnf /usr/etc/my.cnf ~/.my.cnf
 
 ----------------------------------------------------------
-Добавить алиасы:
+Добавить алиасы git:
 
 git config --global alias.co checkout
 git config --global alias.ci commit
@@ -123,6 +126,20 @@ GIT
   type = cat-file -t
   dump = cat-file -p
 
+----------------------------------------------------------
+Добавить алиасы консоль временно:
+
+alias name='command'
+alias phpswap='sudo update-alternatives --config php'
+
+Постоянные алиасы надо указывать в файле:
+
+home/new-root/.bashrc
+
+пример:
+
+alias phpswap='sudo update-alternatives --config php'
+alias brd='git branch -D '
 -----------------------------------------------------------
 очистка кеша:
 
@@ -327,6 +344,8 @@ php yii provider/update-car-brand
 php yii provider/remains-mail
 
 php yii provider/yarshintorg-prices 1
+
+php yii provider/available-queue
 -----------------------------------------------------------------
 
 Чек прогресс геттера:
@@ -361,6 +380,19 @@ foreach ($goods as $good) {
     fwrite($fp, implode(PHP_EOL, $data) . PHP_EOL . PHP_EOL);
     fclose($fp);
 }
+
+Запись в файл с exchange:
+
+$fp = fopen('brands.txt', 'w');
+fclose($fp);
+
+foreach ($this->brands as $brand) {
+    $data = '[' . $brand[0] . ' => ' . $brand[1] . ']';
+    $fp = fopen('brands.txt', 'a');
+    fwrite($fp, $data . PHP_EOL);
+    fclose($fp);
+}
+
 -------------------------------------------------------------------
 Как сделать запрос в БД без редиректа:
 
@@ -495,6 +527,8 @@ git branch -d <branch_name>
 
 git branch -D <branch_name> - принудительное удаление без проверки слияния
 
+git branch -D 32112_renew_mailing_list_styles
+
 git push <remote_name> --delete <branch_name>
 
 --------------------------------------------------------------------
@@ -581,6 +615,8 @@ touch file.txt / mkdir dir1
 
 Удалить файл/директорию:
 
+rm myfile.txt
+
 sudo rm -r
 sudo rm -r dir1
 
@@ -595,7 +631,6 @@ gedit gnome.txt
 rm -rf /tmp/folder/*
 
 rm -rf /assets/*
-
 
 -------------------------------------------------------------------
 css ширина по контенту:
@@ -758,8 +793,10 @@ $('#selector').on('keydown', function (e) { }).mask('+7 (999) 999-99-99', phoneM
 
 --------------------------------------------------------------------
 Ip Олега:
+172.27.178.186
 172.27.178.64
 172.27.178.26
+172.27.178.78
 
 172.27.178.64/tyres2909.sql
 172.27.178.64/severAutoTyre2010.xml
@@ -975,7 +1012,7 @@ composer remove "codeception/base"
 --------------------------------------------------------------------
 Получить запрос SQL:
 
-$object->createCommand()->getRawSql();
+$object->createCommand()->getRawSql()
 
 --------------------------------------------------------------------
 Пути для img:
@@ -1436,7 +1473,7 @@ Yii::$app->request->getCsrfTokenFromHeader()
         echo '</pre>';
         die;
 --------------------------------------------------------------------
-Наибольше значение вложенного массива:
+Наибольшее значение вложенного массива:
 
 $maxRest = max(array_column($cartRests, "qnt"));
 
@@ -1702,8 +1739,17 @@ crontab -r
 --------------------------------------------------------------------
 Найти коммит по хешу:
 
+PhpStorm аннотации -> showDiff -> копируем хеш справа вверху, вставляем в урл
+
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b64299db7b3641f68b5ede9cb814c9b7e4534d34
 
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/99ceb61c2bb2090c09873a85b362439ae23e2480
+
+Затем:
+
+pull/3076/head
+
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/3076/files
 --------------------------------------------------------------------
 Очистка input перед вставкой:
 
@@ -1816,3 +1862,150 @@ https://webdevkin.ru/posts/raznoe/basic-auth
 Запуск тестов b2b:
 
 npm run test:e2e
+
+--------------------------------------------------------------------
+Поиск в вложенном массиве:
+
+$goods = Yii::$app->db->createCommand('SELECT * FROM goods')->queryAll();
+
+$orderGoods = Yii::$app->db->createCommand('SELECT * FROM order_goods')->queryAll();
+
+foreach ($orderGoods as $orderGood) {
+    $index = array_search($orderGood['id1c'], array_column($goods, 'id1c'));
+    if ($index) {
+        var_dump($orderGood['id1c'] . ' ' . $goods[$index]['id']);
+    } else {
+        var_dump('false');
+    }
+}
+
+--------------------------------------------------------------------
+Поиск файла ubuntu:
+
+sudo find / -name "file.txt"
+
+sudo find / -name "vsftpd.conf"
+
+В текущей директории:
+
+sudo find . -name "vsftpd.conf"
+
+--------------------------------------------------------------------
+Доступ по ftp:
+
+sudo apt-get install vsftpd
+
+В файле:
+ /etc/vsftpd.conf
+
+Раскомментировать строку:
+write_enable=YES
+
+sudo service vsftpd restart
+
+Код:
+
+$username = 'user';
+$password = 'pass';
+
+$conn_id = ftp_connect('81.23.96.254', '2121');
+
+ftp_login($conn_id, $username, $password);
+
+if (ftp_get($conn_id, 'RIMS.xml', __DIR__ . '/aloha.xml', FTP_ASCII)) {
+    echo "Успешно загружен на сервер" . PHP_EOL;
+} else {
+    echo "Не удалось загрузить на сервер" . PHP_EOL;
+}
+ftp_close($conn_id);
+
+--------------------------------------------------------------------
+trycatch уровень ошибки:
+
+Поскольку класс Error не наследуется от класса Exception, 
+блок catch (Exception $e) { ... } для обработки неперехваченных 
+исключений PHP 5 не может перехватить исключения Error. 
+Для их перехвата используйте блок catch (Error $e) { ... } 
+или установите обработчик исключений с помощью set_exception_handler().
+
+try
+{}
+catch (Exception $e)
+{}
+
+try 
+{}
+catch (Error $e)
+{}
+
+--------------------------------------------------------------------
+Автодополнение phpstorm:
+
+settings -> editor -> live Templates -> php
+
+https://russianblogs.com/article/46831062073/
+
+--------------------------------------------------------------------
+public static function getDb()
+{
+    return \Yii::$app->dbAsterisk;
+}
+
+Возвращает соединение с базой данных, используемое этим классом AR.
+
+По умолчанию компонент приложения "db" используется в качестве соединения с базой данных. Вы можете переопределить этот метод, если хотите использовать другое соединение с базой данных.
+
+--------------------------------------------------------------------
+Тестирование СУБД:
+
+MuSql:
+systemctl status mysql.service
+
+MariDb:
+sudo systemctl status mariadb
+
+--------------------------------------------------------------------
+Убить процесс sql:
+
+show processlist;
+kill query 12345;
+
+--------------------------------------------------------------------
+Отменить изменения файла в реквесте:
+
+git checkout last_common_commit -- path/to/file
+git add path/to/file
+git commit
+git push origin HEAD
+
+Где last_common_commit - это коммит от которого сделан бранч.
+
+--------------------------------------------------------------------
+Добавить папку vendor в git:
+
+File -> Settings -> Version Control -> Directory Mapping
+
+--------------------------------------------------------------------
+gulp node-sass может сломаться.
+Возможное решение:
+
+npm install -g gulp-cli
+
+npm rebuild node-sass --force
+
+--------------------------------------------------------------------
+Валидация пароля сервисы:
+
+services/models/User.php
+
+public function validatePassword($password)
+{
+    $password = md5(md5($password) . "&*6u&*Jio7j89H^78mhilfdgJKGHJH");
+    $result = $this->pass === $password;
+    return true;
+}
+
+--------------------------------------------------------------------
+Range picker:
+
+https://demos.krajee.com/date-range

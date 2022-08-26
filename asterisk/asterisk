@@ -1,0 +1,34 @@
+Конфиг:
+
+<?php
+$host = '172.27.100.240';
+$dbName = 'asteriskcdrdb';
+
+return [
+    'class' => 'common\models\Connection',
+    'host' => $host,sd
+    'dbName' => $dbName,
+    'dsn' => "mysql:host={$host};dbname={$dbName}",
+    'username' => 'localsite',
+    'password' => 'UjifJ4tym3jk',
+    'charset' => 'utf8'
+];
+?>
+
+-----------------------------------------------------------------
+Локальный конфиг:
+
+<?php
+$host = 'localhost';
+$dbName = 'asterisk';
+
+return [
+    'class' => 'common\models\Connection',
+    'host' => $host,
+    'dbName' => $dbName,
+    'dsn' => "mysql:host={$host};dbname={$dbName}",
+    'username' => 'root',
+    'password' => 'root',
+    'charset' => 'utf8'
+];
+?>

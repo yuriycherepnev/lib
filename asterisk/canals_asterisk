@@ -1,0 +1,584 @@
+array(34) {
+  [1]=>
+  array(3) {
+    ["name"]=>
+    string(31) "Интернет-магазин"
+    ["callGroupNumbers"]=>
+    array(15) {
+      [0]=>
+      string(3) "104"
+      [1]=>
+      string(3) "107"
+      [2]=>
+      string(3) "110"
+      [3]=>
+      string(3) "111"
+      [4]=>
+      string(3) "128"
+      [5]=>
+      string(3) "127"
+      [6]=>
+      string(3) "880"
+      [7]=>
+      string(3) "608"
+      [8]=>
+      string(3) "549"
+      [9]=>
+      string(3) "109"
+      [10]=>
+      string(3) "185"
+      [11]=>
+      string(3) "186"
+      [12]=>
+      string(3) "600"
+      [13]=>
+      string(3) "601"
+      [14]=>
+      string(3) "602"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [2]=>
+  array(3) {
+    ["name"]=>
+    string(44) "Оператор контакт центра"
+    ["callGroupNumbers"]=>
+    array(6) {
+      [0]=>
+      string(3) "146"
+      [1]=>
+      string(3) "642"
+      [2]=>
+      string(3) "605"
+      [3]=>
+      string(3) "603"
+      [4]=>
+      string(3) "606"
+      [5]=>
+      string(3) "607"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [29]=>
+  array(3) {
+    ["name"]=>
+    string(7) "shini78"
+    ["callGroupNumbers"]=>
+    array(1) {
+      [0]=>
+      string(11) "89213578011"
+    }
+    ["isDidSearch"]=>
+    bool(true)
+  }
+  [31]=>
+  array(3) {
+    ["name"]=>
+    string(25) "Пустая группа"
+    ["callGroupNumbers"]=>
+    array(1) {
+      [0]=>
+      string(2) "-1"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [33]=>
+  array(3) {
+    ["name"]=>
+    string(10) "Сезон"
+    ["callGroupNumbers"]=>
+    array(1) {
+      [0]=>
+      string(3) "159"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [34]=>
+  array(3) {
+    ["name"]=>
+    string(25) "Отдел рекламы"
+    ["callGroupNumbers"]=>
+    array(1) {
+      [0]=>
+      string(3) "159"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [3]=>
+  array(3) {
+    ["name"]=>
+    string(35) "Большевиков пр., д.42"
+    ["callGroupNumbers"]=>
+    array(3) {
+      [0]=>
+      string(3) "721"
+      [1]=>
+      string(3) "430"
+      [2]=>
+      string(3) "431"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [4]=>
+  array(3) {
+    ["name"]=>
+    string(33) "Витебский пр., д.11А"
+    ["callGroupNumbers"]=>
+    array(3) {
+      [0]=>
+      string(3) "700"
+      [1]=>
+      string(3) "239"
+      [2]=>
+      string(3) "231"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [5]=>
+  array(3) {
+    ["name"]=>
+    string(31) "Руставели ул., д.42"
+    ["callGroupNumbers"]=>
+    array(3) {
+      [0]=>
+      string(3) "703"
+      [1]=>
+      string(3) "240"
+      [2]=>
+      string(3) "241"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [6]=>
+  array(3) {
+    ["name"]=>
+    string(38) "Сердобольская ул., д.3"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "704"
+      [1]=>
+      string(3) "229"
+      [2]=>
+      string(3) "220"
+      [3]=>
+      string(3) "221"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [7]=>
+  array(3) {
+    ["name"]=>
+    string(39) "Черняховского ул., д.21"
+    ["callGroupNumbers"]=>
+    array(3) {
+      [0]=>
+      string(3) "711"
+      [1]=>
+      string(3) "207"
+      [2]=>
+      string(3) "217"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [8]=>
+  array(3) {
+    ["name"]=>
+    string(27) "Оптиков ул., д.15"
+    ["callGroupNumbers"]=>
+    array(7) {
+      [0]=>
+      string(3) "259"
+      [1]=>
+      string(3) "712"
+      [2]=>
+      string(3) "250"
+      [3]=>
+      string(3) "251"
+      [4]=>
+      string(3) "480"
+      [5]=>
+      string(3) "623"
+      [6]=>
+      string(3) "763"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [9]=>
+  array(3) {
+    ["name"]=>
+    string(37) "Выборгская наб., д.61А"
+    ["callGroupNumbers"]=>
+    array(2) {
+      [0]=>
+      string(3) "708"
+      [1]=>
+      string(3) "366"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [10]=>
+  array(3) {
+    ["name"]=>
+    string(26) "Шаумяна пр., д.4"
+    ["callGroupNumbers"]=>
+    array(6) {
+      [0]=>
+      string(3) "705"
+      [1]=>
+      string(3) "289"
+      [2]=>
+      string(3) "280"
+      [3]=>
+      string(3) "281"
+      [4]=>
+      string(3) "282"
+      [5]=>
+      string(3) "630"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [11]=>
+  array(3) {
+    ["name"]=>
+    string(35) "1-й Верхний пер., д.2А"
+    ["callGroupNumbers"]=>
+    array(2) {
+      [0]=>
+      string(3) "707"
+      [1]=>
+      string(3) "377"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [12]=>
+  array(3) {
+    ["name"]=>
+    string(45) "Политехническая ул., д.15А"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "709"
+      [1]=>
+      string(3) "262"
+      [2]=>
+      string(3) "260"
+      [3]=>
+      string(3) "261"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [13]=>
+  array(3) {
+    ["name"]=>
+    string(49) "Краснопутиловская ул., д.46А"
+    ["callGroupNumbers"]=>
+    array(2) {
+      [0]=>
+      string(3) "702"
+      [1]=>
+      string(3) "270"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [14]=>
+  array(3) {
+    ["name"]=>
+    string(47) "г. Кингисепп, 4-й проезд, д.1"
+    ["callGroupNumbers"]=>
+    array(5) {
+      [0]=>
+      string(3) "701"
+      [1]=>
+      string(3) "501"
+      [2]=>
+      string(3) "290"
+      [3]=>
+      string(3) "291"
+      [4]=>
+      string(3) "292"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [15]=>
+  array(3) {
+    ["name"]=>
+    string(40) "Выборгское шоссе, д.22Б"
+    ["callGroupNumbers"]=>
+    array(3) {
+      [0]=>
+      string(3) "720"
+      [1]=>
+      string(3) "523"
+      [2]=>
+      string(3) "252"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [16]=>
+  array(3) {
+    ["name"]=>
+    string(28) "КИМа пр., д.6, В.О."
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "714"
+      [1]=>
+      string(3) "518"
+      [2]=>
+      string(3) "519"
+      [3]=>
+      string(3) "520"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [17]=>
+  array(3) {
+    ["name"]=>
+    string(39) "Непокорённых пр., д.64А"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "506"
+      [1]=>
+      string(3) "717"
+      [2]=>
+      string(3) "507"
+      [3]=>
+      string(3) "508"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [18]=>
+  array(3) {
+    ["name"]=>
+    string(29) "Харченко ул., д.41"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "710"
+      [1]=>
+      string(3) "512"
+      [2]=>
+      string(3) "513"
+      [3]=>
+      string(3) "514"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [19]=>
+  array(3) {
+    ["name"]=>
+    string(45) "Белорусская ул., д.7, лит.А"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "706"
+      [1]=>
+      string(3) "505"
+      [2]=>
+      string(3) "271"
+      [3]=>
+      string(3) "272"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [20]=>
+  array(3) {
+    ["name"]=>
+    string(53) "Народного Ополчения пр., д.201К"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "509"
+      [1]=>
+      string(3) "716"
+      [2]=>
+      string(3) "510"
+      [3]=>
+      string(3) "511"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [21]=>
+  array(3) {
+    ["name"]=>
+    string(71) "пос. Ленсоветовский, Московское ш. 231 к.5"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "397"
+      [1]=>
+      string(3) "300"
+      [2]=>
+      string(3) "302"
+      [3]=>
+      string(3) "719"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [22]=>
+  array(3) {
+    ["name"]=>
+    string(38) "Софийская ул., д.127, к.6"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "370"
+      [1]=>
+      string(3) "371"
+      [2]=>
+      string(3) "378"
+      [3]=>
+      string(3) "130"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [23]=>
+  array(3) {
+    ["name"]=>
+    string(42) "Партизанская ул., д.15 к.1"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "713"
+      [1]=>
+      string(3) "228"
+      [2]=>
+      string(3) "223"
+      [3]=>
+      string(3) "222"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [24]=>
+  array(3) {
+    ["name"]=>
+    string(35) "Мурманское шocce, 25км"
+    ["callGroupNumbers"]=>
+    array(1) {
+      [0]=>
+      string(7) "3110029"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [25]=>
+  array(3) {
+    ["name"]=>
+    string(39) "Выборгское шоссе, д.214"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "522"
+      [1]=>
+      string(3) "715"
+      [2]=>
+      string(3) "373"
+      [3]=>
+      string(3) "374"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [26]=>
+  array(3) {
+    ["name"]=>
+    string(35) "8-я Советская ул. д. 4"
+    ["callGroupNumbers"]=>
+    array(1) {
+      [0]=>
+      string(2) "-1"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [27]=>
+  array(3) {
+    ["name"]=>
+    string(41) "г. Кириши, пр.Победы, д.6"
+    ["callGroupNumbers"]=>
+    array(1) {
+      [0]=>
+      string(2) "-1"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [28]=>
+  array(3) {
+    ["name"]=>
+    string(67) "Профессора Попова ул., д.38, лит.Щ пом.15"
+    ["callGroupNumbers"]=>
+    array(3) {
+      [0]=>
+      string(3) "722"
+      [1]=>
+      string(3) "274"
+      [2]=>
+      string(3) "275"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [30]=>
+  array(3) {
+    ["name"]=>
+    string(3) "361"
+    ["callGroupNumbers"]=>
+    array(4) {
+      [0]=>
+      string(3) "361"
+      [1]=>
+      string(3) "362"
+      [2]=>
+      string(3) "364"
+      [3]=>
+      string(3) "369"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [32]=>
+  array(3) {
+    ["name"]=>
+    string(22) "Салова ул., 32"
+    ["callGroupNumbers"]=>
+    array(3) {
+      [0]=>
+      string(3) "634"
+      [1]=>
+      string(3) "526"
+      [2]=>
+      string(3) "527"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+}

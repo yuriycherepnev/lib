@@ -1,0 +1,31 @@
+<?php
+$host = '172.27.100.163';
+$dbName = 'b2b_new';
+
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => "mysql:host={$host};dbname={$dbName}",
+    'username' => 'b2b',
+    'password' => 'aqVJOAzZt.*S3@KR',
+    'charset' => 'utf8',
+    'enableSchemaCache' => true,
+    'schemaCacheDuration' => 3600,
+    'schemaCache' => 'cache',
+    'attributes' => [PDO::ATTR_CASE => PDO::CASE_LOWER],
+];
+
+<?php
+$host = '172.27.100.163';
+$dbName = 'b2b';
+
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => "mysql:host={$host};dbname={$dbName}",
+    'username' => 'b2b',
+    'password' => 'aqVJOAzZt.*S3@KR',
+    'charset' => 'utf8',
+    'enableSchemaCache' => true,
+    'schemaCacheDuration' => 3600,
+    'schemaCache' => 'cache',
+    'attributes' => [PDO::ATTR_CASE => PDO::CASE_LOWER],
+];

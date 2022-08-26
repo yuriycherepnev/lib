@@ -1,0 +1,29 @@
+Доступ по ftp:
+
+sudo apt-get install vsftpd
+
+В файле:
+ /etc/vsftpd.conf
+
+Раскомментировать строку:
+write_enable=YES
+
+Перезапустить ftp:
+sudo service vsftpd restart
+
+Скачивание файла по строке:
+
+$xml = file_get_contents('ftp://change:Zg5NIuv86Q@172.27.178.44/Conti_PRICAT_RU_PL_Exclusive_20210822.csv',false);
+$xml = file_get_contents('ftp://StFtpUser:Fgthr*#)241&@81.23.96.254:2121/RIMS.xml', false);
+
+FTP доступ только на чтение. ip 81.23.96.254  порт 2121 через TLS  логин StFtpUser  пароль Fgthr*#)241&  папка куда 
+
+Запись в локальный файл:
+
+$localFile = fopen('local.xml', 'w');
+$connection = ftp_connect('81.23.96.254', '2121');
+ftp_login($connection, 'StFtpUser', 'Fgthr*#)241&');
+ftp_set_option($connection, FTP_USEPASVADDRESS, false);
+ftp_pasv($connection, true);
+$file = ftp_fget($connection, $localFile, 'RIMS.xml', FTP_ASCII, 0);
+var_dump($file);

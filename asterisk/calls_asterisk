@@ -1,0 +1,33 @@
+1658332200.2728350 - отвеченный
+cel - 15 записей. В eventtype есть answer и linkedid_end.
+cdr - 1 запись. Disposition answered
+
+SELECT * FROM `cel` WHERE `linkedid` LIKE '1658332200.2728350' ORDER BY `cel`.`id` DESC
+
+
+1658995863.2778798 - пропущенный после 11 app-blackhole
+
+1658950621.2775561 - пропущенный после 11 ivr-5
+
+поиск:
+
+SELECT * FROM `cel` WHERE `cid_dnid` LIKE '3252121' AND `linkedid` LIKE '1658995863.2778798' ORDER BY `id` DESC
+
+1658325493.2727283 - не отвеченный. В cdr одна запись.
+В cel 8 записей, а answer нет ни в cdr, ни в cel.
+
+1653454376.2320992 
+не отвеченный. Но время более 2 мин. В cdr нет статуса answer,
+однако в cel такой статус есть.
+
+--------------------------------------------------------------------
+
+Если посмотреть логи по времени, например от 2022-05-25 06:09:49 то:
+
+в cel 1900000 записей:
+SELECT * FROM `cel` WHERE `eventtime` > '2022-05-25 06:09:49' ORDER BY `eventtime` ASC
+
+а в cdr 266191 записей:
+SELECT * FROM `cdr` WHERE `calldate` > '2022-05-25 06:09:49' ORDER BY `calldate` DESC
+
+это на момент 28.07.2022.

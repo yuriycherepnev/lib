@@ -1,0 +1,100 @@
+Конфиг swiftMailer:
+
+<?php 
+return [
+    'class' => 'yii\swiftmailer\Mailer',
+    'useFileTransport' => false,
+    'transport' => [
+        'class' => 'Swift_SmtpTransport',
+        'host' => 'mail.tyres.spb.ru',
+        'port' => '465',
+        'encryption' => 'ssl',
+        'userName' => 'exclusive@tyres.spb.ru',
+        'password' => 'cvAnylYdiECX8Yuu'
+    ]
+];
+
+--------------------------------------------------------------------
+Разные адреса swiftMailer:
+
+'mailer1' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@common/mail',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => false,
+            'transport' => 
+            [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yandex.ru',  // e.g. smtp.mandrillapp.com or smtp.gmail.com
+                'username' => 'mail1@ya.ru',
+                'password' => '******',
+                'port' => '465', // Port 25 is a very common port too
+                'encryption' => 'ssl', // It is often used, check your provider or mail server specs
+            ],
+        ],
+'mailer2' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@common/mail',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => false,
+            'transport' => 
+            [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yandex.ru',  // e.g. smtp.mandrillapp.com or smtp.gmail.com
+                'username' => 'mail2@ya.ru',
+                'password' => '******',
+                'port' => '465', // Port 25 is a very common port too
+                'encryption' => 'ssl', // It is often used, check your provider or mail server specs
+            ],
+        ],
+
+--------------------------------------------------------------------
+SwiftMailer с юзером и паролем:
+
+public function checkConnection()
+{
+    try {
+        // Create the Transport
+        $transport = (new \Swift_SmtpTransport(
+            'smtp.gmail.com',
+            '587',
+            'tls'
+        ))
+            ->setUsername('your.username@gmail.com')
+            ->setPassword('yourSuperPassword');
+        // Create the Mailer using your created Transport
+        $mailer = new \Swift_Mailer($transport);
+
+        $mailer->getTransport()->start();
+
+        return true;
+    } catch (\Swift_TransportException $e) {
+        return $e->getMessage();
+    } catch (\Exception $e) {
+        return $e->getMessage();
+    }
+}
+
+--------------------------------------------------------------------
+Настройка почты:
+
+https://www.dmosk.ru/miniinstruktions.php?mini=mail-shell
+
+--------------------------------------------------------------------
+Настройка SMTP:
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-postfix-as-a-send-only-smtp-server-on-ubuntu-18-04-ru
+
+--------------------------------------------------------------------
+Юзеры и пароли:
+
+exclusive@tyres.spb.ru  cvAnylYdiECX8Yuu
+shop@tyres.spb.ru  kE5uKo9UC
+info@4kolesa.spb.ru  ghDT6mUid
+info@pulsprice.ru  B64NkSS
+info@tyrestock.ru  7cVdLqvUSrZfx5I53d34
+noreply@tyres.spb.ru 6028f8Jm6

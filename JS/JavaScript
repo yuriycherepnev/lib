@@ -15,6 +15,17 @@ let max = array.reduce((calc, current) => current.bool == true ? calc + 1 : calc
 или
 let max = (calc, current) => current.inStore ? calc + 1 : calc, 0)
 
+
+простой reduce():
+
+const totalCount = row.orderGoods.reduce((current: number, next: OrderGoodItem) => {
+    return current + next.qnt
+}, 0);
+
+const totalPrice = row.orderGoods.reduce((current: number, next: OrderGoodItem) => {
+    return current + next.price * next.qnt
+}, 0);
+
 --------------------------------------------------------------------
 map() создаёт новый массив с результатом вызова указанной функции для каждого элемента массива.
 
@@ -114,6 +125,8 @@ const SearchItem = ({name, setName, label}: SearchFilterProps) => {
         </>
     );
 };
+
+export default SearchItem;
 
 --------------------------------------------------------------------
 Ширина блоков:
@@ -290,3 +303,35 @@ brandItem?.text && (
 .on('paste', function (e) {
     e.target.value = '';
 })
+
+--------------------------------------------------------------------
+Reduce с условием:
+
+rest.reduce((previousValue: string, currentValue) => {
+                if (currentValue.qntLabel == '>60' || Number(previousValue) > 60) {
+                    skip = true;
+                    previousValue = '>60';
+                }
+                if (currentValue.qntLabel == '>40') {
+                    skip = true;
+                    previousValue = '>40';
+                }
+                if (!skip)  {
+                    previousValue = `${Number(previousValue) + currentValue.qnt}`;
+                }
+                return previousValue;
+            }, '0')
+
+--------------------------------------------------------------------
+Добавить и удалить значение в массив useState:
+
+const [open, setOpen] = useState<any>([]);
+
+function handleTooltipOpen(event: any) {
+    if (open.includes(Number(event.target.value))) {
+        let index = open.indexOf(Number(event.target.value));
+        setOpen([...open.splice(0,index), ...open.splice(index + 1)]);
+    } else {
+        setOpen([...open, Number(event.target.value)]);
+    }
+}

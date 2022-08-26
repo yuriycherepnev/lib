@@ -1,7 +1,12 @@
 sudo apt-get install htop
 
 -------------------------------------------------------------------------------------
+Update all:
 
+UPDATE file
+SET deleted = 0
+
+-------------------------------------------------------------------------------------
 Запрос Олега SQL формат:
 //джоин запрос на получение заблокированных товаров из module_catalog_disks 
 
@@ -288,7 +293,6 @@ AND (`m`.`sorted`=1)
 AND (`m`.`qnt` > 0);
 
 -----------------------------------------------------------------------------------
-
 Несколько LIKE Yii2:
 
 Yii::$app->db->createCommand('CREATE TEMPORARY TABLE patterns (pattern VARCHAR(20))')
@@ -538,3 +542,141 @@ public function up()
         ], [])->execute();
     }
 }
+
+----------------------------------------------------------------------------------
+Каскадное удаление.
+Возможно при создании ключей, с учетом каскадных связей:
+
+CREATE TABLE Orders
+(
+    Id INT PRIMARY KEY IDENTITY,
+    CustomerId INT,
+    CreatedAt Date,
+    FOREIGN KEY (CustomerId) REFERENCES Customers (Id) ON DELETE CASCADE
+)
+
+----------------------------------------------------------------------------------
+Join значений где нет совпадений:
+
+SELECT model.id, goods.idModel FROM model 
+LEFT JOIN goods ON goods.idModel = model.id 
+WHERE goods.idModel is NULL
+
+SELECT brand.id, model.idBrand FROM brand 
+LEFT JOIN model ON model.idBrand = brand.id 
+WHERE model.idBrand is NULL
+
+----------------------------------------------------------------------------------
+CASE оператор в зависимости от указанных условий возвращает одно из множества возможных значений:
+
+SELECT DISTINCT product.model, 
+ CASE 
+ WHEN price IS NULL 
+ THEN 'Нет в наличии' 
+ ELSE CAST(price AS CHAR(20)) 
+ END price 
+FROM Product 
+LEFT JOIN PC 
+ON Product.model = PC.model
+WHERE product.type = 'pc';
+
+с OrderBy:
+
+ORDER BY case when name is null then 1 else 0 end
+(те значения где name = null уйдут наверх)
+
+--------------------------------------------------------------------
+Посмотреть индексы в таблице БД:
+SHOW INDEX FROM module_catalog_info;
+SHOW INDEX FROM module_catalog_disks;
+SHOW INDEX FROM module_catalog_tires;
+
+Использовать индекс:
+SELECT FROM table USE INDEX (name);
+
+Добавить/удалить индексы:
+
+CREATE UNIQUE INDEX super-index ON cel (season, column);
+
+CREATE INDEX season
+ON module_catalog_info (season);
+
+ALTER TABLE module_catalog_tires
+DROP INDEX turbo_boost;
+
+CREATE INDEX brand
+ON module_catalog_tires (season);
+
+ALTER TABLE module_catalog_tires
+DROP INDEX brand;
+
+ALTER TABLE module_catalog_tires
+DROP INDEX additional_param_index;
+
+--------------------------------------------------------------------
+Подзапрос Yii2:
+
+$subQuery = AreaSizes::find()->select(['name as SizeName'])
+                                        ->from('area_sizes')
+                                        ->innerJoin('area_sizes_rel','area_sizes_rel.size_id = area_sizes.id')
+                                        ->all();
+                                        
+->where(['in', 'name', $subQuery])
+--------------------------------------------------------------------
+GROUP_CONCAT:
+сортировка внутри:
+
+GROUP_CONCAT(dst ORDER BY sequence ASC) AS `dst_list`
+
+--------------------------------------------------------------------
+EXIST:
+
+Оператор EXISTS используется для проверки существования любой записи в подзапросе.
+
+SELECT column_name(s)
+FROM table_name
+WHERE EXISTS
+(SELECT column_name FROM table_name WHERE condition);
+
+--------------------------------------------------------------------
+MINUS:
+
+Оператор MINUS используется для возврата всех строк первого запроса SELECT, 
+не возвращаемых вторым SELECT. 
+
+SELECT expression1, expression2, ... expression_n
+  FROM tables
+[WHERE conditions]
+
+ MINUS
+
+SELECT expression1, expression2, ... expression_n
+  FROM tables
+[WHERE conditions];
+
+--------------------------------------------------------------------
+Сравниваем первую и вторую часть строки.
+Вывод результата через HAVING:
+
+Пример поля clid:
+"TTU master" <4412161>
+"79657530713" <79657530713>
+
+SELECT src, substring_index(substring_index(clid, '<', -1), '>', 1) AS clidName,
+substring_index(substring_index(clid, '"', -2), '"', 1) as clidNumber
+FROM cdr
+HAVING firstName != secondName;
+
+
+То же самое на yii2:
+$query = self::find()->select([
+    "*,
+        substring_index(substring_index(clid, '<', -1), '>', 1) AS clidName,
+        substring_index(substring_index(clid, '\"', -2), '\"', 1) as clidNumber,
+        GROUP_CONCAT(disposition ORDER BY sequence ASC) as disposition_list,
+        GROUP_CONCAT(dst ORDER BY sequence ASC) AS `dst_list`, 
+        GROUP_CONCAT(dcontext ORDER BY sequence ASC) AS `dcontext_list`, 
+        GROUP_CONCAT(did ORDER BY sequence ASC) AS `did_list`,                 
+        MIN(calldate) as сallDate,
+        MAX(billsec) as callTime"
+])->where(['in', 'linkedid', $linkedIdsQuery]);

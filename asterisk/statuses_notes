@@ -1,0 +1,349 @@
+1658951235.2775571
+
+Входящий. Не отвечен.
+
+cdr.src: 79530902033
+cdr.dst: tdial
+cdr.dcontext: ext-trunk
+cdr.did: 3253172
+cdr.billsec > 0
+cdr.disposition: ANSWERED
+
+cel.context: ext-trunk, from-trunk
+cel.exten: tdial
+cel.cid_dnid: 8123177086
+cel.appname: Dial
+
+--------------------------------------------------------------------
+1658944652.2775555
+
+Исходящий. Отвечен.
+
+cdr.src: 4412161
+cdr.dst: tdial
+cdr.dcontext: ext-trunk
+cdr.did: 89214533391
+billsec > 0 
+cdr.disposition: ANSWERED
+
+cel.context: ext-trunk
+cel.exten: tdial
+cel.cid_dnid: 89214533391
+cel.appname: Dial
+
+--------------------------------------------------------------------
+1658944182.2775553
+
+Исходящий. Не отвечен.
+
+cdr.src: 4412161
+cdr.dst: tdial
+cdr.dcontext: ext-trunk
+cdr.did: 89653848689
+cdr.billsec = 0
+cdr.disposition: BUSY
+
+cel.context: from-trunk-sip-MegafonSIP
+cel.exten: tdial
+cel.cid_dnid: 89653848689
+cel.appname: AppDial, ---
+
+в cel нет ANSWER.
+
+--------------------------------------------------------------------
+1658944166.2775551
+
+Входящий. Отвечен.
+
+cdr.src: 9214533391
+dst: tdial
+cdr.dcontext: ext-trunk
+cdr.did: 3253172
+cdr.billsec > 0
+cdr.disposition: ANSWERED
+
+cel.context: ext-trunk, from-trunk
+cel.exten: tdial
+cel.cid_dnid: 3253172
+cel.appname: Dial
+
+--------------------------------------------------------------------
+1658943668.2775530
+
+Входящий. Не отвечен.
+
+cdr.src: 9219125512
+cdr.dst: 613, 230, 231
+cdr.dcontext: ext-queues, ext-local 
+cdr.did: 4412123 (dcontext: ext-queues)
+cdr.billsec > 0
+cdr.disposition: NO ANSWER
+
+cel.context: 
+cel.exten: 613 (ANSWER)
+cel.cid_dnid: 4412123
+cel.appname: Answer
+
+--------------------------------------------------------------------
+1658943662.2775528
+
+Внутренний. Отвечен.
+
+cdr.src: 3206650
+cdr.dst: 99090922
+cdr.dcontext: from-internal
+cdr.did: ''
+cdr.billsec > 0
+cdr.disposition: ANSWERED
+
+cel.context: macro-dialout-trunk, from-trunk-sip-MegafonSIP 
+cel.exten: 99090922, s
+cel.cid_dnid: 99090922
+cel.appname: Dial
+
+--------------------------------------------------------------------
+1658943498.2775526
+
+Исходящий. Отвечен.
+
+cdr.src: 4412161
+cdr.dst: tdial
+cdr.dcontext: ext-trunk
+cdr.did: 89995234567
+cdr.billsec > 0
+cdr.disposition: ANSWERED
+
+cel.context: ext-trunk
+cel.exten: tdial
+cel.cid_dnid: 89995234567
+cel.appname: Dial
+
+--------------------------------------------------------------------
+1658943472.2775524
+
+Исходящий. Не отвечен.
+
+cdr.src: 4412161
+cdr.dst: tdial
+cdr.dcontext: ext-trunk
+cdr.did: 89995234567
+cdr.billsec > 0
+cdr.disposition: ANSWERED
+
+cel.context: ext-trunk
+cel.exten: tdial
+cel.cid_dnid: 89995234567
+cel.appname: Dial
+
+--------------------------------------------------------------------
+1658943337.2775517
+
+Входящий. Отвечен.
+
+cdr.src: 9112316495
+cdr.dst: 513, 514 (ANSWER), 628
+cdr.dcontext: ext-local, ext-queues
+cdr.did: 3279474
+cdr.billsec > 0
+cdr.disposition: ANSWERED
+
+cel.context: ext-queues, from-queue
+cel.exten: 513, 514 (ANSWER), 628 (ANSWER)
+cel.cid_dnid: 3279474
+cel.appname: Answer
+
+--------------------------------------------------------------------
+1658942346.2775480
+
+Входящий. Отвечен.
+
+cdr.src: 9313102212
+cdr.dst: 780, 370, 371, 378 (ANSWERED)
+cdr.dcontext: ext-local, ext-queues
+cdr.did: 3206650 (ext-queues)
+cdr.billsec > 0
+cdr.disposition: ANSWERED
+
+cel.context: from-internal
+cel.exten: 378 (ANSWERED), 780, 371
+cel.cid_dnid: 3206650
+cel.appname: Answer
+
+--------------------------------------------------------------------
+1658941315.2775405
+
+Входящий. Не отвечен.
+
+cdr.src: 9215720760
+cdr.dst: 188, 529
+cdr.dcontext: ext-local, ext-queues
+cdr.did: 3293241
+cdr.billsec > 0
+cdr.disposition: NO ANSWER, FAILED
+
+cel.context: ext-queues
+cel.exten: 188
+cel.cid_dnid: 3293241
+cel.appname: Answer
+
+--------------------------------------------------------------------
+1658941193.2775380
+
+Входящий. Отвечен.
+
+cdr.src: 9618062992
+cdr.dst: 370 (ANSWERED), 780
+cdr.dcontext: ext-local, ext-queues
+cdr.did: 3206650
+cdr.billsec > 0
+cdr.disposition: ANSWERED
+
+cel.context: from-internal
+cel.exten: 370 (ANSWERED)
+cel.cid_dnid: 3206650
+cel.appname: Answer
+
+--------------------------------------------------------------------
+1658932179.2773908
+
+Внутренний. Не отвечен.
+
+cdr.src: 8122401155
+cdr.dst: 249
+cdr.dcontext: from-internal
+cdr.did: ''
+cdr.billsec: 0
+cdr.disposition: NO ANSWER
+
+cel.context: ext-local, from-internal
+cel.exten: 249, h
+cel.cid_dnid: 249
+cel.appname: AppDial
+
+--------------------------------------------------------------------
+1658932172.2773907
+
+Входящий. Отвечен.
+
+cdr.src: 9119259881
+cdr.dst: 180, 185, 880
+cdr.dcontext: ext-local, ext-queues
+cdr.did: 3252121
+cdr.billsec: 189
+cdr.disposition: NO ANSWER
+
+cel.context: app-announcement-13
+cel.exten: s
+cel.cid_dnid: 3252121
+cel.appname: Answer
+
+--------------------------------------------------------------------
+1658930969.2773707
+
+Внутренний. Отвечен.
+
+cdr.src: 3206650
+cdr.dst: 99090922
+cdr.dcontext: from-internal
+cdr.did: ''
+cdr.billsec: 6
+cdr.disposition: ANSWERED
+
+cel.context: macro-dialout-trunk
+cel.exten: s
+cel.cid_dnid: 99090922
+cel.appname: Dial
+
+--------------------------------------------------------------------
+1658930281.2773647
+
+Исходящий. Отвечен.
+
+cdr.src: 4412161
+cdr.dst: tdial
+cdr.dcontext: ext-trunk
+cdr.did: 89213802033
+cdr.billsec: 14
+cdr.disposition: ANSWERED
+
+cel.context: ext-trunk
+cel.exten: tdial
+cel.cid_dnid: 89213802033
+cel.appname: Dial
+
+--------------------------------------------------------------------
+1658928302.2773355
+
+Исходящий. Отвеченный.
+
+cdr.src: 422
+cdr.dst: 406
+cdr.dcontext: ext-local
+cdr.did: ''
+cdr.billsec: 5
+cdr.disposition: ANSWERED
+
+cel.context: macro-dial-one
+cel.exten: 406, s
+cel.cid_dnid: 406
+cel.appname: Dial
+
+--------------------------------------------------------------------
+1658928296.2773353
+
+исходящий. Автоответчик.
+
+cdr.src: 4412161
+cdr.dst: tdial
+cdr.dcontext: ext-trunk
+cdr.did: 89213581228
+cdr.billsec: 5
+cdr.disposition: ANSWERED
+
+cel.context: ext-trunk
+cel.exten: tdial
+cel.cid_dnid: 89213581228
+cel.appname: Dial
+
+--------------------------------------------------------------------
+
+Если номер входящий, то cel.cid_dnid надо сравнивать с (dst)
+Если исходящий то с (did)
+
+exten в cel это dst в cdr
+context в cel это dcontext в cdr
+
+Если звонок был отвечен, то как правило cdr.dst и cel.exten совпадают
+
+Для определения вызова как входящего или исходящего,
+src надо сравнивать с cnam.
+Если телефон в нашей сети не определен, то src = cnam,
+соответственно вызов можно считать входящим.
+
+Берем из cdr строчку где disposition: ANSWERED и dcontext: ext-local,
+сравниваем ее по libkedid с cel строкой, где dst = exten, если appName: Dial,
+то вызов был отвечен.
+
+Если вызов был отвечен, то в таблице cel, надо искать лог, где exten s.
+Это говорит о старте канала.
+
+Для входящих, исходящих и внутренних, разная логика выставления отвеченного и не отвеченного звонка.
+Исходящий: там где в cel есть ANSWER cel.cid_dnid = cdr.did,
+appname = Dial.
+
+--------------------------------------------------------------------
+
+надо распознать эти звонки как входящие и не отвеченные:
+(как входящие распознал)
+
+1658951302.2775573
+1658951235.2775571
+
+Распознать как отвеченный и переведенный на большевиков:
+
+1658934881.2774198
+
+
+
+
+
