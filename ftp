@@ -27,3 +27,18 @@ ftp_set_option($connection, FTP_USEPASVADDRESS, false);
 ftp_pasv($connection, true);
 $file = ftp_fget($connection, $localFile, 'RIMS.xml', FTP_ASCII, 0);
 var_dump($file);
+
+
+-----------------------------------------------------------------
+
+RedWheels:
+
+$localFile = fopen(__DIR__ . '/local.xml', 'w');
+$connection = ftp_connect('ftp.red-wheel.nichost.ru');
+ftp_login($connection, 'red-wheel_client7', '3GOLAeQm');
+ftp_set_option($connection, FTP_USEPASVADDRESS, false);
+ftp_pasv($connection, true);
+$file = ftp_fget($connection, $localFile, 'Base.xml', FTP_ASCII, 0);
+var_dump($file);
+die;
+ftp://red-wheel_client7:3GOLAeQm@ftp.red-wheel.nichost.ru/Base.xml

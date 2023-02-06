@@ -1,0 +1,134 @@
+  AbsoluteTimeout                              Установить абсолютный тайм-аут. 
+  AGI                                          Добавьте команду AGI для выполнения 
+  AOCMessage                                   Создайте беспорядок с советом о зарядке
+  Atxfer                                       Присутствовал на передаче. 
+  BlindTransfer                                Слепой канал(ы) передачи to the 
+  Bridge                                       Соедините два канала уже в th
+  BridgeDestroy                                Разрушить мост. 
+  BridgeInfo                                   Получить информацию о мосте. 
+  BridgeKick                                   Выбить канал с моста. 
+  BridgeList                                   Получить список мостов в системе
+  BridgeTechnologyList                         Список доступных технологий мостового соединения
+  BridgeTechnologySuspend                      Подвесить мостовую технологию. 
+  BridgeTechnologyUnsuspend                    Разблокировать технологию моста. 
+  CancelAtxfer                                 Отменить сопровождаемый перевод. 
+  Challenge                                    Создать вызов для аутентификации MD5. 
+  ChangeMonitor                                Изменить имя файла мониторинга a c
+  Command                                      Выполните команду Asterisk CLI. 
+  ConfbridgeKick                               Удалите пользователя Confbridge. 
+  ConfbridgeList                               Список участников конференции
+  ConfbridgeListRooms                          Список активных конференций. 
+  ConfbridgeLock                               Заблокируйте конференцию Confbridge. 
+  ConfbridgeMute                               Отключить звук пользователя Confbridge. 
+  ConfbridgeSetSingleVideoSrc                  Установите пользователя конференции в качестве участника
+  ConfbridgeStartRecord                        Начать запись конференции Confbridge
+  ConfbridgeStopRecord                         Остановить запись конференции Confbridge
+  ConfbridgeUnlock                             Разблокируйте конференцию Confbridge. 
+  ConfbridgeUnmute                             Включить звук пользователя Confbridge. 
+  ControlPlayback                              Управляйте воспроизведением файла
+  CoreSettings                                 Показать настройки ядра АТС (версия e
+  CoreShowChannels                             Список активных каналов. 
+  CoreStatus                                   Показать переменные состояния ядра АТС. 
+  CreateConfig                                 Создает пустой файл в конфиге
+  DataGet                                      Получите дерево API данных. 
+  DBDel                                        Удалить запись БД. 
+  DBDelTree                                    Удалить дерево БД. 
+  DBGet                                        Получить запись БД. 
+  DBPut                                        Поместите запись БД. 
+  DeviceStateList                              Перечислите текущую известную станцию ​​устройства
+  DialplanExtensionAdd                         Добавить расширение в диалплан 
+  DialplanExtensionRemove                      Удалить расширение с циферблата
+  Events                                       Управление потоком событий. 
+  ExtensionState                               Проверьте статус расширения. 
+  ExtensionStateList                           Список текущего известного расширения 
+  FAXSession                                   Отвечает с подробным описанием
+  FAXSessions                                  Список активных сеансов факса 
+  FAXStats                                     Отвечает статистикой факса 
+  Filter                                       Динамически добавлять фильтры для c
+  G729LicenseList                              Список лицензий G.729
+  G729LicenseStatus                            Статус лицензии G.729
+  GetConfig                                    Получить конфигурацию. 
+  GetConfigJSON                                Получить конфигурацию (форма JSON
+  Getvar                                       Получает переменную канала или функции
+  Hangup                                       Зависание канала. 
+  IAXnetstats                                  Показать сетевую статистику IAX. 
+  IAXpeerlist                                  Список пиров IAX. 
+  IAXpeers                                     Список пиров IAX. 
+  IAXregistry                                  Показать регистрации IAX. 
+  ListCategories                               Список категорий в конфигурации 
+  ListCommands                                 Список доступных команд менеджера. 
+  LocalOptimizeAway                            Оптимизируйте местный канал, когда
+  LoggerRotate                                 Перезагрузите и поверните звездочку.
+  Login                                        Менеджер входа. 
+  Logoff                                       Менеджер выхода из системы. 
+  MailboxCount                                 Проверьте количество сообщений в почтовом ящике. 
+  MailboxStatus                                Проверить почтовый ящик. 
+  MeetmeList                                   Список участников конференции
+  MeetmeListRooms                              Список активных конференций. 
+  MeetmeMute                                   Отключить звук пользователя Meetme. 
+  MeetmeUnmute                                 Включить звук пользователя Meetme. 
+  MessageSend                                  Отправить сообщение об отсутствии вызова на
+  MixMonitor                                   Запишите звонок и смешайте звук d
+  MixMonitorMute                               Немой / unMute a Mixmonitor record
+  ModuleCheck                                  Проверьте, загружен ли модуль. 
+  ModuleLoad                                   Управление модулями. 
+  Monitor                                      Следите за каналом. 
+  MuteAudio                                    Отключить звуковой поток. 
+  Originate                                    Инициировать вызов. 
+  Park                                         Припарковать канал. 
+  ParkedCalls                                  Список запаркованных вызовов. 
+  Parkinglots                                  Получить список парковок 
+  PauseMonitor                                 Приостановить мониторинг канала. 
+  Ping                                         Команда поддержания активности. 
+  PJSIPNotify                                  Отправьте NOTIFY на конечную точку
+  PJSIPQualify                                 Квалифицируйте конечную точку chan_pjsip. 
+  PJSIPRegister                                Зарегистрировать исходящую регистрацию
+  PJSIPShowEndpoint                            Подробный список конечной точки и
+  PJSIPShowEndpoints                           Перечисляет конечные точки PJSIP. 
+  PJSIPShowRegistrationInboundContactStatuses  Списки ContactStatuses для PJSIP i
+  PJSIPShowRegistrationsInbound                Список входящих регистраций PJSIP
+  PJSIPShowRegistrationsOutbound               Перечисляет исходящие регистрации PJSIP
+  PJSIPShowResourceLists                       Отображает настройки для настроенных 
+  PJSIPShowSubscriptionsInbound                Список подписок. 
+  PJSIPShowSubscriptionsOutbound               Список подписок. 
+  PJSIPUnregister                              Отменить регистрацию исходящего трафика
+  PlayDTMF                                     Воспроизведение сигнала DTMF на определенном канале
+  PresenceState                                Проверить состояние присутствия 
+  PresenceStateList                            Перечислите текущее известное присутствие s
+  QueueAdd                                     Добавить интерфейс в очередь. 
+  QueueLog                                     Добавляет пользовательскую запись в queue_log. 
+  QueueMemberRingInUse                         Установите значение ringinuse для очереди
+  QueuePause                                   Временно делает участником очереди 
+  QueuePenalty                                 Установить штраф для участника очереди
+  QueueReload                                  перезагрузить очередь, queues, or any su
+  QueueRemove                                  Удалить интерфейс из очереди. 
+  QueueReset                                   Сбросить статистику очереди. 
+  QueueRule                                    Правила очереди. 
+  Queues                                       Очереди. 
+  QueueStatus                                  Показать статус очереди. 
+  QueueSummary                                 Показать сводку очереди. 
+  Redirect                                     Редирект (перевод) a call. 
+  Reload                                       Отправить событие перезагрузки. 
+  SendText                                     Отправляет текстовое сообщение на канал. 
+  Setvar                                       Устанавливает переменную канала или функции.
+  ShowDialPlan                                 Показать контексты и расширения диалплана
+  SIPnotify                                    Отправьте SIP-уведомление. 
+  SIPpeers                                     Список одноранговых узлов SIP (текстовый формат). 
+  SIPpeerstatus                                Показать состояние одного или всех 
+  SIPqualifypeer                               Квалифицируйте одноранговые узлы SIP. 
+  SIPshowpeer                                  показать узел SIP (текстовый формат). 
+  SIPshowregistry                              Показать регистрации SIP (текстовая форма
+  SorceryMemoryCacheExpire                     Срок действия (удалить) ALL objects from 
+  SorceryMemoryCacheExpireObject               Срок действия (удалить) an object from a 
+  SorceryMemoryCachePopulate                   Исчезнуть все объекты из памяти 
+  SorceryMemoryCacheStale                      Отмечает ВСЕ объекты в волшебстве меня
+  SorceryMemoryCacheStaleObject                Отметить объект в колдовской памяти
+  Status                                       Список статусов каналов. 
+  StopMixMonitor                               Остановить запись звонка через Mix
+  StopMonitor                                  Остановить мониторинг канала. 
+  UnpauseMonitor                               Включить мониторинг канала. 
+  UpdateConfig                                 Обновите базовую конфигурацию. 
+  UserEvent                                    Отправить произвольное событие. 
+  VoicemailRefresh                             Скажите Asterisk опросить почтовые ящики f
+  VoicemailUsersList                           Список всей информации пользователя голосовой почты
+  WaitEvent                                    Подождите, пока произойдет событие. 

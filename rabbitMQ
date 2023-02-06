@@ -73,5 +73,10 @@ sudo rm -fr /var/lib/rabbitmq/
 
 --------------------------------------------------------------------
 Проверка rabbitMQ:
-
 sudo systemctl status rabbitmq-server
+
+Старт:
+sudo systemctl start rabbitmq
+
+Автозагрузка:
+sudo systemctl enable rabbitmq 

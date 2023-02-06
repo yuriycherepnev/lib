@@ -1,0 +1,12 @@
+тестовый сокет:
+
+$socket = stream_socket_server("tcp://127.0.0.1:8001", $errno, $errstr);
+static $index = 0;
+while ($connect = stream_socket_accept($socket, -1)) {
+    fwrite($connect, "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\nHello $index");
+    fclose($connect);
+    $index ++;
+}
+fclose($socket);
+
+socket_recv — Получает данные из подсоединённого сокета

@@ -41,8 +41,15 @@ if (YII_ENV_DEV) {
 mysql -u root -p  (подключение)
 mysql> set global sql_mode='';  (установить глобальную переменную в консоли)
 
+Или постоянно:
+Файл конфигурации: /etc/mysql/my.cnf
+[mysqld] 
+sql_mode = NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+----------------------------------------------------------
+
 Загрузить базу данных:
-mysql -u root -p
+mysql -u root -p (sudo mysql)
 CREATE DATABASE new_database;
 use new_database;
 source ~/database/tyres.sql;
@@ -632,6 +639,8 @@ rm -rf /tmp/folder/*
 
 rm -rf /assets/*
 
+sudo rm -r assets/*
+
 -------------------------------------------------------------------
 css ширина по контенту:
 width: fit-content;
@@ -870,6 +879,10 @@ sudo apt install php8.0 php8.0-common php8.0-cli php8.0-fpm php8.0-gd php8.0-mys
 
 sudo apt-get install libapache2-mod-php8.0 php8.0-common php8.0-gd php8.0-mysql php8.0-curl php8.0-intl php8.0-xsl php8.0-mbstring php8.0-zip php8.0-bcmath php8.0-soap php8.0-xdebug php8.0-imagick
 
+sudo apt-get install php8.0 php8.0-common php8.0-cli php8.0-fpm php8.0-gd php8.0-mysql php8.0-mbstring php8.0-curl php8.0-xml php8.0-zip php8.0-json php8.0-imagick php8.0-xmlrpc php8.0-bz2 php8.0-dev php8.0-opcache libapache2-mod-php8.0 php8.0-intl php8.0-xsl php8.0-bcmath php8.0-soap php8.0-xdebug
+
+sudo apt install php5.6-mysql
+sudo apt install php7.4-mysql
 --------------------------------------------------------------------
 Переключить версию composer:
 composer self-update --1 
@@ -887,6 +900,24 @@ composer update yiisoft/yii2-composer
 composer update exclusive/yii2-url-manager
 
 composer update exclusive/yii2-order-api
+
+composer update php:7.4.*@dev
+
+composer update yiisoft/yii2:~2.0.42
+
+composer require php:7.4.*@dev
+
+composer require happyworm/jPlayer
+
+composer require marcelog/pami:2.*
+
+Удалить пакет:
+
+composer remove php-ffmpeg/php-ffmpeg
+
+composer remove happyworm/jPlayer
+
+composer update exclusive/yii2-call
 
 --------------------------------------------------------------------
 Посмотреть письма в mailer.
@@ -967,6 +998,14 @@ newfrontend/controllers/MainController.php
 
 composer require "yiisoft/yii2:~2.0.42" --update-with-dependencies
 
+composer require "yiisoft/yii2:~2.0.5" --update-with-dependencies
+
+Обновить php:
+
+composer require php:7.0.* --update-with-dependencies
+
+composer require php:>=7.3.0 --update-with-dependencies
+
 --------------------------------------------------------------------
 
 Вам нужно вызвать $this->redirect() после parent::init() , 
@@ -1027,7 +1066,6 @@ Kibana:
 kibana.tyres.spb.ru
 Name: kibana
 Password: LPW4jB8EfW
-получить запрос
 
 --------------------------------------------------------------------
 echo '<pre>';
@@ -1047,6 +1085,12 @@ sudo systemctl restart apache2
 
 Статус:
 sudo systemctl status apache2
+
+Отключить apache по умолчанию:
+sudo systemctl disable apache2
+
+Включить apache по умолчанию:
+sudo systemctl enable apache2
 
 --------------------------------------------------------------------
 Nginx:
@@ -1087,11 +1131,6 @@ sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
 windows:
 
 https://wmcentre.net/search?searchstr=windows+10+pro
-
---------------------------------------------------------------------
-Задача по ошибкам kibana:
-
-https://help.tyres.spb.ru/issues/26063
 
 --------------------------------------------------------------------
 Ошибка phpMyAdmin:
@@ -1253,6 +1292,7 @@ fputcsv($file, $data);
 fclose($file);
 
 Запись:
+
 $file = fopen('model.csv', 'a');
 $modelArray = Model::find()
   ->select(['*'])
@@ -1320,6 +1360,23 @@ i - без учета регистра
 
 preg_match('/\b\/data\/\b/i',  "$path");
 
+Все цифры между слешом и тире:
+(?<=\/)\d+(?=-)
+
+Разбить строку с длинным пробелом на массив:
+
+$value = preg_split("/\B\s*\b/", $value);
+$value = preg_split("/\s+\b/", $channel);
+$value = preg_split("/\s+/", $buf)
+
+Проверка:
+https://regex101.com/r/PxbTYd/1
+
+Сайт регулярки:
+http://www.nncron.ru/help/RU/add_info/regexp.htm
+
+\A - начало всего текста (а не только строки)
+
 --------------------------------------------------------------------
 
 UrlRules для UrlManager restFull api:
@@ -1354,8 +1411,13 @@ private function initFilePath()
 //$catalogFileName = end($files);
 
   $this->fileRest = 'ftp://' . $user . ':' . $pass . '@' . $host . '/' . $restName;
-  $this->filePath = 'ftp://change:Zg5NIuv86Q@172.27.178.44/Conti_PRICAT_RU_PL_Exclusive_20210822.csv';
+  $this->filePath = 'ftp://change:Zg5NIuv86Q@172.27.178.44/Conti_PRICAT_RU_PL_Exclusive_20220711.csv';
 }
+
+--------------------------------------------------------------------
+tyres:
+bakashoff
+GfhjkmRjnjhsqYtEuflfnm
 
 --------------------------------------------------------------------
 bakashoff
@@ -1620,12 +1682,13 @@ console.log(new Intl.DateTimeFormat('en-US',
 ).format(timestamp));
 
 --------------------------------------------------------------------
-Пуш без пароля.
+Пуш без пароля (ssh):
 
 Чтобы не вводить постоянно пароль, клонирование проекта надо выполнять по ssh протоколу.
 Например:
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/back.b2b.tyres.spb.ru.git
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/tyres_satellites.git
+git clone ssh://gituser@git.tyres.spb.ru/Exclusive/1c_exchange.git
 
 В репозитории:
 git remote -v 
@@ -1744,6 +1807,7 @@ PhpStorm аннотации -> showDiff -> копируем хеш справа 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b64299db7b3641f68b5ede9cb814c9b7e4534d34
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/99ceb61c2bb2090c09873a85b362439ae23e2480
+
 
 Затем:
 
@@ -1890,6 +1954,20 @@ sudo find / -name "vsftpd.conf"
 
 sudo find . -name "vsftpd.conf"
 
+В текущей директории через grep:
+
+ls | grep Documents
+
+ls | grep 'My Documents'
+
+Поиск слов в файле:
+
+grep 'Class 1' Students.txt
+
+или:
+
+cat dump.sql | grep nokian
+
 --------------------------------------------------------------------
 Доступ по ftp:
 
@@ -1920,7 +1998,7 @@ if (ftp_get($conn_id, 'RIMS.xml', __DIR__ . '/aloha.xml', FTP_ASCII)) {
 ftp_close($conn_id);
 
 --------------------------------------------------------------------
-trycatch уровень ошибки:
+trycatch обработка ошибок:
 
 Поскольку класс Error не наследуется от класса Exception, 
 блок catch (Exception $e) { ... } для обработки неперехваченных 
@@ -1928,20 +2006,55 @@ trycatch уровень ошибки:
 Для их перехвата используйте блок catch (Error $e) { ... } 
 или установите обработчик исключений с помощью set_exception_handler().
 
-try
-{}
-catch (Exception $e)
-{}
+try{  
+}
+catch (Exception $e){ 
+}
 
-try 
-{}
-catch (Error $e)
-{}
+try { 
+}
+catch (Error $e) {
+}
+
+Блок finally выполняется всегда:
+
+try {
+   print "это наш блок попыток n";
+   throw new Exception();
+} catch (Exception $e) {
+   print "что-то пошло не так, есть улов!";
+} finally {
+   print "эта часть всегда выполняется";
+}
+
+Способ отловить и исключения и ошибки:
+
+try {
+} catch (Throwable $e) {
+   echo '';
+}
+
+Кастомный обработчик:
+
+class MyCustomException extends Exception { }
+
+function throwMyCustomException() {
+      throw new MyCustomException('Здесь что-то не так.');
+}
+
+try {
+   throwMyCustomException();
+} catch (MyCustomException $e) {
+   echo "Ваше пользовательское исключение поймано";
+   echo $e->getMessage();
+} catch (Exception $e) {
+   echo "Стандартное исключение PHP";
+}
 
 --------------------------------------------------------------------
 Автодополнение phpstorm:
 
-settings -> editor -> live Templates -> php
+file -> settings -> editor -> live Templates -> php
 
 https://russianblogs.com/article/46831062073/
 
@@ -1963,6 +2076,9 @@ systemctl status mysql.service
 
 MariDb:
 sudo systemctl status mariadb
+
+Запуск:
+sudo systemctl start mysql
 
 --------------------------------------------------------------------
 Убить процесс sql:
@@ -2009,3 +2125,142 @@ public function validatePassword($password)
 Range picker:
 
 https://demos.krajee.com/date-range
+
+--------------------------------------------------------------------
+Редирект с параметрами:
+
+if (isset($params['brand']) && $params['brand'] == 'nokian') {
+    $params['brand'] = 'nokian tyres';
+    return Yii::$app->response->redirect(Url::to(['/tyres/view'] + $params));
+}
+
+--------------------------------------------------------------------
+Скачать файл с сервера:
+
+scp -r root@172.27.100.240:/var/www/html /home/new-root/projects
+
+scp root@172.27.100.240:/var/spool/asterisk/monitor/2022/09/13/in-3279474-9119001990-20220913-155327-1663073607.3127000.WAV /home/new-root/projects
+
+Через php:
+
+$connection = ssh2_connect('172.27.100.240');
+ssh2_auth_password($connection, 'root', '8iNsHmpeS1');
+$serverFile = '/var/spool/asterisk/monitor/2022/08/3038009.WAV';
+$localFile = Yii::getAlias('@frontendWeb') . '/sample.wav';
+$record = ssh2_scp_recv($connection, $serverFile, $localFile);
+
+--------------------------------------------------------------------
+Временный файл:
+
+$tmpFile = tmpfile();
+$metadata = stream_get_meta_data($tmpFile);
+var_dump($metadata['uri']);
+
+/home/new-root/projects/tyres/frontend/web/sample2.wav
+
+
+Запись в временный файл:
+
+$localFile = Yii::getAlias('@frontendWeb') . '/sample2.wav';
+$tmpFile = tmpfile();
+$metadata = stream_get_meta_data($tmpFile);
+file_put_contents($metadata['uri'], file_get_contents($localFile));
+--------------------------------------------------------------------
+Bash скрипты:
+
+#!/bin/bash
+lame sample2.wav sample2.mp3
+
+#!/bin/bash
+lame tmpAudio/sample2.wav tmpAudio/sample2.mp3
+
+Вызов из php:
+shell_exec('bash audioConvert.sh');
+
+--------------------------------------------------------------------
+Удаленное подключение к mysql:
+
+mysql -h 172.27.178.186 -u root -p
+
+--------------------------------------------------------------------
+Parse xls:
+
+$file = __DIR__ . '/skad.xlsx';
+$array = \moonland\phpexcel\Excel::import($file);
+
+foreach ($array as $valuesKey => $values) {
+    foreach ($values as $key => $value) {
+        $array[$valuesKey][$key] = preg_replace("/[^0-9]/", '', $value);
+    }
+}
+
+$data = ['article', 'retail', 'wholesale'];
+$file = fopen('moscow_prices.csv', 'w');
+fputcsv($file, $data);
+
+foreach ($array as $value) {
+    if ($value[1] && $value[2] && $value[4]) {
+        $data = [$value[1], $value[2], $value[4]];
+        fputcsv($file, $data);
+    }
+}
+fclose($file);
+
+--------------------------------------------------------------------
+Список процессов:
+sudo netstat -tunlp
+
+Убить процесс:
+kill -9 2199
+
+--------------------------------------------------------------------
+Ошибка mysql и ее решения:
+
+This installation of MySQL is already upgraded to 5.7.15, 
+use --force if you still need to run mysql_upgrade
+
+https://askubuntu.com/questions/825579/upgrading-to-mysql-5-7-15-crashes-on-ubuntu-16-04
+
+https://techierg.blogspot.com/2019/06/ubuntu-1804-mysql-this-installation-of.html
+
+https://bugs.launchpad.net/ubuntu/+source/mysql-5.7/+bug/1817374/comments/8
+
+--------------------------------------------------------------------
+Открыть порты ubuntu:
+
+sudo ufw allow from 172.27.100.240 to any port 5070 proto udp
+
+sudo ufw allow to any port 5070 proto udp
+
+Посмотреть правило на портах:
+
+sudo ufw status
+
+--------------------------------------------------------------------
+Tyres prod:
+
+Login: bakashoff
+password: GfhjkmRjnjhsqYtEuflfnm
+
+
+Кодировка csv для excell:
+
+foreach ($firstString as $key => $salePoint) {
+    $firstString[$key] = iconv("utf-8", "windows-1251", $salePoint)
+}
+$file = fopen($fileName, 'w');
+fputcsv($file, $firstString, ";");
+fclose($file);
+
+
+timestamp to date:
+
+date('d-m-Y H:i:s', $) 
+
+--------------------------------------------------------------------
+Внутренний указатель:
+
+end($list);
+reset($list);
+$list[key($list)];
+current($list);

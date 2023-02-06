@@ -27,9 +27,6 @@ const totalPrice = row.orderGoods.reduce((current: number, next: OrderGoodItem) 
 }, 0);
 
 --------------------------------------------------------------------
-map() создаёт новый массив с результатом вызова указанной функции для каждого элемента массива.
-
---------------------------------------------------------------------
 
 find() возвращает значение первого найденного в массиве элемента, которое удовлетворяет условию переданному в callback функции. В противном случае возвращается undefined.
 
@@ -59,6 +56,10 @@ navigate(`/admin/news/`);
 
 const sumPrice = cartList.cart.map(item => item.price * item.qnt).reduce((prev, curr) => prev + curr, 0);
 
+--------------------------------------------------------------------
+map:
+
+array.map((item, key) => ( code )
 --------------------------------------------------------------------
 
 Поиск в массиве js
@@ -334,4 +335,74 @@ function handleTooltipOpen(event: any) {
     } else {
         setOpen([...open, Number(event.target.value)]);
     }
+}
+
+--------------------------------------------------------------------
+Клик вне блока + скрытие блока:
+
+document.addEventListener( 'click', (e) => {
+    if (!e.composedPath().includes(openBlock[0])) {
+        callBlock.hide();
+        openBlock = null;
+    }
+})
+
+--------------------------------------------------------------------
+Blob to audio
+
+php:
+
+    $file = Yii::getAlias('@frontendWeb') . '/sample.wav';
+    return base64_encode(file_get_contents($file));
+
+Js ajax:
+
+    $.ajax({
+        url: '/backend/call/get-call-audio',
+        type: 'POST',
+        data: {
+            recordingfile: openCall.data('recordingfile'),
+        },
+        success: function (response) {
+            var audio = URL.createObjectURL(new Blob([response], { type: "audio/wav" }));
+            createAudio('data:audio/ogg;base64,' + response, $('#player-18457687'));
+        }
+    });
+
+--------------------------------------------------------------------
+Convert base64 to blob js:
+
+
+$.ajax({
+    url: '/backend/call/get-call-audio',
+    type: 'POST',
+    data: {
+        recordingfile: openCall.data('recordingfile'),
+    },
+    success: function (response) {
+        let blob = convertBaseToBlob(response.recordingfile, {type : 'audio/ogg'});
+        var audio = URL.createObjectURL(blob);
+        let id = openCall.data('id');
+        createAudio(audio, $(`#player-${id}`));
+    }
+});
+
+
+function convertBaseToBlob(data, options) {
+    const byteCharacters = atob(data);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], options);
+}
+
+PHP:
+
+public function actionGetCallAudio()
+{
+    Yii::$app->response->format = Response::FORMAT_JSON;
+    $localFile = Yii::getAlias('@frontendWeb') . '/sample1.wav';
+    return base64_encode(file_get_contents($localFile));
 }

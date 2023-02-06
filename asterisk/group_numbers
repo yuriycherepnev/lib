@@ -1,6 +1,10 @@
-array(34) {
+array(35) {
   [1]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    NULL
+    ["id_group"]=>
+    int(1)
     ["name"]=>
     string(31) "Интернет-магазин"
     ["callGroupNumbers"]=>
@@ -40,7 +44,11 @@ array(34) {
     bool(false)
   }
   [2]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    NULL
+    ["id_group"]=>
+    int(2)
     ["name"]=>
     string(44) "Оператор контакт центра"
     ["callGroupNumbers"]=>
@@ -62,7 +70,11 @@ array(34) {
     bool(false)
   }
   [29]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    NULL
+    ["id_group"]=>
+    int(29)
     ["name"]=>
     string(7) "shini78"
     ["callGroupNumbers"]=>
@@ -74,7 +86,11 @@ array(34) {
     bool(true)
   }
   [31]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    NULL
+    ["id_group"]=>
+    int(31)
     ["name"]=>
     string(25) "Пустая группа"
     ["callGroupNumbers"]=>
@@ -86,7 +102,11 @@ array(34) {
     bool(false)
   }
   [33]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    NULL
+    ["id_group"]=>
+    int(33)
     ["name"]=>
     string(10) "Сезон"
     ["callGroupNumbers"]=>
@@ -98,7 +118,11 @@ array(34) {
     bool(false)
   }
   [34]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    NULL
+    ["id_group"]=>
+    int(34)
     ["name"]=>
     string(25) "Отдел рекламы"
     ["callGroupNumbers"]=>
@@ -110,7 +134,11 @@ array(34) {
     bool(false)
   }
   [3]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "2H"
+    ["id_group"]=>
+    int(3)
     ["name"]=>
     string(35) "Большевиков пр., д.42"
     ["callGroupNumbers"]=>
@@ -126,7 +154,11 @@ array(34) {
     bool(false)
   }
   [4]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "2I"
+    ["id_group"]=>
+    int(4)
     ["name"]=>
     string(33) "Витебский пр., д.11А"
     ["callGroupNumbers"]=>
@@ -142,7 +174,11 @@ array(34) {
     bool(false)
   }
   [5]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "2M"
+    ["id_group"]=>
+    int(5)
     ["name"]=>
     string(31) "Руставели ул., д.42"
     ["callGroupNumbers"]=>
@@ -158,7 +194,11 @@ array(34) {
     bool(false)
   }
   [6]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "2N"
+    ["id_group"]=>
+    int(6)
     ["name"]=>
     string(38) "Сердобольская ул., д.3"
     ["callGroupNumbers"]=>
@@ -176,7 +216,11 @@ array(34) {
     bool(false)
   }
   [7]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "2O"
+    ["id_group"]=>
+    int(7)
     ["name"]=>
     string(39) "Черняховского ул., д.21"
     ["callGroupNumbers"]=>
@@ -192,7 +236,11 @@ array(34) {
     bool(false)
   }
   [8]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "2R"
+    ["id_group"]=>
+    int(8)
     ["name"]=>
     string(27) "Оптиков ул., д.15"
     ["callGroupNumbers"]=>
@@ -216,7 +264,11 @@ array(34) {
     bool(false)
   }
   [9]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "2V"
+    ["id_group"]=>
+    int(9)
     ["name"]=>
     string(37) "Выборгская наб., д.61А"
     ["callGroupNumbers"]=>
@@ -230,7 +282,11 @@ array(34) {
     bool(false)
   }
   [10]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "2W"
+    ["id_group"]=>
+    int(10)
     ["name"]=>
     string(26) "Шаумяна пр., д.4"
     ["callGroupNumbers"]=>
@@ -252,7 +308,11 @@ array(34) {
     bool(false)
   }
   [11]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "IP"
+    ["id_group"]=>
+    int(11)
     ["name"]=>
     string(35) "1-й Верхний пер., д.2А"
     ["callGroupNumbers"]=>
@@ -266,7 +326,11 @@ array(34) {
     bool(false)
   }
   [12]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "38"
+    ["id_group"]=>
+    int(12)
     ["name"]=>
     string(45) "Политехническая ул., д.15А"
     ["callGroupNumbers"]=>
@@ -284,7 +348,11 @@ array(34) {
     bool(false)
   }
   [13]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "39"
+    ["id_group"]=>
+    int(13)
     ["name"]=>
     string(49) "Краснопутиловская ул., д.46А"
     ["callGroupNumbers"]=>
@@ -298,7 +366,11 @@ array(34) {
     bool(false)
   }
   [14]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "45"
+    ["id_group"]=>
+    int(14)
     ["name"]=>
     string(47) "г. Кингисепп, 4-й проезд, д.1"
     ["callGroupNumbers"]=>
@@ -318,7 +390,11 @@ array(34) {
     bool(false)
   }
   [15]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "49"
+    ["id_group"]=>
+    int(15)
     ["name"]=>
     string(40) "Выборгское шоссе, д.22Б"
     ["callGroupNumbers"]=>
@@ -334,7 +410,11 @@ array(34) {
     bool(false)
   }
   [16]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "G1"
+    ["id_group"]=>
+    int(16)
     ["name"]=>
     string(28) "КИМа пр., д.6, В.О."
     ["callGroupNumbers"]=>
@@ -352,7 +432,11 @@ array(34) {
     bool(false)
   }
   [17]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "G2"
+    ["id_group"]=>
+    int(17)
     ["name"]=>
     string(39) "Непокорённых пр., д.64А"
     ["callGroupNumbers"]=>
@@ -370,7 +454,11 @@ array(34) {
     bool(false)
   }
   [18]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "G4"
+    ["id_group"]=>
+    int(18)
     ["name"]=>
     string(29) "Харченко ул., д.41"
     ["callGroupNumbers"]=>
@@ -388,7 +476,11 @@ array(34) {
     bool(false)
   }
   [19]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "G5"
+    ["id_group"]=>
+    int(19)
     ["name"]=>
     string(45) "Белорусская ул., д.7, лит.А"
     ["callGroupNumbers"]=>
@@ -406,7 +498,11 @@ array(34) {
     bool(false)
   }
   [20]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "G6"
+    ["id_group"]=>
+    int(20)
     ["name"]=>
     string(53) "Народного Ополчения пр., д.201К"
     ["callGroupNumbers"]=>
@@ -424,7 +520,11 @@ array(34) {
     bool(false)
   }
   [21]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "IL"
+    ["id_group"]=>
+    int(21)
     ["name"]=>
     string(71) "пос. Ленсоветовский, Московское ш. 231 к.5"
     ["callGroupNumbers"]=>
@@ -442,7 +542,11 @@ array(34) {
     bool(false)
   }
   [22]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "IS"
+    ["id_group"]=>
+    int(22)
     ["name"]=>
     string(38) "Софийская ул., д.127, к.6"
     ["callGroupNumbers"]=>
@@ -460,7 +564,11 @@ array(34) {
     bool(false)
   }
   [23]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "IT"
+    ["id_group"]=>
+    int(23)
     ["name"]=>
     string(42) "Партизанская ул., д.15 к.1"
     ["callGroupNumbers"]=>
@@ -478,7 +586,11 @@ array(34) {
     bool(false)
   }
   [24]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "MS"
+    ["id_group"]=>
+    int(24)
     ["name"]=>
     string(35) "Мурманское шocce, 25км"
     ["callGroupNumbers"]=>
@@ -490,7 +602,11 @@ array(34) {
     bool(false)
   }
   [25]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "P1"
+    ["id_group"]=>
+    int(25)
     ["name"]=>
     string(39) "Выборгское шоссе, д.214"
     ["callGroupNumbers"]=>
@@ -508,7 +624,11 @@ array(34) {
     bool(false)
   }
   [26]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "8S"
+    ["id_group"]=>
+    int(26)
     ["name"]=>
     string(35) "8-я Советская ул. д. 4"
     ["callGroupNumbers"]=>
@@ -520,7 +640,11 @@ array(34) {
     bool(false)
   }
   [27]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "P6"
+    ["id_group"]=>
+    int(27)
     ["name"]=>
     string(41) "г. Кириши, пр.Победы, д.6"
     ["callGroupNumbers"]=>
@@ -532,7 +656,11 @@ array(34) {
     bool(false)
   }
   [28]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "PP"
+    ["id_group"]=>
+    int(28)
     ["name"]=>
     string(67) "Профессора Попова ул., д.38, лит.Щ пом.15"
     ["callGroupNumbers"]=>
@@ -548,7 +676,11 @@ array(34) {
     bool(false)
   }
   [30]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    NULL
+    ["id_group"]=>
+    int(30)
     ["name"]=>
     string(3) "361"
     ["callGroupNumbers"]=>
@@ -566,7 +698,11 @@ array(34) {
     bool(false)
   }
   [32]=>
-  array(3) {
+  array(5) {
+    ["id_store"]=>
+    string(2) "SA"
+    ["id_group"]=>
+    int(32)
     ["name"]=>
     string(22) "Салова ул., 32"
     ["callGroupNumbers"]=>
@@ -577,6 +713,22 @@ array(34) {
       string(3) "526"
       [2]=>
       string(3) "527"
+    }
+    ["isDidSearch"]=>
+    bool(false)
+  }
+  [35]=>
+  array(5) {
+    ["id_store"]=>
+    string(2) "LP"
+    ["id_group"]=>
+    int(35)
+    ["name"]=>
+    string(33) "Ленинский пр. 101 к 3"
+    ["callGroupNumbers"]=>
+    array(1) {
+      [0]=>
+      string(3) "210"
     }
     ["isDidSearch"]=>
     bool(false)

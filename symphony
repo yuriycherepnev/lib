@@ -1,0 +1,13 @@
+сборка проекта:
+npm run build
+
+отслеживание:
+npm run watch
+
+install roboto:
+
+Создать контроллер:
+
+php bin/console make:controller BrandNewController
+
+php bin/console make:controller LanguageController

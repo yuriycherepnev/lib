@@ -1,0 +1,13 @@
+Получить вывод по ssh:
+
+$connection = ssh2_connect('172.27.100.240');
+ssh2_auth_password('root', '8iNsHmpeS1');
+
+$stream = ssh2_exec($connection, "asterisk -rx 'core show channels'");
+$sio_stream = ssh2_fetch_stream($stream, SSH2_STREAM_STDIO);
+stream_set_blocking($sio_stream, true);
+$result_dio = stream_get_contents($sio_stream);
+var_dump(explode(PHP_EOL,  $result_dio));
+var_dump($result_dio);
+
+--------------------------------------------------------------------

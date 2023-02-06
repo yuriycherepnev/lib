@@ -1,0 +1,12 @@
+SELECT DISTINCT dst FROM `cdr` LENGTH(dst)=3
+SELECT DISTINCT dst, did FROM cdr WHERE LENGTH(dst)=3
+
+SELECT linkedid, GROUP_CONCAT(dst) as disposition_list
+FROM cdr 
+WHERE linkedid in (SELECT DISTINCT linkedid FROM cdr WHERE did = 3254721)
+GROUP BY linkedid;
+
+SELECT DISTINCT dst
+FROM cdr 
+WHERE linkedid in (SELECT DISTINCT linkedid FROM cdr WHERE did = 3254721)
+GROUP BY linkedid;

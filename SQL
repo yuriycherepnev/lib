@@ -680,3 +680,55 @@ $query = self::find()->select([
         MIN(calldate) as сallDate,
         MAX(billsec) as callTime"
 ])->where(['in', 'linkedid', $linkedIdsQuery]);
+
+--------------------------------------------------------------------
+UPDATE + REPLACE SQL:
+
+UPDATE tyre
+SET name = REPLACE(name, 'Nokian Tyres', 'Nokian')
+WHERE name LIKE '%Nokian Tyres%'
+
+Yii2:
+
+Tyre::updateAll(
+    ['name' => new \yii\db\Expression("REPLACE(name,'Nokian','Nokian Tyres')")],
+    ['LIKE' , 'name', '%Nokian%', false]
+);
+
+--------------------------------------------------------------------
+Наибольший в группе:
+
+с джоином:
+
+SELECT t1.*
+FROM module_orders_active t1
+INNER JOIN
+(
+SELECT order_id, MAX(date) AS maxDate
+FROM module_orders_active
+WHERE phone = 9214268066
+GROUP BY order_id
+) t2
+    ON t1.order_id = t2.order_id AND t1.date = t2.maxDate;
+
+обычный подзапрос:
+
+SELECT order_id
+FROM module_orders_active 
+WHERE date = (SELECT MAX(date) FROM module_orders_active WHERE phone = 9214268066);
+
+--------------------------------------------------------------------
+Решение взаимоблокировки приза:
+
+UPDATE BonusPool 
+SET RemainingCount -= 1
+WHERE BonusID = @BonusID AND RemainingCount > 0
+
+INSERT INTO UserBonus (UserID, BonusID) 
+SELECT @UserID, @BonusID 
+WHERE @@ROWCOUNT > 0
+
+IF @@ROWCOUNT > 0
+    RETURN 1 -- SUCCESS
+RETURN 0 -- FAIL (resource exhausted)
+
