@@ -1416,6 +1416,7 @@ private function initFilePath()
 
 --------------------------------------------------------------------
 tyres:
+
 bakashoff
 GfhjkmRjnjhsqYtEuflfnm
 
@@ -2264,3 +2265,10 @@ end($list);
 reset($list);
 $list[key($list)];
 current($list);
+
+--------------------------------------------------------------------
+Поменять настройки php-ini:
+
+1. Путь до файла - phpinfo()
+2. Поменять настройки в самом файле.
+3. Перезапустить fpm: /etc/init.d/php7.4-fpm restart
