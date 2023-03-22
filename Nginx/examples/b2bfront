@@ -1,0 +1,79 @@
+server {
+        listen 80;
+        listen [::]:80;
+
+        server_name b2bfront;
+
+        set $base_root /home/new-root/projects;
+        root $base_root/newfront/build;
+
+        index index.html index.php;
+
+        location = / {
+                index index.html;
+                root $base_root/newfront/build/login;
+                try_files $uri /index.html;
+                rewrite ^ /index.html break;
+        }
+
+        location / {
+                index index.html;
+                root $base_root/newfront/build;
+                try_files $uri /index.html;
+        }
+
+
+
+        location /api {
+            index index.php;
+            root $base_root/b2b/web;
+
+            #proxy_pass   http://127.0.0.1:8080/;
+            #proxy_set_header Host tyres.spb.ru;
+            proxy_set_header Range "";
+            proxy_set_header Request-Range "";
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            #proxy_set_header X-Server-Address $server_addr;
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+
+        location /web {
+            index index.php;
+            root $base_root/b2b/web;
+
+            #proxy_pass   http://127.0.0.1:8080/;
+            #proxy_set_header Host tyres.spb.ru;
+            proxy_set_header Range "";
+            proxy_set_header Request-Range "";
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            #proxy_set_header X-Server-Address $server_addr;
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+
+        location ~* .php$ {
+            index index.php;
+            root $base_root/b2b/web;
+
+            #try_files $uri = 404;
+            fastcgi_buffer_size 64k;
+            fastcgi_buffers 4 64k;
+            fastcgi_connect_timeout 120;
+            fastcgi_send_timeout 300;
+            fastcgi_read_timeout 300;
+            fastcgi_split_path_info ^(.+.php)(/.+)$;
+            fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+    }
+}

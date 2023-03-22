@@ -1,0 +1,20 @@
+server {
+        listen 80;
+        listen [::]:80;
+        
+        server_name e2e;
+
+        set $base_root /home/new-root/projects;
+        root $base_root/newfront;
+
+        index index.html;
+
+        location / {
+                index index.html;
+                root $base_root/newfront/allure-report;
+                try_files $uri /index.html;
+        }
+
+        access_log  /home/new-root/projects/logs/access.https.log;
+        error_log /home/new-root/projects/logs/error.https.log;
+}

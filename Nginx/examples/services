@@ -1,0 +1,61 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name services;
+
+        set $base_root /home/new-root/projects/services/old;
+        root $base_root;
+
+        #auth_basic "Restricted area";
+        #auth_basic_user_file /etc/nginx/test3.htpasswd;
+
+        index index.php;
+        location ~ .(jpg|jpeg|gif|png|ico|css|bmp|swf|js|html|txt|xls|doc|pdf|zip|gzip|tgz|rar|kml|woff2|ttf|woff|svg|htm)$ {
+            access_log off;
+        #expires max;
+            log_not_found off;
+        }
+
+
+        location / {
+            proxy_set_header Range "";
+            proxy_set_header Request-Range "";
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        #proxy_set_header X-Server-Address $server_addr;
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+
+        location ~* .php$ {
+            #try_files $uri = 404;
+            fastcgi_buffer_size 64k;
+            fastcgi_buffers 4 64k;
+            fastcgi_connect_timeout 120;
+            fastcgi_send_timeout 300;
+            fastcgi_read_timeout 300;
+            fastcgi_split_path_info ^(.+.php)(/.+)$;
+            fastcgi_pass unix:/run/php/php5.6-fpm.sock; #подключаем сокет php-fpm
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+        }
+
+        if ($host = 'www.service.tyres.com') {
+            rewrite ^/(.*)$ http://service.tyres.com/$1  permanent;
+        }
+
+#        access_log /home/ilya/projects/logs/nginx.access.log;
+#        error_log /home/ilya/projects/logs/nginx.error.log;
+
+        charset utf8;
+
+    autoindex_localtime on;
+        location ~ /. {
+            deny  all;
+        }
+}

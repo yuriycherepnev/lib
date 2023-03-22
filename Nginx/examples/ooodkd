@@ -1,0 +1,54 @@
+server {
+        listen 80;
+        listen [::]:80;
+        server_name ooodkd;
+#deny all;
+
+         set $base_root /home/new-root/projects/ooodkd;
+         root $base_root/public;
+          
+        index index.php;
+        location ~ \.(jpg|jpeg|gif|png|ico|css|bmp|swf|js|html|txt|xls|doc|pdf|zip|gzip|tgz|rar|kml|woff2|ttf|xml|woff|svg|htm)$ {
+                access_log off;
+#               expires max;
+                log_not_found off;
+        }
+
+        location / {
+#               proxy_pass   http://127.0.0.1:8080;
+#                proxy_set_header Host tyres.spb.ru;
+                proxy_set_header Range "";
+                proxy_set_header Request-Range "";
+
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+#               proxy_set_header X-Server-Address $server_addr;
+                try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location ~* \.php$ {
+              #  try_files $uri = 404;
+                fastcgi_buffer_size 64k;
+                fastcgi_buffers 4 64k;
+                fastcgi_connect_timeout 120;
+                fastcgi_send_timeout 300;
+                fastcgi_read_timeout 300;
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:/run/php/php8.0-fpm.sock; # подключаем сокет php-fpm
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params;
+        }
+
+        #access_log  /var/log/tyres/tyres.spb.ru.nginx.access.https.log;
+        #error_log /var/log/tyres/tyres.spb.ru.nginx.error.https.log;
+
+        charset utf8;
+
+
+        location ~ /\. {
+                deny  all;
+        }
+}
