@@ -1,0 +1,12 @@
+INSERT INTO module_stores (id, address, address_short, GeoPoint, add_info, work_hours, phone, description_for_index, on_site) 
+VALUES 
+('PD',
+'МО, городской округ Подольск, село Покров, стр. 152', 
+'село Покров, стр. 152', 
+'37.618749,55.449822',
+'МО, городской округ Подольск, село Покров, стр. 152', 
+'пн-вс 9.00 - 20.00', 
+9299977719, 
+'МО село Покров, стр. 152',
+1);
+

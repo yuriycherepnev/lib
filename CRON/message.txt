@@ -1,0 +1,303 @@
+# m h  dom mon dow   command
+
+#internal catalog
+#1,11,21,31,41,51 * * * * php /var/www/yii.tyres.spb.ru/public/index.php getter get > /dev/null 2>&1
+
+*/7 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii getter/parse-one tyre > /dev/null 2>&1
+*/10 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii getter/parse-one accum > /dev/null 2>&1
+*/11 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii getter/parse-one disk > /dev/null 2>&1
+
+20 9,16 * * * php /var/www/yii.tyres.spb.ru/workspace/yii provider > /dev/null 2>&1
+
+#1c exchange
+* * * * * php /var/www/1c_exchange/workspace/yii exchange > /dev/null 2>&1
+1 1 * * * php /var/www/1c_exchange/workspace/yii exchange/clean-log > /dev/null 2>&1
+
+
+
+#* * * * * php /var/www/test.1c_exchange/workspace/yii exchange > /dev/null 2>&1
+#1 1 * * * php /var/www/test.1c_exchange/workspace/yii exchange/clean-log > /dev/null 2>&1
+#* * * * * php7.3 /var/www/test2.1c_exchange/workspace/yii exchange > /dev/null 2>&1
+#1 1 * * * php7.3 /var/www/test2.1c_exchange/workspace/yii exchange/clean-log > /dev/null 2>&1
+
+* * * * * php7.3 /var/www/newmaster.1c_exchange/workspace/yii exchange > /dev/null 2>&1
+1 1 * * * php7.3 /var/www/newmaster.1c_exchange/workspace/yii exchange/clean-log > /dev/null 2>&1
+
+
+#tires and disks types
+1 * * * * php /var/www/yii.tyres.spb.ru/public/index.php getter compare > /dev/null 2>&1
+
+#ya_widgets
+15 * * * * php /var/www/trucktyres.spb.ru/public/index.php yamarket generate_yml > /dev/null 2>&1
+1  * * * * php /var/www/trucktyres.spb.ru/public/index.php yamarket generate_avito > /dev/null 2>&1
+
+#generate ymls NEW
+1 */2 * * * php /var/www/yii.tyres.spb.ru/public/admin/index.php generateymlnew generate > /dev/null 2>&1
+5,15,25,35,45,55 * * * * php /var/www/yii.tyres.spb.ru/public/admin/index.php generateymlnew generate yamarket > /dev/null 2>&1
+*/30 * * * * php /var/www/yii.tyres.spb.ru/public/admin/index.php generateymlnew generate google_merch > /dev/null 2>&1
+49 21 * * * php /var/www/yii.tyres.spb.ru/public/admin/index.php generateymlnew generate avito > /dev/null 2>&1
+
+
+#console generate price
+*/30 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii price/maxxis > /dev/null 2>&1
+*/30 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii price/new-article > /dev/null 2>&1
+
+#collect no photo
+*/30 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii good-no-photo/collect > /dev/null 2>&1
+
+#rests for eauto
+*/10 * * * * php /var/www/yii.tyres.spb.ru/public/index.php eauto generate > /dev/null 2>&1
+0 */1 * * * php /var/www/yii.tyres.spb.ru/public/index.php eauto generateRests > /dev/null 2>&1
+0 */1 * * * php /var/www/yii.tyres.spb.ru/public/index.php eauto generateRetailRests > /dev/null 2>&1
+0 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php eauto senddiff > /dev/null 2>&1
+
+#pricelists generation
+0 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generate > /dev/null 2>&1
+30 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateCSV > /dev/null 2>&1
+50 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateDisksMotor15 > /dev/null 2>&1
+10 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generatewithid > /dev/null 2>&1
+20 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generatefull > /dev/null 2>&1
+40 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateExel > /dev/null 2>&1
+45 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateExelArticlePrice > /dev/null 2>&1
+45 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateExelArticleStore > /dev/null 2>&1
+10 10 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateExelArticleOnePrice > /dev/null 2>&1
+10 11 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateExcelArticlePhotoB2BPrice > /dev/null 2>&1
+0 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generatePricegen > /dev/null 2>&1
+30 14 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateExelForEuroTransOneDay > /dev/null 2>&1
+31 14 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateExelForEuroTransZeroDay > /dev/null 2>&1
+30 12 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateExelArticleTyresDisksStore > /dev/null 2>&1
+
+50 9 * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateExist > /dev/null 2>&1
+*/30 * * * * php /var/www/yii.tyres.spb.ru/public/index.php xlsgen generateVianor > /dev/null 2>&1
+55 9 * * * php /var/www/yii.tyres.spb.ru/workspace/yii price/amtel > /dev/null 2>&1
+
+#online store emailing
+0 9 * * * php /var/www/s.tyres.spb.ru/public/index.php onlinestore sendmail > /dev/null 2>&1
+
+#prices (cenniki)
+#0 8 * * * php /var/www/test.tyres.spb.ru/svn/index.php price parse > /dev/null 2>&1
+
+#sitemap
+1 1 1,15 * * php /var/www/yii.tyres.spb.ru/public/index.php sitemap vasyazapilimnesitemapda > /dev/null 2>&1
+1 1 * * * php /var/www/yii.tyres.spb.ru/public/index.php sitemap controlIndexLink > /dev/null 2>&1
+
+#service
+55 23 * * * php /var/www/s.tyres.spb.ru/public/index.php onlinestore overdueCheck > /dev/null 2>&1
+1 4 1 * * php /var/www/service.tyres.spb.ru/workspace/yii dictionary/update > /dev/null 2>&1
+9 * * * * php /var/www/service.tyres.spb.ru/workspace/yii auth-key:clear > /dev/null 2>&1
+58 14 * * * php /var/www/service.tyres.spb.ru/workspace/yii order/accept-orders > /dev/null 2>&1
+
+53 * * * * php /var/www/service.tyres.spb.ru/workspace/yii storage-orders/close-orders > /dev/null 2>&1
+*/19 * * * * php /var/www/service.tyres.spb.ru/workspace/yii storage-orders/get-orders > /dev/null 2>&1
+
+#ecomodule reports
+#1 19 26 7 * php /var/www/service.tyres.spb.ru/workspace/yii reports/generate-eco-module 2019-01-01 > /dev/null 2>&1
+#10 19 26 7 * php /var/www/service.tyres.spb.ru/workspace/yii reports/generate-eco-module 2019-02-01 > /dev/null 2>&1
+#20 19 26 7 * php /var/www/service.tyres.spb.ru/workspace/yii reports/generate-eco-module 2019-03-01 > /dev/null 2>&1
+#55 19 26 7 * php /var/www/service.tyres.spb.ru/workspace/yii reports/generate-eco-module 2019-04-01 > /dev/null 2>&1
+#1 20 26 7 * php /var/www/service.tyres.spb.ru/workspace/yii reports/generate-eco-module 2019-05-01 > /dev/null 2>&1
+#10 20 26 7 * php /var/www/service.tyres.spb.ru/workspace/yii reports/generate-eco-module 2019-06-01 > /dev/null 2>&1
+1 1 1 * * php /var/www/service.tyres.spb.ru/workspace/yii reports/generate-eco-module > /dev/null 2>&1
+
+#texts inserting
+1 11 * * * php /var/www/yii.tyres.spb.ru/public/index.php textgen newparse > /dev/null 2>&1
+
+#51 * * * * php /var/www/yii.tyres.spb.ru/public/index.php getter get > /dev/null 2>&1loading emails from order@tyres.spb.ru
+*/5 * * * * php /var/www/yii.tyres.spb.ru/public/index.php postman checkemail > /dev/null 2>&1
+#loading new cars from MTM xml-file from mailbox (every wednesday at 11 o`clock)
+0 11 * * 3 php /var/www/yii.tyres.spb.ru/public/index.php postman parseMtmXml > /dev/null 2>&1
+#loading new getter's files
+
+*/10 * * * * php /var/www/yii.tyres.spb.ru/public/index.php postman parsePrices > /dev/null 2>&1
+
+#index page update
+23 6 * * * php /var/www/yii.tyres.spb.ru/public/index.php news generate > /dev/null 2>&1
+23 6 * * * php /var/www/old.tyres.spb.ru/workspace/frontend/web/index.php news generate > /dev/null 2>&1
+
+#boschspb.ru sphinxsearch rotate
+*/10 * * * * /usr/bin/indexer --rotate --config /etc/sphinxsearch/sphinx.conf --all > /dev/null 2>&1
+
+#finding orders of goods with qnt=0 to qnt>0
+*/10 * * * *  php /var/www/yii.tyres.spb.ru/public/admin/index.php order presence_check > /dev/null 2>&1
+
+#newservice.ars-tuning.ru
+1 * * * * php /var/www/newservice.ars-tuning.ru/svn/yii complect/belated-check > /dev/null 2>&1
+
+#4kolesa.spb.ru yml
+11 * * * * rsync -apP /var/www/4kolesa.spb.ru/workspace/data/images/goods/origin /media/linkToYula > /dev/null 2>&1
+31 * * * * php /var/www/4kolesa.spb.ru/workspace/yii yml/generate --id_season=1,2 > /dev/null 2>&1
+1 1 * * * php /var/www/4kolesa.spb.ru/workspace/yii seo-links/generate-search-by-brand > /dev/null 2>&1
+
+#4kolesa.spb.ru photo size
+3 9,21 * * * php /var/www/4kolesa.spb.ru/workspace/yii optimize-photo > /dev/null 2>&1
+
+#b2b.tyres.spb.ru
+9 * * * * php /var/www/b2b.tyres.spb.ru/workspace/yii auth-key:clear > /dev/null 2>&1
+51 * * * * php /var/www/b2b.tyres.spb.ru/workspace/yii getter/import-disk-color > /dev/null 2>&1
+
+#conversion
+10 9 * * * php /var/www/yii.tyres.spb.ru/workspace/yii conversion/get-conversion > /dev/null 2>&1
+13 9 * * * php /var/www/yii.tyres.spb.ru/workspace/yii conversion/fill-sheet > /dev/null 2>&1
+20 9 * * * php /var/www/yii.tyres.spb.ru/workspace/yii conversion/get-conversion-campaign > /dev/null 2>&1
+23 9 * * * php /var/www/yii.tyres.spb.ru/workspace/yii conversion/fill-sheet-campaign > /dev/null 2>&1
+
+43 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii conversion/check-in-queue > /dev/null 2>&1
+
+#asterisk calls cache
+* * * * * php /var/www/yii.tyres.spb.ru/workspace/yii asterisk/update-calls > /dev/null 2>&1
+#* * * * * php /var/www/4kolesa.spb.ru/workspace/yii asterisk/update-calls > /dev/null 2>&1
+#* * * * * php /var/www/test.tyres.spb.ru/workspace/yii asterisk/update-calls > /dev/null 2>&1
+1 7 1 * * php /var/www/yii.tyres.spb.ru/workspace/yii asterisk/fill-report > /dev/null 2>&1
+
+#Bicore
+40 06 * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/yandex-api/get-campaigns-stats-offers > /dev/null 2>&1
+50 06 * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/google-api/get-campaigns-stats-offers > /dev/null 2>&1
+0 0 * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/bicore/get-sales-and-clicks-stats > /dev/null 2>&1
+
+#01 */2 * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/yandex-api/get-models-offers --rbo > /dev/null 2>&1
+#02 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/yandex-api/get-campaigns-bids-recommended --rbo > /dev/null 2>&1
+03 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/bicore/collect-raise-bids-statistics > /dev/null 2>&1
+30 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/yandex-api/put-campaigns-bids --rbo > /dev/null 2>&1
+
+01 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/yandex-api/get-campaigns-offers > /dev/null 2>&1
+
+05 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/yandex-api/get-models > /dev/null 2>&1
+10 */2 * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/yandex-api/get-models-offers > /dev/null 2>&1
+
+15 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/yandex-api/get-campaigns-bids > /dev/null 2>&1
+20 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/yandex-api/get-campaigns-bids-recommended > /dev/null 2>&1
+
+#*/2 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/bicore/convert-dynamic-group-bid-to-dynamic-bids > /dev/null 2>&1
+
+35 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/yandex-api/put-campaigns-bids > /dev/null 2>&1
+
+1 3 * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/bicore/clear-history days=2 > /dev/null 2>&1
+#9 17 * * * php /var/www/yii.tyres.spb.ru/workspace/yii bicore/bicore/get-sales-and-clicks-stats > /home/webmaster/sales_and_clicks_stats.log 2>&1
+#order queues
+* * * * * php /var/www/4kolesa.spb.ru/workspace/yii order/order-queue/make-order-from-queue > /dev/null 2>&1
+* * * * * php /var/www/yii.tyres.spb.ru/workspace/yii orderApi/order-queue/make-order-from-queue > /dev/null 2>&1
+*/30 * * * * php /var/www/4kolesa.spb.ru/workspace/yii import-tyre-to-app/fix-params > /dev/null 2>&1
+*/30 * * * * php /var/www/4kolesa.spb.ru/workspace/yii import-tyre-to-app > /dev/null 2>&1
+
+*/1 * * * * php /var/www/test.tyres.spb.ru/workspace/yii pscb/payment/payment-confirm-send-to-pscb > /dev/null 2>&1
+*/1 * * * * php /var/www/test.tyres.spb.ru/workspace/yii pscb/payment/make-payment-in-one-c-from-queue > /dev/null 2>&1
+*/1 * * * * php /var/www/test.tyres.spb.ru/workspace/yii pscb/payment/get-payment-check-from-pscb > /dev/null 2>&1
+*/1 * * * * php /var/www/test.tyres.spb.ru/workspace/yii pscb/payment/mark-payment-request-as-deprecated 32 > /dev/null 2>&1
+*/1 * * * * php /var/www/test.tyres.spb.ru/workspace/yii pscb/payment/manual-handle-payment-request > /dev/null 2>&1
+*/1 * * * * php /var/www/test.tyres.spb.ru/workspace/yii order/order-queue/make-order-from-queue > /dev/null 2>&1
+
+*/1 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii pscb/payment/payment-confirm-send-to-pscb > /dev/null 2>&1
+*/1 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii pscb/payment/make-payment-in-one-c-from-queue > /dev/null 2>&1
+*/1 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii pscb/payment/get-payment-check-from-pscb > /dev/null 2>&1
+*/1 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii pscb/payment/mark-payment-request-as-deprecated 32 > /dev/null 2>&1
+*/1 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii pscb/payment/manual-handle-payment-request > /dev/null 2>&1
+*/1 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii order/order-queue/make-order-from-queue > /dev/null 2>&1
+
+
+#1 */1 * * * php /var/www/yii.tyres.spb.ru/workspace/yii asta/urls > /dev/null 2>&1
+#10 */1 * * * php /var/www/yii.tyres.spb.ru/workspace/yii asta/goods > /dev/null 2>&1
+
+12 12 * * * php /var/www/yii.tyres.spb.ru/workspace/yii turbo/generate-news > /dev/null 2>&1
+12 12 * * * php /var/www/yii.tyres.spb.ru/workspace/yii turbo/generate-sales > /dev/null 2>&1
+
+# sending plea emails
+#*/30 11-17 * * * php /var/www/yii.tyres.spb.ru/public/index.php email sendPlea > /dev/null 2>&1
+
+
+#10 17 16 * * php /var/www/yii.tyres.spb.ru/public/admin/index.php sitemap checkSitemap http://tyres.spb.local > /dev/null 2>&1
+#*/30 * * * * php7.3 /var/www/shini78.ru/workspace/yii yml > /dev/null 2>&1
+#55 15 17 * * php /var/www/yii.tyres.spb.ru/workspace/frontend/web/admin/index.php generateymlnew checkUrlsInYml yamarket > /dev/null 2>&1
+
+
+
+test 4kolesa
+*/5 * * * * php /var/www/test.4kolesa.spb.ru/workspace/yii import-valuation > /dev/null 2>&1
+
+*/5 * * * * php /var/www/test.4kolesa.spb.ru/workspace/yii parse-ban-buy-tyre > /dev/null 2>&1
+#*/5 * * * * php /var/www/test.4kolesa.spb.ru/workspace/yii deleted-brand/check > /dev/null 2>&1
+*/5 * * * * php /var/www/test.4kolesa.spb.ru/workspace/yii import-group-restriction > /dev/null 2>&1
+#*/10 * * * * php /var/www/test.4kolesa.spb.ru/workspace/yii compare-db > /dev/null 2>&1
+
+
+*/5 * * * * php /var/www/4kolesa.spb.ru/workspace/yii import-group-restriction > /dev/null 2>&1
+*/10 * * * * php /var/www/4kolesa.spb.ru/workspace/yii deleted-brand/check > /dev/null 2>&1
+
+
+#pulsprice
+*/7 * * * * php7.1 /var/www/pulsprice.ru/workspace/yii yml > /dev/null 2>&1
+*/31 * * * * php7.1 /var/www/pulsprice.ru/workspace/yii yml/avito > /dev/null 2>&1
+*/40 * * * * php7.1 /var/www/pulsprice.ru/workspace/yii yml/youla > /dev/null 2>&1
+#01 14 21 * * php7.1 /var/www/pulsprice.ru/workspace/yii photo/download > /dev/null 2>&1
+56 * * * * php7.1 /var/www/pulsprice.ru/workspace/yii photo/update-position-without-photos > /dev/null 2>&1
+
+#tyrestock
+*/9 * * * * php7.1 /var/www/tyrestock.ru/workspace/yii yml > /dev/null 2>&1
+*/53 * * * * php7.1 /var/www/tyrestock.ru/workspace/yii yml/avito > /dev/null 2>&1
+*/31 * * * * php7.1 /var/www/tyrestock.ru/workspace/yii yml/youla > /dev/null 2>&1
+
+#nginx logs push to zabbix
+8-59/10 * * * *   root      /etc/zabbix/zabbix-nginx-stats/zabbix-nginx-stats-runner.sh
+
+57 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii hits/get-not-found-hits
+53 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii check-count-right-goods
+
+29 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii seo/make-url-file
+
+#42 * * * * php /var/www/test3.tyres.spb.ru/workspace/yii search/init > /dev/null 2>&1
+#45 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii search/init > /dev/null 2>&1
+
+# Edit this file to introduce tasks to be run by cron.
+#
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+#
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').#
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+#
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+#
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+#
+# For more information see the manual pages of crontab(5) and cron(8)
+#
+# m h  dom mon dow   command
+
+#b2b
+31 * * * * php /var/www/b2b.tyres.spb.ru/workspace/yii token/token-handler > /dev/null 2>&1
+* * * * * php /var/www/b2b.tyres.spb.ru/workspace/yii order/order-notification > /dev/null 2>&1
+* * * * * php /var/www/b2b.tyres.spb.ru/workspace/yii request/request-approved-notification > /dev/null 2>&1
+* * * * * php /var/www/b2b.tyres.spb.ru/workspace/yii user/user-password-restore-request > /dev/null 2>&1
+45 * * * * php /var/www/b2b.tyres.spb.ru/workspace/yii export/prices > /dev/null 2>&1
+1 * * * * php /var/www/b2b.tyres.spb.ru/workspace/yii mail/gathering-mail > /dev/null 2>&1
+1 8 * * * php /var/www/b2b.tyres.spb.ru/workspace/yii export/euro-auto-prices > /dev/null 2>&1
+# 10 * * * * php /var/www/b2b.tyres.spb.ru/workspace/yii export/vianor-prices > /dev/null 2>&1
+
+1 6 * * * php /var/www/4kolesa.spb.ru/workspace/yii sitemap > /dev/null 2>&1
+*/1 * * * * php /var/www/4kolesa.spb.ru/workspace/yii import-provider > /dev/null 2>&1
+*/5 * * * * php /var/www/4kolesa.spb.ru/workspace/yii parse-price > /dev/null 2>&1
+*/5 * * * * php /var/www/test.4kolesa.spb.ru/workspace/yii parse-price > /dev/null 2>&1
+*/5 * * * * php /var/www/4kolesa.spb.ru/workspace/yii parse-ban-buy-tyre > /dev/null 2>&1
+*/5 * * * * php /var/www/4kolesa.spb.ru/workspace/yii import-valuation > /dev/null 2>&1
+*/5 * * * * php /var/www/4kolesa.spb.ru/workspace/yii link-photo > /dev/null 2>&1
+1 * * * * php /var/www/4kolesa.spb.ru/workspace/yii photo-editor/update-goods-photo-existence > /dev/null 2>&1
+
+#4k
+*/5 * * * * php /var/www/4kolesa.spb.ru/workspace/yii clean-duplicates/get-duplicates /dev/null 2>&1
+
+
+#es-alert
+#*/1 * * * * php /var/www/elasticsearch-alert/workspace/yii alert/fetch /dev/null 2>&1
+
+#mailLogParser
+2 * * * * php /var/www/mailLogParser/workspace/analyse.php >> /var/www/mailLogParser/logs/mailLogParser.log 2>&1
+
+
+42 * * * * php /var/www/test3.tyres.spb.ru/workspace/yii search/init > /dev/null 2>&1
+45 * * * * php /var/www/yii.tyres.spb.ru/workspace/yii search/init > /dev/null 2>&1

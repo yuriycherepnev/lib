@@ -1,0 +1,7 @@
+INSERT into module_stores (id, on_site, phone, address, address_short, geopoint)
+VALUES ('GP', 1, 9219007314, 'Грузовой проезд д.5', 'Грузовой проезд д.5', '30.428813,59.842278')
+
+
+
+
+
