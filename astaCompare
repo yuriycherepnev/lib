@@ -1,0 +1,59 @@
+    /**
+     * @param $ourTyres
+     * @param $astaTyres
+     * @return void
+     */
+    public function compare($ourTyres, $astaTyres) {
+        $totalCount = count($astaTires);
+        $brandCount = 0;
+        $modelCount = 0;
+
+        foreach ($astaTires as $astaTire) {
+
+            preg_replace("/[^a-zA-ZА-Яа-я]/", '', $astaTire->brand);
+
+            $ourBrand = '';
+            $ourModel = '';
+
+            $matchBrand = false;
+            $matchModel = false;
+
+            foreach ($catalogTires as $catalogTire) {
+                $clearCatalogBrand =  mb_strtolower(preg_replace("/[^a-zA-ZА-Яа-я]/u", '', $catalogTire->brand));
+                $clearAstaBrand =  mb_strtolower(preg_replace("/[^a-zA-ZА-Яа-я]/u", '', $astaTire->brand));
+
+                $clearCatalogModel =  mb_strtolower(preg_replace("/[^a-zA-ZА-Яа-я]/u", '', $catalogTire->model));
+                $clearAstaModel =  mb_strtolower(preg_replace("/[^a-zA-ZА-Яа-я]/u", '', $astaTire->name));
+
+                similar_text($clearCatalogBrand, $clearAstaBrand, $brandPercent);
+                if ($brandPercent > 80) {
+                    $ourBrand = $catalogTire->brand;
+                    if (!$matchBrand) {
+                        $brandCount++;
+                    }
+                    $matchBrand = true;
+                }
+
+                similar_text($clearCatalogModel, $clearAstaModel, $modelPercent);
+                if ($matchBrand && $modelPercent > 60) {
+                    $ourModel = $catalogTire->model;
+                    $modelCount++;
+                    $matchModel = true;
+                }
+
+                if ($matchBrand && $matchModel) {
+                    break;
+                }
+            }
+
+//            foreach ($catalogTires as $catalogTire) {
+//                $s = preg_replace("/[^a-zA-ZА-Яа-я0-9\s]/", '', $s);
+//            }
+//
+//            if (!$catalogTire && !in_array($astaTire->brand, $notFoundBrands)) {
+//
+//                $notFoundBrands[] = $tire->brand;
+//                var_dump($tire->brand);
+//            }
+        }
+    }

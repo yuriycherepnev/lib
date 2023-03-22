@@ -732,3 +732,9 @@ IF @@ROWCOUNT > 0
     RETURN 1 -- SUCCESS
 RETURN 0 -- FAIL (resource exhausted)
 
+--------------------------------------------------------------------
+RIGHT JOIN + Null при несовпадении:
+
+SELECT * FROM price 
+RIGHT JOIN price_type on price.idPriceType = price_type.id AND price.idGood = 20020088693309
+WHERE hide = 0
