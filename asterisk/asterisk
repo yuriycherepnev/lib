@@ -2,6 +2,7 @@
 ssh root@172.27.100.240
 8iNsHmpeS1
 
+makeCallAsterisk:
 
 <?php
 
@@ -11,6 +12,23 @@ return [
     'user' => 'root',
     'secret' => '8iNsHmpeS1'
 ];
+
+--------------------------------------------------------------------
+
+sshAsterisk:
+
+<?php
+$host = '172.27.100.240';
+$password = '8iNsHmpeS1';
+$user = 'root';
+
+return [
+    'class' => 'common\models\Connection',
+    'host' => $host,
+    'username' => $user,
+    'password' => $password,
+];
+
 
 --------------------------------------------------------------------
 
