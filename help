@@ -971,6 +971,8 @@ php frontend/web/admin/index.php generateymlnew generate yamarket
 
 php yii asta/urls
 
+php yii asta/goods
+
 --------------------------------------------------------------------
 Проверка модуля postman:
 
@@ -1434,6 +1436,7 @@ bakashoff
 bakashoff@gmail.com
 GfhjkmRjnjhsqYtEuflfnm
 
+bakashoff@gmail.com
 Keykeykey0
 
 --------------------------------------------------------------------
@@ -1830,7 +1833,7 @@ crontab -r
 * * * * * php /home/new-root/projects/1c_exchange/yii exchange
 
 --------------------------------------------------------------------
-Найти коммит по хешу:
+Найти коммит/реквест по хешу:
 
 PhpStorm аннотации -> showDiff -> копируем хеш справа вверху, вставляем в урл
 
@@ -1838,7 +1841,9 @@ https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b64299db7b3641f68b5e
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/99ceb61c2bb2090c09873a85b362439ae23e2480
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/7787692957c779ca794c5708ee9962674aa475d2
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/afc24957bb040b2946badc2e73923c285bfedf84
+
+7787692957c779ca794c5708ee9962674aa475d2
 
 
 Затем:
@@ -2274,6 +2279,7 @@ Tyres prod:
 Login: bakashoff
 password: GfhjkmRjnjhsqYtEuflfnm
 
+
 Кодировка csv для excell:
 
 foreach ($firstString as $key => $salePoint) {
@@ -2311,3 +2317,11 @@ $this->publishOptions['forceCopy'] = true;
     public $publishOptions = [
         'forceCopy' => true
     ];
+
+--------------------------------------------------------------------
+fileZilla
+dbeaver
+insomnia
+twinkle
+phpMyAdmin
+workbench
