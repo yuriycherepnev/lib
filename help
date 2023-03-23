@@ -2319,9 +2319,10 @@ $this->publishOptions['forceCopy'] = true;
     ];
 
 --------------------------------------------------------------------
-fileZilla
-dbeaver
-insomnia
-twinkle
-phpMyAdmin
-workbench
+Полезные программы:
+
+fileZilla - загрузка файлов
+dbeaver - просмотр бд
+insomnia - запросы
+twinkle интернет телефония
+phpMyAdmin -> workbench
