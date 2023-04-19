@@ -1,0 +1,69 @@
+[{
+  "type": "order",
+  "body": {
+    "id": null,
+    "id1c": "1weqwsadf22",
+    "id1cFull": "b89ef299-041f-11ec-b3c0-ac1f6b4daebb",
+    "status": 7,
+    "statusComment": "отменен по согласованию с клиентом",
+    "paymentMethod": 1,
+    "marking": 1,
+    "comment": "test order22",
+    "dateCreate": "2021-11-18 13:26:26",
+    "idContractor": "0193a5a7-5dec-11ea-b3ad-ac1f6b4daebb",
+    "idConsignee": "001d2e88-f755-11ea-b3b1-ac1f6b4daebb",
+    "idOrganisation": "afbe814e-bf6b-43b0-89b2-23b6d62a7be9",
+    "delivery": {
+      "idType": 1,
+      "idStore": "36a5d51b-c011-11e8-8123-001e675ad9d1",
+      "address": null,
+      "date": "2021-11-18 13:26:26"
+    },
+    "goods": [
+      {"id":"28728b49-5b78-11ed-b3c9-ac1f6b4daebb",
+        "qnt":4,
+        "price":1,
+        "idPriceType":"00000000-0000-0000-0000-000000000000",
+        "name":"R16 35\\/12.5 102K LT Maxxis Trepador M8060",
+        "status":3
+      },{
+        "id":"6a4d1c44-5b78-11ed-b3c9-ac1f6b4daebb",
+        "qnt":4,
+        "price":1,
+        "idPriceType":"00000000-0000-0000-0000-000000000000",
+        "name":"R15 35\\/12.5 121K LT Maxxis Trepador M8060",
+        "status":3},
+      {
+        "id":"f7bf8737-5442-11ed-b3c9-ac1f6b4daebb",
+        "qnt":8,"price":1,
+        "idPriceType":"00000000-0000-0000-0000-000000000000",
+        "name":"R16 38.5\\/12.5 128K LT Maxxis M-9060",
+        "status":3
+      },
+      {
+        "id":"18c37ab9-eaef-11e7-8111-001e675ad9d1",
+        "qnt":28,
+        "price":4300,
+        "idPriceType":"310de8ea-8e35-11ec-b3c3-ac1f6b4daebb",
+        "name":"R15 185\\/55 82H Maxxis Mecotra MP10",
+        "status":3
+      },
+      {
+        "id":"dc94f2b6-c156-11ec-b3c3-ac1f6b4daebb",
+        "qnt":12,
+        "price":3350,
+        "idPriceType":"310de8ea-8e35-11ec-b3c3-ac1f6b4daebb",
+        "name":"R15 185\\/55 86V XL Maxxis Premitra All-Season AP3",
+        "status":6
+      },
+      {
+        "id":"aea1ce3d-e975-11e7-8111-001e675ad9d1",
+        "qnt":18,
+        "price":3900,
+        "idPriceType":"310de8ea-8e35-11ec-b3c3-ac1f6b4daebb",
+        "name":"R15 185\\/65 88H Maxxis Mecotra MP10",
+        "status":4
+      }
+    ]
+  }
+}]

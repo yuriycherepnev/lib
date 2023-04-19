@@ -1,0 +1,95 @@
+curl json:
+
+$data = ["order_id_full" => $id];
+$jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
+
+$config = \Yii::$app->params['orderStatusConfig']['getOrderStatus'];
+$ch = curl_init($config['url']);
+
+curl_setopt_array($ch, [
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_POSTFIELDS => $jsonData,
+    CURLOPT_HTTPHEADER => [
+        "Content-Type: application/json",
+        "Authorization: Basic " . base64_encode($config['login'].':'.$config['pass']),
+        'Content-Length: ' . strlen($jsonData),
+    ],
+    CURLOPT_RETURNTRANSFER => 1,
+]);
+
+return json_decode(curl_exec($ch), true);
+
+--------------------------------------------------------------------
+
+curl proxy:
+
+$url = "http://www.example.com/API/v2.0/";
+function get_url($url) {
+    $proxy_ip = 'your_proxy_ip:proxy_port'; //IP адрес сервера прокси и порт
+    $loginpassw = 'login:password';  //логин и пароль для прокси
+    
+    $ch = curl_init();
+    
+    if($ch === false)
+    {
+        die('Failed to create curl object');
+    }
+    
+    $timeout = 5;
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+
+    //Указываем к какому прокси подключаемся и передаем логин-пароль
+    curl_setopt($ch, CURLOPT_PROXY, $proxy_ip );
+    curl_setopt($ch, CURLOPT_PROXYUSERPWD, $loginpassw);
+
+    //доступные значения для типа используемого прокси-сервера:  CURLPROXY_HTTP (по умолчанию), CURLPROXY_SOCKS4, CURLPROXY_SOCKS5, CURLPROXY_SOCKS4A или CURLPROXY_SOCKS5_HOSTNAME. 
+    curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+
+    $data = curl_exec($ch);
+    curl_close($ch);
+    return $data; 
+} 
+
+echo get_url($url);
+
+--------------------------------------------------------------------
+
+curl proxy:
+
+$ch = curl_init($url);
+
+$proxy_ip = '188.120.243.158:40459'; //IP адрес сервера прокси и порт
+$loginpassw = '43af03266a:364f0a34bf';  //логин и пароль для прокси
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_HEADER => 1,
+    CURLOPT_COOKIEJAR => '/tmp/cookies.txt',
+    CURLOPT_COOKIEFILE => '/tmp/cookies.txt',
+    CURLOPT_COOKIE => 'display=table; order=price; city=1',
+    CURLOPT_PROXY => $proxy_ip,
+    CURLOPT_PROXYUSERPWD => $loginpassw,
+    CURLOPT_PROXYTYPE => CURLPROXY_HTTP //протокол HTTP
+]);
+$result = curl_exec($ch);
+curl_close($ch);
+
+return $result;
+--------------------------------------------------------------------
+
+curl:
+
+
+$ch = curl_init($url);
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_HEADER => 1,
+    CURLOPT_COOKIEJAR => '/tmp/cookies.txt',
+    CURLOPT_COOKIEFILE => '/tmp/cookies.txt',
+    CURLOPT_COOKIE => 'display=table; order=price; city=1'
+]);
+$result = curl_exec($ch);
+curl_close($ch);
+
+return $result;

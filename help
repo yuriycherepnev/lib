@@ -55,7 +55,7 @@ use new_database;
 source ~/database/tyres.sql;
 source ~/database/tyres6002.sql;
 
-source ~/database/b2b.sql;
+source ~/database/puls2022.sql;
 
 
 mysql -u root -p root_pass db_name < db_name.sql
@@ -965,6 +965,8 @@ php frontend/web/index.php getter compare
 
 php frontend/web/index.php xlsgen generate
 
+php frontend/web/index.php xlsgen generateVianor
+
 php frontend/web/index.php xlsgen generateExel
 
 php frontend/web/admin/index.php generateymlnew generate yamarket
@@ -972,6 +974,12 @@ php frontend/web/admin/index.php generateymlnew generate yamarket
 php yii asta/urls
 
 php yii asta/goods
+
+php yii asta/compare-goods
+
+php yii asta/generate-file
+
+php yii asta/brands
 
 --------------------------------------------------------------------
 Проверка модуля postman:
@@ -1373,8 +1381,6 @@ preg_match('/\b\/data\/\b/i',  "$path");
 
 /(?<=<div>).*(?=<\/div>)/
 
-Разбить строку с длинным пробелом на массив:
-
 $value = preg_split("/\B\s*\b/", $value);
 $value = preg_split("/\s+\b/", $channel);
 $value = preg_split("/\s+/", $buf)
@@ -1438,6 +1444,12 @@ GfhjkmRjnjhsqYtEuflfnm
 
 bakashoff@gmail.com
 Keykeykey0
+
+ilyabanokin@yandex.ru
+5гаауыва
+
+ooleg.chern@gmail.com
+pass12341234
 
 --------------------------------------------------------------------
 bakashoff
@@ -1902,6 +1914,8 @@ git revert -m1578e08748
 
 git revert -m952261521c
 
+git revert -m1d7382c2
+
 --------------------------------------------------------------------
 Wifi exclusive private:
 cagTUTs6bx
@@ -2326,3 +2340,27 @@ dbeaver - просмотр бд
 insomnia - запросы
 twinkle интернет телефония
 phpMyAdmin -> workbench
+
+--------------------------------------------------------------------
+curl json:
+
+$data = ["order_id_full" => $id];
+$jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
+
+$config = \Yii::$app->params['orderStatusConfig']['getOrderStatus'];
+$ch = curl_init($config['url']);
+
+curl_setopt_array($ch, [
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_POSTFIELDS => $jsonData,
+    CURLOPT_HTTPHEADER => [
+        "Content-Type: application/json",
+        "Authorization: Basic " . base64_encode($config['login'].':'.$config['pass']),
+        'Content-Length: ' . strlen($jsonData),
+    ],
+    CURLOPT_RETURNTRANSFER => 1,
+]);
+
+        return json_decode(curl_exec($ch), true);
+
+
