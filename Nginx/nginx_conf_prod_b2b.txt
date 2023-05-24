@@ -1,0 +1,139 @@
+server {
+        listen   80 default_server; ## listen for ipv4
+        server_name  b2b.tyres.spb.ru www.b2b.tyres.spb.ru;
+        return 301 https://$host$request_uri;
+}
+
+server {
+
+        listen   443 default_server http2;
+	server_name b2b.tyres.spb.ru www.b2b.tyres.spb.ru;
+
+	expires epoch;
+
+        ssl on;
+        ssl_protocols     TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers 'ECDH+AESGCM256:DH+AESGCM256:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES128:RSA+AESGCM256:RSA+AES256:RSA+AESGCM128:RSA+AES128:RSA+3DES:!aNULL:!MD5:!DSS';
+        ssl_prefer_server_ciphers on;
+
+        ssl_certificate /etc/nginx/ssl/tyres.spb.ru-2/tyres.spb.ru.crt;
+        ssl_certificate_key /etc/nginx/ssl/tyres.spb.ru-2/private.key;
+
+        set $base_root /var/www/b2b.tyres.spb.ru;
+        root /var/www/b2b.tyres.spb.ru/front/buildProd;
+
+        index index.html index.php;
+
+
+
+        set $base_root /var/www/b2b.tyres.spb.ru;
+
+        location = / {
+                index index.html;
+		expires -1;
+                root $base_root/front/buildProd/login;
+                try_files $uri /index.html;
+                rewrite ^ /index.html break;
+        }
+
+	location /price/ {
+          return 301 /web/export/download$is_args$args;
+	}
+
+        location / {
+                index index.html;
+		expires -1;
+                root $base_root/front/buildProd;
+                try_files $uri /index.html;
+        }
+
+	location /img {
+		 index index.php;
+            root $base_root/back/web;
+
+            #proxy_pass   http://127.0.0.1:8080/;
+            #proxy_set_header Host tyres.spb.ru;
+            proxy_set_header Range "";
+            proxy_set_header Request-Range "";
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            #proxy_set_header X-Server-Address $server_addr;
+            try_files $uri $uri/ /index.php?$query_string;
+
+	}
+
+	location /nginx_status {
+                stub_status on;
+                access_log off;
+                allow 127.0.0.1;
+                allow 172.27.100.160;
+                allow 172.27.178.145;
+                deny all;
+        }
+
+        location /api {
+            index index.php;
+            root $base_root/back/web;
+
+            #proxy_pass   http://127.0.0.1:8080/;
+            #proxy_set_header Host tyres.spb.ru;
+            proxy_set_header Range "";
+            proxy_set_header Request-Range "";
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            #proxy_set_header X-Server-Address $server_addr;
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+
+
+	location /web {
+            index index.php;
+            root $base_root/back/web;
+
+            #proxy_pass   http://127.0.0.1:8080/;
+            #proxy_set_header Host tyres.spb.ru;
+            proxy_set_header Range "";
+            proxy_set_header Request-Range "";
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            #proxy_set_header X-Server-Address $server_addr;
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+
+        location ~* .php$ {
+            index index.php;
+            root $base_root/back/web;
+
+            #try_files $uri = 404;
+            fastcgi_buffer_size 64k;
+            fastcgi_buffers 4 64k;
+            fastcgi_connect_timeout 120;
+            fastcgi_send_timeout 300;
+            fastcgi_read_timeout 300;
+            fastcgi_split_path_info ^(.+.php)(/.+)$;
+            fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+	}
+
+        location ~ \.(|ico|css|bmp|swf|js|html|txt|xls|doc|pdf|zip|gzip|tgz|rar|kml|woff2|ttf|woff|svg|htm)$ {
+                access_log off;
+#               expires max;
+                log_not_found off;
+        }
+
+	 access_log  /var/www/b2b.tyres.spb.ru/log/access.https.log;
+        error_log /var/www/b2b.tyres.spb.ru/log/error.https.log;
+}

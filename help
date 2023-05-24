@@ -871,7 +871,11 @@ require_once __DIR__ . '/vendor/autoload.php';
 --------------------------------------------------------------------
 Установить пакеты для PHP (нужную версию прописать):
 
+sudo apt install php5.4 php5.4-common php5.4-cli php5.4-fpm php5.4-gd php5.4-mysql php5.4-mbstring php5.4-curl php5.4-xml php5.4-zip php5.4-json php5.4-imagick php5.4-xmlrpc php5.4-bz2 php5.4-dev php5.4-opcache
+
 sudo apt-get install libapache2-mod-php7.4 php7.4-common php7.4-gd php7.4-mysql php7.4-curl php7.4-intl php7.4-xsl php7.4-mbstring php7.4-zip php7.4-bcmath php7.4-soap php7.4-xdebug php7.4-imagick
+
+sudo apt install php-ssh2 
 
 sudo apt install php5.6 php5.6-common php5.6-cli php5.6-fpm php5.6-gd php5.6-mysql php5.6-mbstring php5.6-curl php5.6-xml php5.6-zip php5.6-json php5.6-imagick php5.6-xmlrpc php5.6-bz2 php5.6-dev php5.6-opcache
 
@@ -918,6 +922,8 @@ composer remove php-ffmpeg/php-ffmpeg
 composer remove happyworm/jPlayer
 
 composer update exclusive/yii2-call
+
+composer update yiisoft/yii2
 
 --------------------------------------------------------------------
 Посмотреть письма в mailer.
@@ -977,7 +983,7 @@ php yii asta/goods
 
 php yii asta/compare-goods
 
-php yii asta/generate-file
+php yii asta/generate-files
 
 php yii asta/brands
 
@@ -2103,7 +2109,7 @@ try {
 }
 
 --------------------------------------------------------------------
-Автодополнение phpstorm:
+Автодополнение phpstorm: (шаблоны, функции, )
 
 file -> settings -> editor -> live Templates -> php
 
@@ -2335,11 +2341,18 @@ $this->publishOptions['forceCopy'] = true;
 --------------------------------------------------------------------
 Полезные программы:
 
+Обязательно:
+discord
+telegram
+
+Опционально:
 fileZilla - загрузка файлов
 dbeaver - просмотр бд
 insomnia - запросы
 twinkle интернет телефония
 phpMyAdmin -> workbench
+aspia удаленный доступ
+rabbitMq
 
 --------------------------------------------------------------------
 curl json:
@@ -2364,3 +2377,16 @@ curl_setopt_array($ch, [
         return json_decode(curl_exec($ch), true);
 
 
+--------------------------------------------------------------------
+
+Задачи 1с:
+
+https://help.tyres.spb.ru/issues?author_id=me&set_filter=1&sort=updated_on%3Adesc&status_id=o
+
+
+--------------------------------------------------------------------
+
+kill telegram:
+
+pgrep -l -u new-root
+kill -9 4421

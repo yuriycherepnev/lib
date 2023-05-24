@@ -613,6 +613,15 @@ DROP INDEX brand;
 ALTER TABLE module_catalog_tires
 DROP INDEX additional_param_index;
 
+ALTER TABLE asta_brand
+DROP FOREIGN KEY `fk-asta_brand-id_group`;
+
+ALTER TABLE asta_compare
+DROP FOREIGN KEY `fk-asta_compare-id_group`;
+
+ALTER TABLE asta_tyre
+DROP FOREIGN KEY `fk-asta_tyre-brand_id`;
+
 --------------------------------------------------------------------
 Подзапрос Yii2:
 
@@ -738,3 +747,7 @@ RIGHT JOIN + Null при несовпадении:
 SELECT * FROM price 
 RIGHT JOIN price_type on price.idPriceType = price_type.id AND price.idGood = 20020088693309
 WHERE hide = 0
+
+--------------------------------------------------------------------
+GroupBy + count по группам:
+
