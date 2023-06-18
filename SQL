@@ -751,3 +751,31 @@ WHERE hide = 0
 --------------------------------------------------------------------
 GroupBy + count по группам:
 
+--------------------------------------------------------------------
+Проверка геттера:
+
+SELECT id, custom, time FROM `module_catalog_tires` 
+WHERE `custom` in (5, 6, 12, 13, 46)
+AND `sorted` = 1 
+AND `qnt` > 0
+
+SELECT id, custom, time FROM `module_catalog_disks` 
+WHERE `custom` in (5, 6, 12, 13, 46)
+AND `sorted` = 1 
+AND `qnt` > 0
+
+SELECT id, custom, time FROM `module_catalog_disks` 
+WHERE `custom` in (38, 39, 40, 43, 47, 52)
+AND `sorted` = 1 
+AND `qnt` > 0
+
+SELECT id, custom, time FROM `module_catalog_tires` 
+WHERE `custom` in (17,22)
+AND `sorted` = 1 
+AND `qnt` > 0
+
+
+SELECT id, custom, time FROM `module_catalog_tires` 
+WHERE `custom` in (22)
+AND `sorted` = 1 
+AND `qnt` > 0

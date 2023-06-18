@@ -45,9 +45,13 @@ mysql> set global sql_mode='';  (установить глобальную пе�
 Файл конфигурации: /etc/mysql/my.cnf
 [mysqld] 
 sql_mode = NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+default_authentication_plugin = mysql_native_password
+(сбросить авторизацию до старой версии)
+
+Глобальные переменные mysql:
+SHOW VARIABLES\g
 
 ----------------------------------------------------------
-
 Загрузить базу данных:
 mysql -u root -p (sudo mysql)
 CREATE DATABASE new_database;
@@ -104,7 +108,6 @@ shift shift -
 ----------------------------------------------------------
 Где mysql ищет свои конфиги (консольная команда):
 
-mysql --verbose --help
 
 Нужен фрагмент вывода вроде такого:
 
@@ -905,6 +908,8 @@ composer update exclusive/yii2-url-manager
 
 composer update exclusive/yii2-order-api
 
+composer update exclusive/yii2-call
+
 composer update php:7.4.*@dev
 
 composer update yiisoft/yii2:~2.0.42
@@ -1067,7 +1072,7 @@ composer remove "codeception/codeception"
 composer remove "codeception/base"
 
 --------------------------------------------------------------------
-Получить запрос SQL:
+Получить/посмотреть запрос SQL:
 
 $object->createCommand()->getRawSql()
 
@@ -1857,12 +1862,11 @@ PhpStorm аннотации -> showDiff -> копируем хеш справа 
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b64299db7b3641f68b5ede9cb814c9b7e4534d34
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/99ceb61c2bb2090c09873a85b362439ae23e2480
-
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/afc24957bb040b2946badc2e73923c285bfedf84
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/0b37ed75a4f279d84bde25782c45a9ca415ed22b
 
 7787692957c779ca794c5708ee9962674aa475d2
 
+97f09605c75eef857c4ef20c8d0e862dd48d1319
 
 Затем:
 
@@ -2088,7 +2092,7 @@ try {
 
 try {
 } catch (Throwable $e) {
-   echo '';
+  var_dump($e);
 }
 
 Кастомный обработчик:
@@ -2390,3 +2394,11 @@ kill telegram:
 
 pgrep -l -u new-root
 kill -9 4421
+
+--------------------------------------------------------------------
+array_reduce:
+
+$companiesCount[$companyId] = array_reduce($goods,
+    function($sum, $item) use ($customIds) {
+         return $sum + ((in_array($item['custom'], (array)$customIds) && $item['sorted'] == 1 && $item['qnt'] > 0) ? 1 : 0);
+}, 0);
