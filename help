@@ -1589,6 +1589,7 @@ $goodObj->load($arr, '');
 $goodObj->save();
 $goodObj->getErrors();
 
+
 --------------------------------------------------------------------
 Поднять проект react:
 
@@ -2402,3 +2403,112 @@ $companiesCount[$companyId] = array_reduce($goods,
     function($sum, $item) use ($customIds) {
          return $sum + ((in_array($item['custom'], (array)$customIds) && $item['sorted'] == 1 && $item['qnt'] > 0) ? 1 : 0);
 }, 0);
+
+
+--------------------------------------------------------------------
+адаптив breakpoints:
+
+breakpoint-xs: 0;
+breakpoint-sm: 576px;
+breakpoint-md: 768px;
+breakpoint-lg: 992px;
+breakpoint-xl: 1200px;
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .sale-point-wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .sale-point-wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .sale-point-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+--------------------------------------------------------------------
+Grid:
+
+.sale-point-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 1px solid #dee2e6;
+    grid-gap: 1px;
+    background-color: #dee2e6;
+}
+
+.sale-point {
+    background-color: white;
+    cursor: pointer;
+}
+
+--------------------------------------------------------------------
+Grid CSS Pinterest Layout:
+
+//родитель
+.widgets-wrapper {
+    column-count: 2;
+}
+
+//дочерний элемент
+.widget {
+    display: grid;
+    grid-template-rows: 1fr;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+Размеры дочернего блока:
+
+grid-column-start: 2;
+grid-column-end: 6;
+
+
+--------------------------------------------------------------------
+Подсчет элементов массива:
+
+$customCount = array_count_values(array_column($goods, 'brand'));
+
+--------------------------------------------------------------------
+Уникальные значения массива:
+
+array_unique(array_column($arr, 'email'))
+
+--------------------------------------------------------------------
+VPN exclusive:
+
+Cherepnev
+oKvSitG7
+
+--------------------------------------------------------------------
+Конфиг бд для работы с docker контейнером:
+
+<?php
+
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=127.0.0.1;port=3307;dbname=b2b',
+    'username' => 'root',
+    'password' => 'root',
+    'charset' => 'utf8',
+
+    // Schema cache options (for production environment)
+    //'enableSchemaCache' => true,
+    //'schemaCacheDuration' => 60,
+    //'schemaCache' => 'cache',
+];
+
+--------------------------------------------------------------------
+
+Проверка поиска pulsprice:
+
+$body = ['type' => 'tyre', 'params' => ['1c_txt' => ['R19 225/35 88Y XL']], 'idSatellite' => 3];
+$search = new SearchByText(json_decode(json_encode($body)));
+var_dump($search->getGoods());
+die;

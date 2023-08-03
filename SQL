@@ -779,3 +779,64 @@ SELECT id, custom, time FROM `module_catalog_tires`
 WHERE `custom` in (22)
 AND `sorted` = 1 
 AND `qnt` > 0
+
+--------------------------------------------------------------------
+Подзапрос типа:
+SELECT name FROM (SELECT name FROM agentinformation) as a  
+На yii2:
+
+$subQuery = self::find()
+    ->with('company')
+    ->select(["company_id, time, sum(count) as count"])
+    ->where(['stage_id' => GetterStage::COMPLETE_ID])
+    ->andWhere(['good_type_id' => $type]);
+$this->prepareDate($dateRange, $subQuery);
+
+$subQuery->groupBy(['time', 'company_id'])->orderBy(['time' => SORT_ASC]);
+
+$companiesCount = self::find()
+    ->with('company')
+    ->select(["company_id, 
+        GROUP_CONCAT(count ORDER BY time ASC) AS `count_list`, 
+        GROUP_CONCAT(time ORDER BY time ASC) AS `time_list`"])
+    ->from(['sub' => $subQuery])
+    ->groupBy(['sub.company_id'])
+    ->asArray()
+    ->all();
+
+--------------------------------------------------------------------
+Jeft Join Yii2 уменьшает количество строк - конфликт столбцов.
+При повторении каких либо значений, yii2 собирает только уникальные.
+
+--------------------------------------------------------------------
+case sensitive Select yii2
+
+$actualBrand = self::find()->where('BINARY [[name]]=:name', ['name' => $brand])->one();
+
+case insensitive Like yii2
+
+$where[] =  ['like', 'LOWER(1c_txt)', '%' . mb_strtolower($param) . '%', false];
+
+-------------------------------------------------------------------- 
+Посмотреть все внешние ключи:
+
+SHOW CREATE TABLE 'tablename';
+
+SELECT *
+FROM information_schema.KEY_COLUMN_USAGE
+WHERE TABLE_SCHEMA ='dbname' AND TABLE_NAME ='tablename' AND
+CONSTRAINT_NAME <>'PRIMARY' AND REFERENCED_TABLE_NAME is not null;
+
+-------------------------------------------------------------------- 
+Ошибка:
+1048 Column 'contiseal' cannot be null
+
+Одно из решений отключить строгий режим sql:
+
+SELECT @@SESSION.sql_mode;
+SET @@sql_mode = sys.list_drop(@@sql_mode, 'STRICT_TRANS_TABLES');
+
+-------------------------------------------------------------------- 
+
+Поиск sql:
+where (str like "%16%205%55%") or (str like "%16%" and str like "%205%" and str like "%55%")
