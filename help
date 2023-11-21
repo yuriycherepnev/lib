@@ -1,4 +1,29 @@
+env tyres file:
+
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'dev');
+defined('NODE_PATH') or define('NODE_PATH', '/home/new-root/.nvm/versions/node/v17.9.1/bin/node');
+
 ---------------------------------------------------------- 
+db tyres:
+
+<?php
+$host = '127.0.0.1';
+$dbName = 'tyres';
+$port = 3307;
+
+return [
+    'class' => 'common\models\Connection',
+    'host' => $host,
+    'dbName' => $dbName,
+    'dsn' => "mysql:host={$host};dbname={$dbName}",
+    'username' => 'root',
+    'password' => 'root',
+    'charset' => 'utf8',
+];
+
+---------------------------------------------------------- 
+
 настройка файлов для запуска проекта на лок.сервере:
 
 common/config/db.php
@@ -60,6 +85,8 @@ source ~/database/tyres.sql;
 source ~/database/tyres6002.sql;
 
 source ~/database/puls2022.sql;
+
+source ~/database/asteris.sql;
 
 
 mysql -u root -p root_pass db_name < db_name.sql
@@ -267,6 +294,10 @@ php yii migrate
 
 yii migrate/down  
 
+Миграция в vendor пакет:
+
+php yii migrate/create get_pickup_work_days --migrationPath=/home/new-root/projects/tyres/vendor/exclusive/yii2-get-pickup/src/migrations
+
 ------------------------------------------------------------------
 Обновить composer: 
 
@@ -342,7 +373,9 @@ php yii getter/parse-one tyre
 
 php yii getter/parse-one disk
 
-php yii getter/parse-one
+php yii getter/parse-one accum
+
+php yii orderApi/order-queue/make-order-from-queue
 
 геттер контроллер:
 console/controllers/GetterController.php
@@ -908,8 +941,6 @@ composer update exclusive/yii2-url-manager
 
 composer update exclusive/yii2-order-api
 
-composer update exclusive/yii2-call
-
 composer update php:7.4.*@dev
 
 composer update yiisoft/yii2:~2.0.42
@@ -929,6 +960,8 @@ composer remove happyworm/jPlayer
 composer update exclusive/yii2-call
 
 composer update yiisoft/yii2
+
+composer update exclusive/yii2-get-pickup
 
 --------------------------------------------------------------------
 Посмотреть письма в mailer.
@@ -980,6 +1013,10 @@ php frontend/web/index.php xlsgen generateVianor
 
 php frontend/web/index.php xlsgen generateExel
 
+php frontend/web/index.php xlsgen generateExelForEuroTransOneDay
+
+php frontend/web/index.php xlsgen generateExelForEuroTransZeroDay
+
 php frontend/web/admin/index.php generateymlnew generate yamarket
 
 php yii asta/urls
@@ -991,6 +1028,10 @@ php yii asta/compare-goods
 php yii asta/generate-files
 
 php yii asta/brands
+
+php yii getter/parse-one
+
+php yii catalog/counting-goods
 
 --------------------------------------------------------------------
 Проверка модуля postman:
@@ -1482,7 +1523,7 @@ md5:
 5416d7cd6ef195a0f7622a9c56b55e84
 
 md5+соль:
-f362f06f1301e43430e14aca5829c4b7
+
 
 --------------------------------------------------------------------
 Посмотреть часы задачи:
@@ -1577,6 +1618,16 @@ Yii::$app->request->getCsrfTokenFromHeader()
         var_dump($out);
         echo '</pre>';
         die;
+
+--------------------------------------------------------------------
+ Сортировка одного массива по значениям другого:
+
+$order = [15,16,9 ];
+$sort = array_flip($order);
+usort($data, function($a,$b) use($sort){
+                return $sort[$a['num_block']] - $sort[$b['num_block']];
+            });
+            
 --------------------------------------------------------------------
 Наибольшее значение вложенного массива:
 
@@ -1746,6 +1797,9 @@ console.log(new Intl.DateTimeFormat('en-US',
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/back.b2b.tyres.spb.ru.git
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/tyres_satellites.git
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/1c_exchange.git
+git clone ssh://gituser@git.tyres.spb.ru/Exclusive/new.revosp.com.git
+
+git clone https://github.com/FreePBX/core.git
 
 В репозитории:
 git remote -v 
@@ -1861,9 +1915,15 @@ crontab -r
 
 PhpStorm аннотации -> showDiff -> копируем хеш справа вверху, вставляем в урл
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b64299db7b3641f68b5ede9cb814c9b7e4534d34
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b17d31bd651c1bf331f2cb4239fa058629318e52
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/0b37ed75a4f279d84bde25782c45a9ca415ed22b
+
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/0f087af174bb8c60f5e1fb349e807637be1612cc
+
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b17d31bd651c1bf331f2cb4239fa058629318e52
+
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/256c9113fe3420e6d72940b0ac68876582db3eb6
 
 7787692957c779ca794c5708ee9962674aa475d2
 
@@ -1871,9 +1931,13 @@ https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/0b37ed75a4f279d84bde
 
 Затем:
 
-pull/3076/head
+pull/4456/head
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/3076/files
+pull/4009/head
+
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/4456/files
+
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/4469/files
 --------------------------------------------------------------------
 Очистка input перед вставкой:
 
@@ -1917,6 +1981,11 @@ kill -l
 
 Убить все процессы с одним именем:
 killall gcalctool
+
+--------------------------------------------------------------------
+
+Найти запущенный на порту сокет
+lsof -ti tcp:8001
 
 --------------------------------------------------------------------
 Реверт:
@@ -2512,3 +2581,102 @@ $body = ['type' => 'tyre', 'params' => ['1c_txt' => ['R19 225/35 88Y XL']], 'idS
 $search = new SearchByText(json_decode(json_encode($body)));
 var_dump($search->getGoods());
 die;
+
+--------------------------------------------------------------------
+Высота блоков с img 16:9 по отношению к ширине:
+
+<div class="calc-news-wrapper">
+        <div class="card calc-news-item">
+            <a href="<?= Url::to('') ?>">
+                <?= Html::img('') ?>
+            </a>
+        </div>
+</div>
+
+.calc-news-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 2px;
+}
+
+.calc-news .calc-news-wrapper .calc-news-item {
+    position: relative;
+    padding-top: 56%;
+}
+
+.calc-news .calc-news-wrapper .calc-news-item:before {
+    display: block;
+    content: "";
+    width: 100%;
+}
+
+.calc-news .calc-news-wrapper .calc-news-item a {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.calc-news .calc-news-wrapper .calc-news-item img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+@media (max-width: 1199px) {
+    .calc-news-wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+--------------------------------------------------------------------
+exchange ветки:
+
+new_master:
+tyres
+4kolesa
+
+master:
+b2b
+satellites
+
+--------------------------------------------------------------------
+
+Удалить строку между символами:
+
+$text = '123123 [[OE asdasdzxczxc asdasd qweqwe /OE]] sw s 123123';
+
+$text = preg_replace("/\[\[OE(.*)\/OE\]\]/s", '', $text);
+
+Удалить текст между тегами:
+
+$str = '<a href="link.html">text</a>';
+
+        $str = preg_replace('#(<a.*?>).*?(</a>)#', '$1$2', $str);
+
+--------------------------------------------------------------------
+
+Добавить сайт nginx:
+
+sudo nano /etc/nginx/sites-available/your_domain
+
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/your_domain/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name your_domain www.your_domain;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+
+sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/

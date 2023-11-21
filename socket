@@ -10,3 +10,37 @@ while ($connect = stream_socket_accept($socket, -1)) {
 fclose($socket);
 
 socket_recv — Получает данные из подсоединённого сокета
+
+************************************************
+Подключение к сокету:
+
+$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+socket_connect($socket, '127.0.0.1', 8001);
+
+$in = "HEAD / HTTP/1.1\r\n";
+$in .= "Host: www.example.com\r\n";
+$in .= "Connection: Close\r\n\r\n";
+
+echo '<pre>';
+socket_write($socket, $in, strlen($in));
+
+if (false !== ($bytes = socket_recv($socket, $buf, 2048, MSG_WAITALL))) {
+    var_dump($buf);
+    var_dump($bytes);
+} else {
+    var_dump(socket_strerror(socket_last_error($socket)));
+}
+socket_close($socket);
+
+************************************************
+
+Найти запущенный на порту сокет
+lsof -ti tcp:8001
+
+************************************************
+
+socket - протокол связи поверх TCP-соединения, 
+предназначенный для обмена сообщениями между браузером и 
+веб-сервером в режиме реального времени.
+
+

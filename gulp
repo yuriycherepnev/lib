@@ -44,3 +44,17 @@ nvm use v12.18.2
 --------------------------------------------------------------------
 Сборка:
 gulp sassLayout
+
+--------------------------------------------------------------------
+node path для нового каталога:
+
+<?php
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'dev');
+defined('NODE_PATH') or define('NODE_PATH', '/home/new-root/.nvm/versions/node/v17.9.1/bin/node');
+
+--------------------------------------------------------------------
+Сборка реакта для тайреса:
+
+npm run watch
+npm run prod

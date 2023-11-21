@@ -98,3 +98,17 @@ info@4kolesa.spb.ru  ghDT6mUid
 info@pulsprice.ru  B64NkSS
 info@tyrestock.ru  7cVdLqvUSrZfx5I53d34
 noreply@tyres.spb.ru 6028f8Jm6
+
+--------------------------------------------------------------------
+imap:
+
+<?php return [
+    'class' => 'roopz\imap\Imap',
+    'connection' => [
+        'imapPath' => '{172.27.100.108:993/imap/ssl/novalidate-cert}INBOX',
+        'imapLogin' => 'b2b',
+        'imapPassword' => 'b2p1111',
+        'serverEncoding' => 'utf-8',
+        'attachmentsDir' => '/'
+    ]
+];

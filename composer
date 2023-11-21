@@ -17,4 +17,8 @@ alias composer='/usr/local/bin/composer'
 
 composer
 
+На проде:
+composer 1.84
+
 Локально:
+
