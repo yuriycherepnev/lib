@@ -809,13 +809,9 @@ Jeft Join Yii2 уменьшает количество строк - конфли
 При повторении каких либо значений, yii2 собирает только уникальные.
 
 --------------------------------------------------------------------
-case sensitive Select yii2
+case sensitive select yii2
 
 $actualBrand = self::find()->where('BINARY [[name]]=:name', ['name' => $brand])->one();
-
-case insensitive Like yii2
-
-$where[] =  ['like', 'LOWER(1c_txt)', '%' . mb_strtolower($param) . '%', false];
 
 -------------------------------------------------------------------- 
 Посмотреть все внешние ключи:
@@ -891,7 +887,7 @@ SET count = 20
 WHERE count = 0;
 
 
--------------------------------------------------------------------- 
+--------------------------------------------------------------------
 Длина строк в sql:
 
       Type | Maximum length
@@ -901,15 +897,15 @@ WHERE count = 0;
 MEDIUMTEXT |    16,777,215 (224−1) bytes = 16 MiB
   LONGTEXT | 4,294,967,295 (232−1) bytes =  4 GiB
 
--------------------------------------------------------------------- 
+--------------------------------------------------------------------
 
-INSERT INTO `module_catalog_tires` 
-(`id`, `updated_at`, `custom`, `sorted`) 
-VALUES 
-('13z9368721', 1708093990, 13, 1), 
+INSERT INTO `module_catalog_tires`
+(`id`, `updated_at`, `custom`, `sorted`)
+VALUES
+('13z9368721', 1708093990, 13, 1),
 ('12z9355742', 1708093990, 12, 1)
-ON DUPLICATE KEY UPDATE 
-`id` = VALUES(`id`), 
-`updated_at` = VALUES(`updated_at`), 
-`custom` = VALUES(`custom`), 
+ON DUPLICATE KEY UPDATE
+`id` = VALUES(`id`),
+`updated_at` = VALUES(`updated_at`),
+`custom` = VALUES(`custom`),
 `sorted` = VALUES(`sorted`)
