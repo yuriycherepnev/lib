@@ -1,28 +1,55 @@
+10.01
 
-Добавление типа покупки:
+Проверка:
+оформить заказ сбп
+pscb_transaction_check - чек записи, получить айди заказа
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/3998/files
+php yii pscb/payment/transaction-check-request
+получить айди заказа
+выполнить запрос по бд
+php yii pscb/payment/transaction-check-request
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/4009/files
+531458
 
-Доработка апи:
+9 - подключение оплаты
 
-https://git.tyres.spb.ru:3000/Exclusive/yii2-order-api/pulls/53/files
+Тестирование оплаты:
+
+                    $paymentConfirmResponse = PaymentConfirmResponse::findOne($payment->id_order);
+//                    $state = $paymentConfirmResponse->save();
+//                    $payment->is_send_to_bank = true;
+//                    $payment->save();
+
+
+UPDATE pscb_transaction_check
+SET end_status = 1
+WHERE id_order = 531462;
+
+UPDATE pscb_transaction_check_response 
+SET status = 'STATUS_SUCCESS', 
+state = 'end', 
+errorCode = Null,
+payment = '{"status":"STATUS_SUCCESS","requestId":"DEMO-240118-2128-E0D599","payment":{"orderId":"531462","transactionId":"531462","showOrderId":"531462","paymentId":"531462","account":"МихайловИлья","amount":10924,"state":"end","type":"payment","marketPlace":144611094,"paymentMethod":"sbp","stateDate":"2024-02-02T13:23:06.430+03:00","lastError":{"code":"0","subCode":"00","description":"Платежзавершен"},"email":"chernovar@gmail.com","phone":"9319610471"}}'
+WHERE id_order = 531462;
+
+
+php yii pscb/pscb-web/payment-response-success
+
+/pscb/pscb-web/payment-response-success
+
+
+http://tyres/pscb/pscb-web/payment-response-success
+
+php yii pscb/payment/transaction-check-request 433075
 
 ----------------------------------------------------------------
-9 корзина?
 
-9.11 - 0 часов?
-4 сео 64668
-5 корзина 64243
 
-----------------------------------------------------------------
-19.12.23
+До batch:
+шины 186
+диски 341
 
-66173 - 2
-66115 - 2
+После:
+шины 116
+диски 250
 
-----------------------------------------------------------------
-Все ясно.
-Задача:
-прокинуть новый способо оплаты

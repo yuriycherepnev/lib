@@ -154,6 +154,8 @@ SELECT * FROM `cel` WHERE `exten` LIKE '%9118248378'
 
 SELECT * FROM `cdr` WHERE `dst` LIKE '%9118248378'
 
+1705062793.7083336
+
 --------------------------------------------------------------------
 
 scp root@172.27.100.240:/var/spool/asterisk/monitor/2022/09/13/in-3279474-9119001990-20220913-155327-1663073607.3127000.WAV /home/new-root/projects

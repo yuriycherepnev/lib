@@ -1,0 +1,36 @@
+server {
+    listen 80;
+    index index.php;
+    server_name detailing;
+    set $base_root /home/yuriy/projects/tyres/detailing;
+    root $base_root/web;
+
+    location ~ .(jpg|jpeg|gif|png|ico|css|bmp|swf|js|html|txt|xls|doc|pdf|zip|gzip|tgz|rar|kml)$ {
+        allow all;
+    }
+
+    location ~ .(jpg|jpeg|gif|png|ico|css|bmp|swf|js|html|txt|xls|doc|pdf|zip|gzip|tgz|rar|kml)$ {
+        root /home/yuriy/projects/tyres/;
+        allow all;
+    }
+
+
+    location ~ .php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+.php)(/.+)$;
+        fastcgi_index index.php;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock; #подключаем сокет php-fpm
+        include fastcgi_params;
+        fastcgi_read_timeout 300;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+    location ~ /.well-known {
+            allow all;
+    }
+    location / {
+        try_files $uri $uri/ /index.php?$is_args$args;
+    }
+
+}

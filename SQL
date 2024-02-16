@@ -889,3 +889,27 @@ AND asta_tyre.provider_id NOT IN (3,4,580)
 UPDATE company_goods_count
 SET count = 20
 WHERE count = 0;
+
+
+-------------------------------------------------------------------- 
+Длина строк в sql:
+
+      Type | Maximum length
+-----------+-------------------------------------
+  TINYTEXT |           255 (2 8−1) bytes
+      TEXT |        65,535 (216−1) bytes = 64 KiB
+MEDIUMTEXT |    16,777,215 (224−1) bytes = 16 MiB
+  LONGTEXT | 4,294,967,295 (232−1) bytes =  4 GiB
+
+-------------------------------------------------------------------- 
+
+INSERT INTO `module_catalog_tires` 
+(`id`, `updated_at`, `custom`, `sorted`) 
+VALUES 
+('13z9368721', 1708093990, 13, 1), 
+('12z9355742', 1708093990, 12, 1)
+ON DUPLICATE KEY UPDATE 
+`id` = VALUES(`id`), 
+`updated_at` = VALUES(`updated_at`), 
+`custom` = VALUES(`custom`), 
+`sorted` = VALUES(`sorted`)
