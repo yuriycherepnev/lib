@@ -6,7 +6,7 @@ server {
 
     
 
-        set $base_root /home/new-root/projects/tyres;
+        set $base_root /home/yuriy/projects/tyres;
          root $base_root/frontend/web;
           
     location ~ /img_catalog/img_catalog_list.xml {
@@ -35,6 +35,11 @@ server {
                 proxy_set_header X-Forwarded-Proto $scheme;
 #               proxy_set_header X-Server-Address $server_addr;
                 try_files $uri $uri/ /index.php?$query_string;
+        }
+        
+          location /hell/ {
+            root   $base_root/hell/web;
+            try_files $uri /hell/index.php$is_args$args;
         }
 
                  location /backend/ {

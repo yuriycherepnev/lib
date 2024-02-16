@@ -298,7 +298,7 @@ yii migrate/down
 
 Миграция в vendor пакет:
 
-php yii migrate/create get_pickup_work_days --migrationPath=/home/new-root/projects/tyres/vendor/exclusive/yii2-get-pickup/src/migrations
+php yii migrate/create get_pickup_work_days --migrationPath=/home/yuriy/projects/tyres/vendor/exclusive/yii2-get-pickup/src/migrations
 
 ------------------------------------------------------------------
 Обновить composer: 
@@ -966,6 +966,8 @@ composer update exclusive/yii2-call
 composer update yiisoft/yii2
 
 composer update exclusive/yii2-get-pickup
+
+composer update exclusive/yii2-pscb-pay
 
 --------------------------------------------------------------------
 Посмотреть письма в mailer.
@@ -1644,7 +1646,6 @@ $goodObj->load($arr, '');
 $goodObj->save();
 $goodObj->getErrors();
 
-
 --------------------------------------------------------------------
 Поднять проект react:
 
@@ -1927,11 +1928,13 @@ https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/0f087af174bb8c60f5e1
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b17d31bd651c1bf331f2cb4239fa058629318e52
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/256c9113fe3420e6d72940b0ac68876582db3eb6
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/305e8156aef73d2a53e5eed00dd4fe1d6592e785
 
 7787692957c779ca794c5708ee9962674aa475d2
 
 97f09605c75eef857c4ef20c8d0e862dd48d1319
+
+305e8156aef73d2a53e5eed00dd4fe1d6592e785
 
 Затем:
 
@@ -2712,3 +2715,15 @@ xdebug.remote_enable=0
 xdebug.profiler_enable=0
 
 затем рестартнуть fpm
+
+--------------------------------------------------------------------
+Date:
+
+date('d.m.Y H:i', $timestamp)
+
+----------------------------------------------------------------
+Удалить папку из коммита:
+
+git reset dir
+
+----------------------------------------------------------------
