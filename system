@@ -6,12 +6,13 @@ discord telegram
 google chrome + закладки
 aliases Git
 phpstorm (шаблоны редактора)
-nginx (строго по гайду)
+nginx (строго по гайду - может быть ошибка с путями и правами на папки)
+
+обновить конфиги nginx в либ!
 php 5.6 7.4
 mysql
-phpmyadmin
+phpMyAdmin 4.9.11 (php 5.6)
 composer 1, 2
 docker (mysql)
-obsidian
 rabbit
 golang
