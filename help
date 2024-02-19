@@ -118,11 +118,8 @@ SQl запрос может положить сервер.
 Для перезапуска выполнить:
 
 sudo service php5.6-fpm reload
-
 sudo service php7.4-fpm reload
-
 sudo /etc/init.d/php7.4-fpm restart
-
 sudo systemctl restart mysql
 
 ----------------------------------------------------------
@@ -404,6 +401,24 @@ $this->service->matchingGoods();
 var_dump('saveGoods');
 $this->service->saveGoods();
 
+
+$start = microtime(true);
+var_dump('parseOne');
+$this->service->parseOne($type);
+echo round((microtime(true) - $start)) . PHP_EOL;
+var_dump('validateGoods');
+$this->service->validateGoods();
+echo round((microtime(true) - $start)) . PHP_EOL;
+var_dump('matchingGoods');
+$this->service->matchingGoods();
+echo round((microtime(true) - $start)) . PHP_EOL;
+var_dump('saveGoods');
+$this->service->saveGoods();
+echo round((microtime(true) - $start)) . PHP_EOL;
+var_dump('generateReport');
+$this->service->generateReport($type);
+echo round((microtime(true) - $start)) . PHP_EOL;
+
 -----------------------------------------------------------------
 Запись в файл с геттера:
 
@@ -606,6 +621,9 @@ return [
 
 $start = microtime(true);
 echo 'time: ' . (microtime(true) - $start) . ' sec.';
+
+$start = microtime(true);
+echo round((microtime(true) - $start)) . PHP_EOL;
 
 --------------------------------------------------------------------
 Отправить юзера на 404 страницу:
@@ -913,6 +931,7 @@ sudo apt install php5.4 php5.4-common php5.4-cli php5.4-fpm php5.4-gd php5.4-mys
 
 sudo apt-get install libapache2-mod-php7.4 php7.4-common php7.4-gd php7.4-mysql php7.4-curl php7.4-intl php7.4-xsl php7.4-mbstring php7.4-zip php7.4-bcmath php7.4-soap php7.4-xdebug php7.4-imagick
 
+sudo apt install php7.4 php7.4-common php7.4-cli php7.4-fpm php7.4-gd php7.4-mysql php7.4-mbstring php7.4-curl php7.4-xml php7.4-zip php7.4-json php7.4-imagick php7.4-xmlrpc php7.4-bz2 php7.4-dev php7.4-opcache
 sudo apt install php-ssh2 
 
 sudo apt-get install php7.4-ssh2
@@ -931,6 +950,8 @@ sudo apt install php7.4-mysql
 Переключить версию composer:
 composer self-update --1 
 composer self-update --2
+
+php /usr/local/bin/composer self-update --1 
 
 --------------------------------------------------------------------
 При несовместимости плагинов и версии composer:
@@ -2710,5 +2731,8 @@ Xdebug disable - в php.ini прописать:
 xdebug.remote_autostart=0  
 xdebug.remote_enable=0
 xdebug.profiler_enable=0
+
+Консольная команда:
+sudo phpdismod xdebug
 
 затем рестартнуть fpm
