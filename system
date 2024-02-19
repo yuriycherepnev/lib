@@ -1,17 +1,18 @@
+git + ssh ключи
+repository Lib
+
 sublime text
 discord telegram
 google chrome + закладки
-git + ssh ключи
-repository Lib
 aliases Git
-phpstorm
+phpstorm (шаблоны редактора)
 nginx (строго по гайду - может быть ошибка с путями и правами на папки)
 
 обновить конфиги nginx в либ!
-
 php 5.6 7.4
 mysql
 phpMyAdmin 4.9.11 (php 5.6)
 composer 1, 2
 docker (mysql)
 rabbit
+golang

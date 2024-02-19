@@ -822,3 +822,90 @@ SELECT *
 FROM information_schema.KEY_COLUMN_USAGE
 WHERE TABLE_SCHEMA ='dbname' AND TABLE_NAME ='tablename' AND
 CONSTRAINT_NAME <>'PRIMARY' AND REFERENCED_TABLE_NAME is not null;
+
+-------------------------------------------------------------------- 
+Ошибка:
+1048 Column 'contiseal' cannot be null
+
+Одно из решений отключить строгий режим sql:
+
+SELECT @@SESSION.sql_mode;
+SET @@sql_mode = sys.list_drop(@@sql_mode, 'STRICT_TRANS_TABLES');
+
+-------------------------------------------------------------------- 
+
+Поиск sql:
+where (str like "%16%205%55%") or (str like "%16%" and str like "%205%" and str like "%55%")
+
+-------------------------------------------------------------------- 
+Сортировка priceType при join с помощью оконной функции:
+
+SELECT * FROM (
+    SELECT `goods`.`id`, ROW_NUMBER() over (partition by goods.id order by price_type.order desc) result, price.price AS `sort_price` 
+    FROM `goods` LEFT JOIN `price` ON `goods`.`id` = `price`.`idGood` 
+    LEFT JOIN `price_type` ON `price`.`idPriceType` = `price_type`.`id` 
+    INNER JOIN `good_tyre` ON good_tyre.idGood = goods.id 
+    INNER JOIN `rest` ON good_tyre.idGood = rest.idGood 
+    WHERE `idPriceType` IN (1, 5, 13, 6)) `sub` 
+WHERE `sub`.`result`=1 ORDER BY `sort_price` DESC
+
+
+-------------------------------------------------------------------- 
+ Реализация этого же запроса на yii2:
+
+ $goods->addSelect(['ROW_NUMBER() over (partition by goods.id order by price_type.order desc) result, price.idPriceType, price.price as sort_price']);
+                $goods = Good::find()
+                    ->select(["id"])
+                    ->from(['sub' => $goods])
+                    ->where(['sub.result' => 1])
+                    ->orderBy(['sort_price' => $sort]);
+
+-------------------------------------------------------------------- 
+Простые оконные функции:
+(делит выборку на группы и выолняет агрегационную функцию в рамках каждой группы)
+
+SELECT brand, model, custom, price_retail,
+       max(price_retail) over (PARTITION BY model ORDER BY price_retail DESC) as max_price
+FROM module_catalog_tires
+WHERE sorted = 1 AND qnt > 0
+
+-------------------------------------------------------------------- 
+Простой InnerJoin:
+
+SELECT DISTINCT provider_id
+FROM asta_tyre
+INNER JOIN module_catalog_tires ON asta_tyre.code = module_catalog_tires.id
+WHERE module_catalog_tires.custom = 0
+AND module_catalog_tires.sorted = 1
+AND module_catalog_tires.qnt > 0
+AND asta_tyre.provider_id NOT IN (3,4,580)
+
+412, 413
+
+UPDATE company_goods_count
+SET count = 20
+WHERE count = 0;
+
+
+--------------------------------------------------------------------
+Длина строк в sql:
+
+      Type | Maximum length
+-----------+-------------------------------------
+  TINYTEXT |           255 (2 8−1) bytes
+      TEXT |        65,535 (216−1) bytes = 64 KiB
+MEDIUMTEXT |    16,777,215 (224−1) bytes = 16 MiB
+  LONGTEXT | 4,294,967,295 (232−1) bytes =  4 GiB
+
+--------------------------------------------------------------------
+
+INSERT INTO `module_catalog_tires`
+(`id`, `updated_at`, `custom`, `sorted`)
+VALUES
+('13z9368721', 1708093990, 13, 1),
+('12z9355742', 1708093990, 12, 1)
+ON DUPLICATE KEY UPDATE
+`id` = VALUES(`id`),
+`updated_at` = VALUES(`updated_at`),
+`custom` = VALUES(`custom`),
+`sorted` = VALUES(`sorted`)

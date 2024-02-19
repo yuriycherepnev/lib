@@ -1,0 +1,49 @@
+        $ignoreKeys = [];
+        $tyre = new Tyre();
+
+        $saveOneGoods = $tyre::find()
+            ->where(['>', 'qnt', 0])
+            ->andWhere(['!=', 'custom', 0])
+            ->andWhere(['sorted' => 1])
+            ->orderBy(['id' => SORT_DESC])
+            ->asArray()
+            ->all();
+
+        $tyre::setDb('tyres_batch');
+
+        $batchGoods = $tyre::find()
+            ->where(['>', 'qnt', 0])
+            ->andWhere(['!=', 'custom', 0])
+            ->andWhere(['sorted' => 1])
+            ->orderBy(['id' => SORT_DESC])
+            ->asArray()
+            ->all();
+
+        $differentCount = [];
+        $differentKeys = [];
+
+        $idsColumn = array_column($batchGoods, 'id');
+
+        for ($i = 0; $i < count($saveOneGoods); $i++) {
+            $index = array_search($saveOneGoods[$i]['id'], $idsColumn);
+            if ($index) {
+                $difference = array_diff($batchGoods[$index], $saveOneGoods[$i]);
+                foreach ($difference as $key => $value) {
+
+                    if (!array_key_exists($key, $differentKeys) || count($differentKeys[$key]) < 6) {
+                        $differentKeys[$key][$saveOneGoods[$i]['id']] = [$saveOneGoods[$i][$key], $batchGoods[$index][$key]];
+                    }
+
+                    if (!array_key_exists($key, $differentCount)) {
+                        $differentCount[$key] = 1;
+                    } else {
+                        $differentCount[$key]++;
+                    }
+                }
+            }
+        }
+
+        echo '<pre>';
+        var_dump($differentCount);
+        var_dump($differentKeys);
+        die;
