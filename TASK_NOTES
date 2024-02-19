@@ -20,6 +20,27 @@ php yii pscb/payment/transaction-check-request
 //                    $payment->is_send_to_bank = true;
 //                    $payment->save();
 
+10.01
+
+Проверка:
+оформить заказ сбп
+pscb_transaction_check - чек записи, получить айди заказа
+
+php yii pscb/payment/transaction-check-request
+получить айди заказа
+выполнить запрос по бд
+php yii pscb/payment/transaction-check-request
+
+531458
+
+9 - подключение оплаты
+
+Тестирование оплаты:
+
+                    $paymentConfirmResponse = PaymentConfirmResponse::findOne($payment->id_order);
+//                    $state = $paymentConfirmResponse->save();
+//                    $payment->is_send_to_bank = true;
+//                    $payment->save();
 
 UPDATE pscb_transaction_check
 SET end_status = 1
@@ -31,7 +52,18 @@ state = 'end',
 errorCode = Null,
 payment = '{"status":"STATUS_SUCCESS","requestId":"DEMO-240118-2128-E0D599","payment":{"orderId":"531462","transactionId":"531462","showOrderId":"531462","paymentId":"531462","account":"МихайловИлья","amount":10924,"state":"end","type":"payment","marketPlace":144611094,"paymentMethod":"sbp","stateDate":"2024-02-02T13:23:06.430+03:00","lastError":{"code":"0","subCode":"00","description":"Платежзавершен"},"email":"chernovar@gmail.com","phone":"9319610471"}}'
 WHERE id_order = 531462;
+UPDATE pscb_transaction_check
+SET end_status = 1
+WHERE id_order = 531462;
 
+UPDATE pscb_transaction_check_response
+SET status = 'STATUS_SUCCESS',
+state = 'end',
+errorCode = Null,
+payment = '{"status":"STATUS_SUCCESS","requestId":"DEMO-240118-2128-E0D599","payment":{"orderId":"531462","transactionId":"531462","showOrderId":"531462","paymentId":"531462","account":"МихайловИлья","amount":10924,"state":"end","type":"payment","marketPlace":144611094,"paymentMethod":"sbp","stateDate":"2024-02-02T13:23:06.430+03:00","lastError":{"code":"0","subCode":"00","description":"Платежзавершен"},"email":"chernovar@gmail.com","phone":"9319610471"}}'
+WHERE id_order = 531462;
+
+php yii pscb/pscb-web/payment-response-success
 
 php yii pscb/pscb-web/payment-response-success
 
@@ -41,6 +73,7 @@ php yii pscb/pscb-web/payment-response-success
 http://tyres/pscb/pscb-web/payment-response-success
 
 php yii pscb/payment/transaction-check-request 433075
+/pscb/pscb-web/payment-response-success
 
 ----------------------------------------------------------------
 
@@ -52,12 +85,23 @@ php yii pscb/payment/transaction-check-request 433075
 После:
 шины 116
 диски 250
+http://tyres/pscb/pscb-web/payment-response-success
+
+php yii pscb/payment/transaction-check-request 433075
 
 ----------------------------------------------------------------
 Надо доработать:
 
+
 05.02 - 6 часов
 09.02 - 9 часов (или система батч инсерта для геттера)
+До batch:
+шины 186
+диски 341
+
+После:
+шины 116
+диски 250
 
 
 Проставить дефол значения в моделях шин и дисков
