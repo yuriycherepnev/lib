@@ -110,3 +110,13 @@ php yii pscb/payment/transaction-check-request 433075
 Прописать логирвоание при ошибка батч инсерта +
 
 геттер репорт добавить пустые значения для не выгруженных поставщиков
+
+
+<clickhouse>
+    <users>
+        <default>
+            <password remove='1' />
+            <password_sha256_hex>4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2</password_sha256_hex>
+        </default>
+    </users>
+</clickhouse>
