@@ -1,40 +1,3 @@
-10.01
-
-Проверка:
-оформить заказ сбп
-pscb_transaction_check - чек записи, получить айди заказа
-
-php yii pscb/payment/transaction-check-request
-получить айди заказа
-выполнить запрос по бд
-php yii pscb/payment/transaction-check-request
-
-531458
-
-9 - подключение оплаты
-
-Тестирование оплаты:
-
-                    $paymentConfirmResponse = PaymentConfirmResponse::findOne($payment->id_order);
-//                    $state = $paymentConfirmResponse->save();
-//                    $payment->is_send_to_bank = true;
-//                    $payment->save();
-
-10.01
-
-Проверка:
-оформить заказ сбп
-pscb_transaction_check - чек записи, получить айди заказа
-
-php yii pscb/payment/transaction-check-request
-получить айди заказа
-выполнить запрос по бд
-php yii pscb/payment/transaction-check-request
-
-531458
-
-9 - подключение оплаты
-
 Тестирование оплаты:
 
                     $paymentConfirmResponse = PaymentConfirmResponse::findOne($payment->id_order);
@@ -77,36 +40,10 @@ php yii pscb/payment/transaction-check-request 433075
 
 ----------------------------------------------------------------
 
+1. Код по работе с яндекс метриков:
+запустить на ревоспе
+рефакторинг
 
-До batch:
-шины 186
-диски 341
+2. Сделать консольную команду для проверки урла по индексации
+3. Принудительный запуск индексации через апи
 
-После:
-шины 116
-диски 250
-http://tyres/pscb/pscb-web/payment-response-success
-
-php yii pscb/payment/transaction-check-request 433075
-
-----------------------------------------------------------------
-Надо доработать:
-
-
-05.02 - 6 часов
-09.02 - 9 часов (или система батч инсерта для геттера)
-До batch:
-шины 186
-диски 341
-
-После:
-шины 116
-диски 250
-
-
-Проставить дефол значения в моделях шин и дисков
-Прописать updated_at +
-проверить на всех типах товаров
-Прописать логирвоание при ошибка батч инсерта +
-
-геттер репорт добавить пустые значения для не выгруженных поставщиков

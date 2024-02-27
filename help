@@ -1026,8 +1026,6 @@ class Model extends Model
 --------------------------------------------------------------------
 Консольные команды для запуска модулей в frontend:
 
-php frontend/web/index.php sitemap vasyazapilimnesitemapda
-
 php frontend/web/index.php postman parseMtmXml
 
 php frontend/web/index.php postman updateCarDb
@@ -1038,7 +1036,7 @@ php frontend/web/index.php xlsgen generate
 
 php frontend/web/index.php xlsgen generateVianor
 
-php frontend/web/index.php xlsgen generateExel
+php frontend/web/index.php xlsgen generateExelpda
 
 php frontend/web/index.php xlsgen generateExelForEuroTransOneDay
 
@@ -1059,6 +1057,8 @@ php yii asta/brands
 php yii getter/parse-one
 
 php yii catalog/counting-goods
+
+php yii sitemap/vasya-zapili-mne-sitemap-da
 
 --------------------------------------------------------------------
 Проверка модуля postman:
@@ -2751,3 +2751,23 @@ date('d.m.Y H:i', $timestamp)
 git reset dir
 
 ----------------------------------------------------------------
+Анаграмма:
+
+$string1 = 'qwerty';
+$string2 = 'ytrewq';
+$array1 = str_split($string1);
+$array2 = str_split($string2);
+if (count($array1) == count($array2) && count(array_intersect($array1, $array2)) == count($array1)) {
+    var_dump('анаграмма');
+} else {
+    var_dump('нет');
+}
+
+----------------------------------------------------------------
+Отследить ajax валидацию yii2:
+
+$('form').on('afterValidateAttribute', function(event, attr, msg) {
+        console.log(event);
+        console.log(attr);
+        console.log(msg);
+    });
