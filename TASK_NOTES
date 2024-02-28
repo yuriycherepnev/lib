@@ -1,41 +1,4 @@
-10.01
-
-Проверка:
-оформить заказ сбп
-pscb_transaction_check - чек записи, получить айди заказа
-
-php yii pscb/payment/transaction-check-request
-получить айди заказа
-выполнить запрос по бд
-php yii pscb/payment/transaction-check-request
-
-531458
-
-9 - подключение оплаты
-
-Тестирование оплаты:
-
-                    $paymentConfirmResponse = PaymentConfirmResponse::findOne($payment->id_order);
-//                    $state = $paymentConfirmResponse->save();
-//                    $payment->is_send_to_bank = true;
-//                    $payment->save();
-
-10.01
-
-Проверка:
-оформить заказ сбп
-pscb_transaction_check - чек записи, получить айди заказа
-
-php yii pscb/payment/transaction-check-request
-получить айди заказа
-выполнить запрос по бд
-php yii pscb/payment/transaction-check-request
-
-531458
-
-9 - подключение оплаты
-
-Тестирование оплаты:
+Тестирование оплаты СБП:
 
                     $paymentConfirmResponse = PaymentConfirmResponse::findOne($payment->id_order);
 //                    $state = $paymentConfirmResponse->save();
@@ -76,7 +39,6 @@ php yii pscb/payment/transaction-check-request 433075
 /pscb/pscb-web/payment-response-success
 
 ----------------------------------------------------------------
-
 
 До batch:
 шины 186
@@ -91,7 +53,6 @@ php yii pscb/payment/transaction-check-request 433075
 
 ----------------------------------------------------------------
 Надо доработать:
-
 
 05.02 - 6 часов
 09.02 - 9 часов (или система батч инсерта для геттера)
@@ -112,11 +73,3 @@ php yii pscb/payment/transaction-check-request 433075
 геттер репорт добавить пустые значения для не выгруженных поставщиков
 
 
-<clickhouse>
-    <users>
-        <default>
-            <password remove='1' />
-            <password_sha256_hex>4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2</password_sha256_hex>
-        </default>
-    </users>
-</clickhouse>
