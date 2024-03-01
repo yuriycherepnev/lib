@@ -15,22 +15,9 @@ CREATE TABLE tutorial.hits
 (
     `time` UInt64,
     `url` String,
-    
-    `Title` String,
-    `GoodEvent` Int16,
-    `EventTime` DateTime,
-    `EventDate` Date,
-    `CounterID` UInt32,
-    `ClientIP` UInt32,
-    `ClientIP6` FixedString(16),
-    `RegionID` UInt32,
-    `UserID` UInt64,
-    `RequestNum` UInt32,
-    `RequestTry` UInt8
 )
 ENGINE = CollapsingMergeTree(sign)
 PRIMARY KEY (author)
-
 
 
 CREATE TABLE tutorial.hits_v1
