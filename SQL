@@ -909,3 +909,16 @@ ON DUPLICATE KEY UPDATE
 `updated_at` = VALUES(`updated_at`),
 `custom` = VALUES(`custom`),
 `sorted` = VALUES(`sorted`)
+
+--------------------------------------------------------------------
+Чистка дублей:
+
+$doubleIds = $this->db->createCommand('
+SELECT `price`.`id` FROM `price`
+    LEFT OUTER JOIN 
+        (SELECT MIN(`price`.`id`) AS `id`, `updatedAt` FROM `price` GROUP BY `updatedAt`, `idPriceType`, `idGood`) AS `tmp` 
+            ON `price`.`id` = `tmp`.`id` 
+        WHERE `tmp`.`id` IS NULL
+')->queryAll();
+
+$this->delete('price', ['in', 'id', array_column($doubleIds, 'id')]);
