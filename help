@@ -2769,3 +2769,34 @@ $('form').on('afterValidateAttribute', function(event, attr, msg) {
         console.log(attr);
         console.log(msg);
     });
+
+----------------------------------------------------------------
+Скачать файл curl:
+
+curl -O 172.27.178.36/tyres1103.sql
+
+----------------------------------------------------------------
+
+select db:
+
+const DB_TYRES_BATCH = 'tyres_batch';
+const DB_TYRES = 'tyres';
+
+private static $db = self::DB_TYRES;
+
+public static function setDb($db)
+{
+    self::$db = $db;
+}
+
+public static function getDb()
+{
+    switch (self::$db) {
+        case self::DB_TYRES:
+            return Yii::$app->db;
+        case self::DB_TYRES_BATCH:
+            return Yii::$app->dbTrucktyres;
+        default:
+            throw new \Exception("Database is not selected");
+    }
+}
