@@ -61,12 +61,13 @@ if (YII_ENV_DEV) {
 , '/^debug/', '/^gii/'];
 
 ----------------------------------------------------------
-работа mysql через консоль:
+работа mysql через консоль + (sql_mode)
 
 mysql -u root -p  (подключение)
 mysql> set global sql_mode='';  (установить глобальную переменную в консоли)
 
 Или постоянно:
+
 Файл конфигурации: /etc/mysql/my.cnf
 [mysqld] 
 sql_mode = NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
@@ -75,6 +76,10 @@ default_authentication_plugin = mysql_native_password
 
 Глобальные переменные mysql:
 SHOW VARIABLES\g
+
+SELECT @@sql_mode;
+SELECT @@global.sql_mode;
+SELECT @@session.sql_mode;
 
 ----------------------------------------------------------
 Загрузить базу данных:
