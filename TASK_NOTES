@@ -1,45 +1,6 @@
-Тестирование оплаты СБП:
+Вордстат
 
-                    $paymentConfirmResponse = PaymentConfirmResponse::findOne($payment->id_order);
-//                    $state = $paymentConfirmResponse->save();
-//                    $payment->is_send_to_bank = true;
-//                    $payment->save();
-
-UPDATE pscb_transaction_check
-SET end_status = 1
-WHERE id_order = 531462;
-
-UPDATE pscb_transaction_check_response
-SET status = 'STATUS_SUCCESS',
-state = 'end',
-errorCode = Null,
-payment = '{"status":"STATUS_SUCCESS","requestId":"DEMO-240118-2128-E0D599","payment":{"orderId":"531462","transactionId":"531462","showOrderId":"531462","paymentId":"531462","account":"МихайловИлья","amount":10924,"state":"end","type":"payment","marketPlace":144611094,"paymentMethod":"sbp","stateDate":"2024-02-02T13:23:06.430+03:00","lastError":{"code":"0","subCode":"00","description":"Платежзавершен"},"email":"chernovar@gmail.com","phone":"9319610471"}}'
-WHERE id_order = 531462;
-UPDATE pscb_transaction_check
-SET end_status = 1
-WHERE id_order = 531462;
-
-UPDATE pscb_transaction_check_response
-SET status = 'STATUS_SUCCESS',
-state = 'end',
-errorCode = Null,
-payment = '{"status":"STATUS_SUCCESS","requestId":"DEMO-240118-2128-E0D599","payment":{"orderId":"531462","transactionId":"531462","showOrderId":"531462","paymentId":"531462","account":"МихайловИлья","amount":10924,"state":"end","type":"payment","marketPlace":144611094,"paymentMethod":"sbp","stateDate":"2024-02-02T13:23:06.430+03:00","lastError":{"code":"0","subCode":"00","description":"Платежзавершен"},"email":"chernovar@gmail.com","phone":"9319610471"}}'
-WHERE id_order = 531462;
-
-php yii pscb/pscb-web/payment-response-success
-
-php yii pscb/pscb-web/payment-response-success
-
-/pscb/pscb-web/payment-response-success
-
-
-http://tyres/pscb/pscb-web/payment-response-success
-
-php yii pscb/payment/transaction-check-request 433075
-/pscb/pscb-web/payment-response-success
-
-----------------------------------------------------------------
-
-1. Зарегистрировать приложение в гугле
-2. Получить данные по апи гугл
-3. Проверить ссылку на индекс по апи гугл
+Оценка спроса wordstat
+ - запрос по категориям
+ - частотность по вордстату (https://wordstat-2.yandex.ru/)+
+ - частотность по вебмастеру (webmaster - Мониторинг запросов + google)
