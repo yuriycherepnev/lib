@@ -1,6 +1,16 @@
 Вордстат
 
-Оценка спроса wordstat
+Оценка спроса wordstat:
  - запрос по категориям
- - частотность по вордстату (https://wordstat-2.yandex.ru/)+
+ - частотность по вордстату https://wordstat-2.yandex.ru
  - частотность по вебмастеру (webmaster - Мониторинг запросов + google)
+
+---------------------------------------------------------- 
+
+Yandex config:
+
+return [
+    'token' => 'y0_AgAAAAB0TpqKAAtcAwAAAAD8ZDUCAABRe31LmbpFeb7IM7hT-TJNvWfGXA',
+    'userId' => '1951308426',
+    'hostId' => 'https:zatochka-dimitrovgrad.ru:443'
+];
