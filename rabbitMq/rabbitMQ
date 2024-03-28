@@ -4,7 +4,7 @@ guest:guest
 
 --------------------------------------------------------------------
 
-Docker file rabbitMq:
+Docker  rabbitMq:
 
 version: "3.2"
 services:
