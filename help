@@ -1952,7 +1952,7 @@ https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/0f087af174bb8c60f5e1
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b17d31bd651c1bf331f2cb4239fa058629318e52
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/256c9113fe3420e6d72940b0ac68876582db3eb6
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/5d8de7a42396182a5c1df8b01fd03c4bfd1697d2
 
 7787692957c779ca794c5708ee9962674aa475d2
 
@@ -2805,3 +2805,8 @@ public static function getDb()
             throw new \Exception("Database is not selected");
     }
 }
+
+----------------------------------------------------------------
+Выводе json:
+
+$message = json_encode($decode, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
