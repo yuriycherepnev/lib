@@ -59,3 +59,26 @@ ALTER TABLE urls DELETE WHERE url = 'http://tyres/2'
         echo "<pre>";
         var_dump($result);
         die;
+
+
+CREATE TABLE urls (
+    `time` UInt64,
+    `url` String,
+    `array` Array(UInt8)
+)
+ENGINE = MergeTree()
+PRIMARY KEY (url)
+
+
+INSERT INTO urls VALUES
+ (1708514658, 'http://tyres3', [1, 2, 34]),
+ (1708514658, 'http://tyres/2', [1, 2, 34])
+
+
+       $client = \Yii::$app->clickhouse;
+        $sql = "SHOW DATABASES LIKE '%de%'";
+        $result = $client->createCommand($sql)->queryAll();
+
+        echo '<pre>';
+        var_dump($result);
+        die;
