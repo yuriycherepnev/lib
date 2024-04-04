@@ -2807,6 +2807,14 @@ public static function getDb()
 }
 
 ----------------------------------------------------------------
+Json encode в Utf 8 / pretty print:
+
+$decode = json_decode($json, true);
+json_encode($text, JSON_UNESCAPED_UNICODE);
+json_encode($text, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+json_encode($decode, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+
 Выводе json:
 
 $message = json_encode($decode, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+

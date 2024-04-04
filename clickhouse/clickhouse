@@ -1,6 +1,10 @@
 clickhouse-client --password root --query "INSERT INTO tutorial.hits FORMAT TSV" --max_insert_block_size=100000 < ~/database/hits_v1.tsv
 clickhouse-client --password root --query "INSERT INTO tutorial.visits FORMAT TSV" --max_insert_block_size=100000 < ~/database/visits_v1.tsv
 
+clickhouse-client --password root --query "SELECT COUNT(*) FROM tutorial.visits"
+
+clickhouse-client --password root --query "CREATE DATABASE IF NOT EXISTS seo"
+
 SELECT COUNT(*) FROM tutorial.hits
 SELECT COUNT(*) FROM tutorial.visits
 
@@ -8,7 +12,6 @@ source ~/database/hits.tsv;
 
 SELECT COUNT(*) FROM tutorial.hits
 SELECT COUNT(*) FROM tutorial.visits
-
 
 
 CREATE TABLE tutorial.hits
@@ -161,3 +164,162 @@ ENGINE = MergeTree()
 PARTITION BY toYYYYMM(EventDate)
 ORDER BY (CounterID, EventDate, intHash32(UserID))
 SAMPLE BY intHash32(UserID)
+
+*********************************************************************************
+
+clickhouse-client --multiline --multiquery
+
+insert into test_array values ([1,2],[11,22],'Text');
+insert into test_array values ([5,6],[55,66],'Text');
+
+SELECT * FROM seo.test_array values;
+
+
+CREATE TABLE seo.search_report
+(
+    `id_report` UInt64,
+    `phrase` String,
+    `date` UInt64,
+    `id_geo` Array(UInt8)
+    `searched_with` Nested(
+        phrase String,
+        shows String),
+    `searched_also` Nested(
+        phrase String,
+        shows String),
+)
+ENGINE = MergeTree()
+ORDER BY (id_report)
+
+
+CREATE TABLE seo.search_report
+(
+    `id_report` UInt64,
+    `phrase` String,
+    `time` UInt64,
+    `id_geo` Array(UInt8),
+    `searched_with` Nested(
+        phrase String,
+        shows UInt8),
+        
+    `searched_also` Nested(
+        phrase String,
+        shows UInt8),
+
+) ENGINE = MergeTree()
+ORDER BY (id_report)
+
+
+insert into seo.search_report values (
+    666777888, 
+    'Заточка хуечка', 
+    666777888, 
+    [10, 30], 
+    ['Заточка хуечка', 'Заточка хуечка2'], 
+    [300, 310], 
+    ['Заточка хуечка', 'Заточка хуечка2'], 
+    [300, 310], 
+);
+
+*********************************************************************************
+
+select * from seo.search_report
+
+drop table seo.search_report
+
+CREATE TABLE seo.search_report
+(
+    `id_report` UInt64,
+    `searched_also` Nested(
+        phrase String,
+        shows String),
+) ENGINE = MergeTree()
+ORDER BY (id_report)
+
+
+insert into seo.search_report values (
+    666777888, 
+    ['sd', 'sd', 'sd'],
+    ['sd', 'sd', 'sd']
+    );
+
+
+*********************************************************************************
+
+select * from seo.search_report
+
+drop table seo.search_report
+
+CREATE TABLE seo.search_report
+(
+    `id_report` UInt64,
+    `phrase` String,
+    `time` UInt64,
+    `id_geo` Array(UInt8),
+) ENGINE = MergeTree()
+ORDER BY (id_report)
+
+insert into seo.search_report values (
+    666777888, 
+    'Заточка хуечка', 
+    666777888, 
+    [10, 30], 
+    ['Заточка хуечка', 'Заточка хуечка2'], 
+    [300, 310],
+    ['Заточка хуечка', 'Заточка хуечка2'], 
+    [300, 310]
+);
+
+
+insert into seo.search_report values (
+    666777888, 
+    'Заточка хуечка', 
+    666777888, 
+    [10, 30]
+);
+
+*********************************************************************************
+
+select * from seo.search_report
+
+drop table seo.search_report
+
+CREATE TABLE seo.search_report
+(
+    `id_report` UInt64,
+    `searched_with` Nested(
+        phrase String,
+        shows UInt8),
+
+) ENGINE = MergeTree()
+ORDER BY (id_report)
+
+*********************************************************************************
+
+$client = \Yii::$app->clickhouse;
+
+$sql = "CREATE TABLE seo.search_report(
+    `id_report` UInt64,
+    `phrase` String,
+    `time` UInt64,
+    `id_geo` Array(UInt8),
+    `searched_with` Nested(phrase String,shows UInt8),
+    `searched_also` Nested(phrase String,shows UInt8)
+    ) ENGINE = MergeTree() ORDER BY (id_report)";
+
+$client->createCommand($sql)->execute();
+
+$query = $client->createCommand()->insert('seo.search_report', [
+    'id_report' => 666777888,
+    'phrase' => 'Заточка хуечка',
+    'time' => 666777888,
+    'id_geo' => '[10, 30]',
+    'searched_with.phrase' => '[10, 30]',
+    'searched_with.shows' => '[10, 30]',
+    'searched_also.phrase' => '[10, 30]',
+    'searched_also.shows' => '[10, 30]',
+]);
+
+echo '<pre>';
+var_dump($query->getRawSql());
+die;
