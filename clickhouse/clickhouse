@@ -323,3 +323,11 @@ $query = $client->createCommand()->insert('seo.search_report', [
 echo '<pre>';
 var_dump($query->getRawSql());
 die;
+
+*********************************************************************************
+
+drop table seo.wordstat_report
+
+drop table seo.wordstat_searched_with
+
+drop table seo.wordstat_searched_also
