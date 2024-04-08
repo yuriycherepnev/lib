@@ -30,6 +30,8 @@ return [
 }
 
 Из дома:
-18, 22
+18, 22,
+4, 5, 9
 
 https://developers.google.com/analytics/devguides/reporting/data/v1/rest?hl=ru
+
