@@ -70,7 +70,6 @@
 Одиночка (Singleton)
 Статическая Фабрика (Static Factory)
 
-Компоновщик (Composite)
 Преобразователь Данных (Data Mapper)
 Внедрение Зависимости (Dependency Injection)
 Фасад (Facade)
@@ -94,8 +93,8 @@
 Посетитель (Visitor)
 
 ----------------------------------------------------------
-Готово:
 
 Адаптер (Adapter / Wrapper) +
 Мост (Bridge) +
 Декоратор (Decorator) +
+Компоновщик (Composite) +
