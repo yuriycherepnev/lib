@@ -24,7 +24,7 @@ class PaperBook implements Book
     }
 }
 
-interface Scroll
+interface EBook
 {
     public function unlock();
     public function pressNext();
@@ -33,26 +33,26 @@ interface Scroll
 
 class BookAdapter implements Book
 {
-    protected Scroll $scroll;
-    public function __construct(Scroll $scroll)
+    protected EBook $ebook;
+    public function __construct(EBook $ebook)
     {
-        $this->scroll = $scroll;
+        $this->ebook = $ebook;
     }
     public function open(): void
     {
-        $this->scroll->unlock();
+        $this->ebook->unlock();
     }
     public function turnPage(): void
     {
-        $this->scroll->pressNext();
+        $this->ebook->pressNext();
     }
     public function getPage(): int
     {
-        return $this->scroll->getPage()[0];
+        return $this->ebook->getPage()[0];
     }
 }
 
-class OldScroll implements Scroll
+class ReadBook implements EBook
 {
     private int $page = 1;
     private int $totalPages = 100;
@@ -73,7 +73,7 @@ $book = new PaperBook();
 $book->open();
 $book->turnPage();
 
-$oldScroll = new OldScroll();
-$book = new BookAdapter($oldScroll);
+$readBook = new ReadBook();
+$book = new BookAdapter($readBook);
 $book->open();
 $book->turnPage();
