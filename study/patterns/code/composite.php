@@ -1,11 +1,11 @@
 <?php
 
-interface Renderable
+interface Renderer
 {
     public function render(): string;
 }
 
-class Form implements Renderable
+class Form implements Renderer
 {
     private array $elements;
     public function render(): string
@@ -16,13 +16,13 @@ class Form implements Renderable
         }
         return $formCode . '</form>';
     }
-    public function addElement(Renderable $element): void
+    public function addElement(Renderer $element): void
     {
         $this->elements[] = $element;
     }
 }
 
-class InputElement implements Renderable
+class InputElement implements Renderer
 {
     public function render(): string
     {
@@ -30,7 +30,7 @@ class InputElement implements Renderable
     }
 }
 
-class TextElement implements Renderable
+class TextElement implements Renderer
 {
     private string $text;
     public function __construct(string $text)
