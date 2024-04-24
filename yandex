@@ -2,7 +2,11 @@ URL для получения токена:
 
 https://oauth.yandex.ru/authorize?response_type=token&client_id=a133f5d0d942476face5b556c6fddec4
 
+https://oauth.yandex.ru/authorize?response_type=token&client_id=89e6560181434fabb84aa65a7b938980
+
 ----------------------------------------------------------------
 Адрес песочницы 4 версия:
 
 https://yandex.ru/dev/direct/doc/dg-v4/concepts/sandbox-access.html
+
+

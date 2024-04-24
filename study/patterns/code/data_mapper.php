@@ -20,21 +20,21 @@ class DataMapper
         $this->db = $db;
     }
 
-    public function saveFoo(Data &$foo): void
+    public function saveData(Data &$data): void
     {
-        if ($foo->id) {
+        if ($data->id) {
             $sql = "UPDATE foo SET bar = :bar WHERE id = :id";
             $statement = $this->db->prepare($sql);
-            $statement->bindParam("bar", $foo->bar);
-            $statement->bindParam("id", $foo->id);
+            $statement->bindParam("bar", $data->bar);
+            $statement->bindParam("id", $data->id);
             $statement->execute();
         }
         else {
             $sql = "INSERT INTO foo (bar) VALUES (:bar)";
             $statement = $this->db->prepare($sql);
-            $statement->bindParam("bar", $foo->bar);
+            $statement->bindParam("bar", $data->bar);
             $statement->execute();
-            $foo->id = $this->db->lastInsertId();
+            $data->id = $this->db->lastInsertId();
         }
     }
 }
@@ -44,4 +44,4 @@ $foo = new Data();
 $foo->bar = 'baz';
 
 $mapper = new DataMapper($db);
-$mapper->saveFoo($foo);
+$mapper->saveData($foo);
