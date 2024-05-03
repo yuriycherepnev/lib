@@ -61,7 +61,7 @@
 Одиночка (Singleton)
 Статическая Фабрика (Static Factory)
 
-Преобразователь Данных (Data Mapper)
+
 Внедрение Зависимости (Dependency Injection)
 Фасад (Facade)
 Текучий Интерфейс (Fluent Interface)
@@ -89,3 +89,4 @@
 Мост (Bridge) +
 Декоратор (Decorator) +
 Компоновщик (Composite) +
+Преобразователь Данных (Data Mapper) +

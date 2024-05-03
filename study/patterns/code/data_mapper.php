@@ -4,11 +4,6 @@ class Data
 {
     public string $id;
     public string $bar;
-
-    public function do_something(): void
-    {
-        $this->bar .= uniqid();
-    }
 }
 
 class DataMapper
@@ -28,8 +23,7 @@ class DataMapper
             $statement->bindParam("bar", $data->bar);
             $statement->bindParam("id", $data->id);
             $statement->execute();
-        }
-        else {
+        } else {
             $sql = "INSERT INTO foo (bar) VALUES (:bar)";
             $statement = $this->db->prepare($sql);
             $statement->bindParam("bar", $data->bar);
