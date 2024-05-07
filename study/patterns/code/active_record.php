@@ -11,11 +11,6 @@ class ActiveRecord
         $this->db = $db;
     }
 
-    public function do_something(): void
-    {
-        $this->bar .= uniqid();
-    }
-
     public function save(): void
     {
         if ($this->id) {

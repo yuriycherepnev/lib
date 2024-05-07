@@ -166,3 +166,13 @@ AND calldate > '2024-04-11' AND calldate < '2024-04-13'
 Скачать файл разговора:
 
 scp root@172.27.100.240:/var/spool/asterisk/monitor/2022/09/13/in-3279474-9119001990-20220913-155327-1663073607.3127000.WAV /home/new-root/projects
+
+--------------------------------------------------------------------
+Тестирование модального окна:
+callController
+235 строка
+
+$callInfo['src'] = '9214466933';
+$callInfo['linkedid'] = '1714635770.8884272';
+$callInfo['channel'] = '300';
+$callInfo['userChannel'] = '400';
