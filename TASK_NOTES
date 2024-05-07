@@ -62,4 +62,40 @@ https://developers.google.com/analytics/devguides/reporting/data/v1/rest?hl=ru
 
 ---------------------------------------------------------- 
 
-добавить ренж дат для вордстата - статистика высчитывается по умолчанию за прошедний месяц
+раскидать часы за апрель
+описать логику цен на 4 колесах
+
+---------------------------------------------------------- 
+Генерация файлов брендов по поставщикам:
+
+       $companies = [];
+        foreach ($actualCustoms as $idCustom) {
+            $custom = Customs::findOne($idCustom);
+            $companies[$custom->company->name][] = $idCustom;
+        }
+
+        $headerKeys = array_keys($companies);
+        $data = [];
+        $data[] = array_merge([''], $headerKeys);
+        foreach ($brandCustomCountData as $brand => $customData) {
+            $companyData = [];
+            foreach ($companies as $companyName => $customs) {
+                $companyData[$companyName] = '-';
+            }
+            foreach ($companies as $companyName => $customs) {
+                foreach ($customs as $idCustom) {
+                    if (isset($customData[$idCustom]) && $customData[$idCustom]) {
+                        $companyData[$companyName] = '+';
+                    }
+                }
+            }
+            $brandData = array_merge([$brand], array_values($companyData));
+            $data[] = $brandData;
+        }
+
+        $file = fopen('getter.csv', 'w');
+
+        foreach ($data as $array) {
+            fputcsv($file, $array);
+        }
+        fclose($file);
