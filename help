@@ -2824,3 +2824,9 @@ nginx config:
 sudo nano /etc/nginx/sites-available/your_domain
 
 sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+
+----------------------------------------------------------------
+Удалить файл из коммита:
+
+git rm --cached package-lock.json
+git commit
