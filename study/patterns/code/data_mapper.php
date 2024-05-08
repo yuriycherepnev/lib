@@ -1,44 +1,41 @@
 <?php
 
-class User
+class Data
 {
-    public static function fromState(array $state): User
-    {
-        return new self(
-            $state['username'],
-            $state['email']
-        );
-    }
-    public function __construct(private string $username, private string $email)
-    {
-    }
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
+    public string $id;
+    public string $bar;
 }
 
-class UserMapper
+class DataMapper
 {
-    public function findById(int $id): ?User
+    protected PDO $db;
+
+    public function __construct(PDO $db)
     {
-        /* sql query */
-        if (isset($this->data[$id])) {
-            return $this->mapRowToUser($this->data[$id]);
+        $this->db = $db;
+    }
+
+    public function saveData(Data &$data): void
+    {
+        if ($data->id) {
+            $sql = "UPDATE foo SET bar = :bar WHERE id = :id";
+            $statement = $this->db->prepare($sql);
+            $statement->bindParam("bar", $data->bar);
+            $statement->bindParam("id", $data->id);
+            $statement->execute();
+        } else {
+            $sql = "INSERT INTO foo (bar) VALUES (:bar)";
+            $statement = $this->db->prepare($sql);
+            $statement->bindParam("bar", $data->bar);
+            $statement->execute();
+            $data->id = $this->db->lastInsertId();
         }
-        return null;
-    }
-    private function mapRowToUser(array $row): User
-    {
-        return User::fromState($row);
     }
 }
+$db = new PDO("sqlite:foo.db");
+//Insert
+$foo = new Data();
+$foo->bar = 'baz';
 
-$mapper = new UserMapper();
-$user = $mapper->findById(1);
-echo $user->getUsername();
-echo $user->getEmail();
+$mapper = new DataMapper($db);
+$mapper->saveData($foo);
