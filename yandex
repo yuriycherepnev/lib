@@ -10,3 +10,26 @@ https://oauth.yandex.ru/authorize?response_type=token&client_id=89e6560181434fab
 https://yandex.ru/dev/direct/doc/dg-v4/concepts/sandbox-access.html
 
 
+---------------------------------------------------------- 
+
+Yandex config:
+
+return [
+    'token' => 'y0_AgAAAAB0TpqKAAtcAwAAAAD8ZDUCAABRe31LmbpFeb7IM7hT-TJNvWfGXA',
+    'userId' => '1951308426',
+    'hostId' => 'https:zatochka-dimitrovgrad.ru:443'
+];
+
+{
+  "type": "service_account",
+  "project_id": "zatochka-415613",
+  "private_key_id": "5101ba30f9679b255626fad539a9989637a2b428",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCd55lEe9itQ61S\nd5Lk6KRg+n6vhGWVfLrOLVAgb9Ipa1WmPfyz9A+qqFudGMI1DbVww6B6rBcC118W\nzGZpTaeikwLvbpoMXKFjx5paF+UzPElMyulYjFVHDljuSKoGHpXdSrr2efgjUqsv\nqHXsHO7auayxM6r31EarLhMntWHDb2bUtEr44iyXhB1tcZHyI9SaGyY1aqiPuq7j\noKwYaM6/3dbwKvlidtfvQ1Gzf6AMUcCe9AJDg4qKPQXmej9/vb3USvGs2bHsVH4v\nghHg6UfjhsIxg/TVGy3sobyjBQMAP+kU+WVbcS1N/Si2O7m50CAni/dj6fGuwb3i\naHPgv5idAgMBAAECggEAELihxlrHCzILfJwk9hCct5hPKg7/IuFeds7dmVG+E5zG\nKSCPTg8eSZgie3RPvIaDHDnbGKJ4nVhpPWTPw37xrYmb2fcAYSa+AG72rWuyXcaY\njIVASJwzu56NVE5lkthSTmjHe6pW2Ia8kgNo2WQG9yqKWwl5pVzZTu9GIAJZI/TR\nfZSj6kUyHx8oYZDV7Bq4fT1NljMbmfMjeH3LCenT24W+TwuJ8IKs5QKQ+nEdeKTK\niWFVuVTDPqdWJ21mqf40WiBELB+eYRhdAIGM/Zdy+xHY+4mr3CWW75oP/IcMRWZe\nPgkTUHdFw0eT2pPhFXb1TxyGmItdKN6msKILN3GjAQKBgQDKdurrawDnQzbWesvJ\ncq3Q7PKqk3iUIjfpsGyT9Kb4Kc5HjqLphULdHHpVSpBT/nF3eI23nKywCdHvbc1p\n4m3+IsiKx/DotgLuMhDhcu1Z3EmdeQ0xcdGea1GnO1W57tTnHQSuOzZwHL6FeLrQ\nKBQjg8UFkxeUFVx71gymQ9e5bQKBgQDHqF5YEb/DLZixmaE6X0VyyIlRvyKOtURN\n2GnR6p+KjENuJy5QowuljQN9erYM/Dvx3hrHYYvgbNiwHfKyOYkPNfyi7s2LXLpk\nucUXFSR8LIneI+4nXCbFwn5INuGSFseuvDkhAp+6lwFJ5IpeO2pvzOBCokVkYL4/\nRW79gw2N8QKBgQC6XCN4dpHqTPAZFAaocqqTeMcVQ5DlqWmV7RLETZmzK6f4Lc6+\n7C7Tn/bqsyuOZNLEiW7I56n8j81xebxuDkH4fsPhGpEhYwfngKYRHtxirmYEUPxX\n2tB75YTPTcpmzvOhmBBK364IHC0yZiJun7WJyyx7KR227MKoKiqSkDftMQKBgQCO\nLGriM+FlzvZIoamZs3X0wrBmMcEd9h5pgI36GST6t97cdbIZYcFNZhjyJYu1u3fE\nR/CxwdilO10iLHFCUI408rCwJXTgpGtmhpK+WSPd+KlEMjnIdWp2sITUT6BZMzeG\nSio0Q3YSnK0iPUf6yjyE2FNpn7viOrG+xGbAx63DQQKBgQCHRFKNQkSwSKO4lx0L\nY8XwkeVkRReZmoILAq8dn4hUsfQZV8c495oyrOwGdLP/v8Jq/iM6fi2u6nZj4q5Z\naq4HyWP8q0mUAqnMkslOwJViqUi7Yo9QqnhQrR8+vVME0hyUSx6UK2gS9TVGTDD0\nLiT+2BL55fVuQDZTffvWxN2vwQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "zatochka2@zatochka-415613.iam.gserviceaccount.com",
+  "client_id": "105147550610950329953",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/zatochka2%40zatochka-415613.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
