@@ -1551,8 +1551,6 @@ admin
 md5:
 5416d7cd6ef195a0f7622a9c56b55e84
 
-
-
 --------------------------------------------------------------------
 Посмотреть часы задачи:
 
@@ -2823,3 +2821,9 @@ nginx config:
 sudo nano /etc/nginx/sites-available/your_domain
 
 sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+
+----------------------------------------------------------------
+Удалить файл из коммита:
+
+git rm --cached package-lock.json
+git commit
