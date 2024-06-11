@@ -1,6 +1,5 @@
-1 Селект с кнопок и переход по ссылке
-
-conticrosscontact
+2 вывод популярных запросов
+3 вывод сообщения если ничего не обнаружено
 
 Необходимы доработки:
 
@@ -9,7 +8,4 @@ conticrosscontact
 Выдавать больше гудов?
 (доработка поиска)
 
-Вордстат доработки:
-разбить запросы по 10 фраз
-запрашивать автоматически не полученные отсчеты
-добавить наименование регионов в search_geo
+https://kibana.tyres.spb.ru/app/kibana#/doc/7b462080-0b74-11ef-9596-05b6199370e8/error_log-2024.06.10/doc?id=SdLdAJABmD2x2kkIb4ji&_g=(refreshInterval:(pause:!t,value:0),time:(from:now-12h,mode:quick,to:now))
