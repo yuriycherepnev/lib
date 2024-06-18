@@ -176,3 +176,10 @@ $callInfo['src'] = '9214466933';
 $callInfo['linkedid'] = '1714635770.8884272';
 $callInfo['channel'] = '300';
 $callInfo['userChannel'] = '400';
+
+--------------------------------------------------------------------
+8iNsHmpeS1
+
+ssh -v -v root@172.27.100.240
+
+ssh root@172.27.100.240

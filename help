@@ -2528,6 +2528,28 @@ breakpoint-xl: 1200px;
 }
 
 --------------------------------------------------------------------
+Grid скрыть невлезающие блоки:
+
+@media (min-width: 767px) and (max-width: 992px) {
+    .search-panel-goods {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-auto-rows: 0;
+        overflow-y: hidden;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .search-panel-goods {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-auto-rows: 0;
+        overflow-y: hidden;
+        grid-gap: 0;
+    }
+}
+
+--------------------------------------------------------------------
 Grid:
 
 .sale-point-wrapper {
@@ -2563,7 +2585,6 @@ Grid CSS Pinterest Layout:
 
 grid-column-start: 2;
 grid-column-end: 6;
-
 
 --------------------------------------------------------------------
 Подсчет элементов массива:
@@ -2821,9 +2842,3 @@ nginx config:
 sudo nano /etc/nginx/sites-available/your_domain
 
 sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
-
-----------------------------------------------------------------
-Удалить файл из коммита:
-
-git rm --cached package-lock.json
-git commit
