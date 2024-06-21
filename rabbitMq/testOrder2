@@ -1,0 +1,32 @@
+[{
+  "type": "order",
+  "body": {
+    "id": null,
+    "id1c": "1weqwsadf22",
+    "id1cFull": "b89ef299-041f-11ec-b3c0-ac1f6b4daebb",
+    "idStatus": 7,
+    "statusComment": "отменен по согласованию с клиентом",
+    "paymentMethod": 2,
+    "marking": 1,
+    "comment": "test order22",
+    "dateCreate": "2021-11-18 13:26:26",
+    "idContractor": "0193a5a7-5dec-11ea-b3ad-ac1f6b4daebb",
+    "idConsignee": "0193a5a7-5dec-11ea-b3ad-ac1f6b4daebb",
+    "idOrganisation": "afbe814e-bf6b-43b0-89b2-23b6d62a7be9",
+    "delivery": {
+      "idType": 1,
+      "idStore": "36a5d51b-c011-11e8-8123-001e675ad9d1",
+      "address": null,
+      "date": "2021-11-18 13:26:26"
+    },
+    "goods": [
+      {
+        "id": "e513e549-8847-11e9-b3a8-ac1f6b4daebb",
+        "qnt": 4,
+        "price": 6299,
+        "name": "R18 225/45 95T Yokohama Ice Guard stud IG65 Шип.",
+        "idPriceType": "1f9bd1d3-39f5-11e5-80cd-00155d849f05"
+      }
+    ]
+  }
+}]

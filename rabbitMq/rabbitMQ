@@ -2,6 +2,9 @@
 http://127.0.0.1:15672/
 guest:guest
 
+Зайти в docker rabbit:
+http://127.0.0.1:15673/
+
 --------------------------------------------------------------------
 
 Docker  rabbitMq:
@@ -80,3 +83,11 @@ sudo systemctl start rabbitmq
 
 Автозагрузка:
 sudo systemctl enable rabbitmq 
+
+--------------------------------------------------------------------
+Алгоритм запуска тестирования рэббита:
+
+запустить рэббит в докере с помощью docker-compose.yml
+запустить rabbit consumer в b2b
+подставить корректный файл orderRabbit.json
+выполнить команду php yii rabbit/test-order
