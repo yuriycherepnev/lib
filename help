@@ -1824,6 +1824,7 @@ git clone ssh://gituser@git.tyres.spb.ru/Exclusive/back.b2b.tyres.spb.ru.git
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/tyres_satellites.git
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/1c_exchange.git
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/new.revosp.com.git
+git clone ssh://gituser@git.tyres.spb.ru/Exclusive/back.b2b.tyres.spb.ru.git
 
 git clone https://github.com/FreePBX/core.git
 
