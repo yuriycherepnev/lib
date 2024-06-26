@@ -1,8 +1,12 @@
-поднять мантикору дома 
+упростить код для своего понимания
 
-оценить что под снос на тайресе
-приступить к реализации
+сгенерировать индекс в мантикоре
+настроить простой поиск
 
 18.02
 проверка реквест 2 часа
 
+
+composer require manticoresoftware/manticoresearch-php:3.0
+
+composer remove manticoresoftware/manticoresearch-php:
