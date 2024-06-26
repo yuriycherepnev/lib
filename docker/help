@@ -37,6 +37,10 @@ docker run -it --name MyJava openjdk
 
 docker-compose up --build
 
+запуск контейнера в фоновом режиме:
+
+docker-compose up --build -d
+
 -------------------------------------------------------------------
 
 docker ps - список запущенных контейнеров
