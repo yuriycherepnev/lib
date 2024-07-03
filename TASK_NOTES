@@ -1,12 +1,13 @@
 упростить код для своего понимания
-
 сгенерировать индекс в мантикоре
 настроить простой поиск
 
-18.02
-проверка реквест 2 часа
+По сео:
+не работает сео каталога
+маршрут - выбор кастомного маршрута?
+подгразука параметров при создании категории
+добавить кложенность категорий
 
+ужасный непонятный визуал
 
-composer require manticoresoftware/manticoresearch-php:3.0
-
-composer remove manticoresoftware/manticoresearch-php:
+http://localhost/web/export/download?good_alias=tyre&file_key=a0e730ef734f62d3788c3c4d9cfc29c1&settings%5Bid_store%5D=31%2C21&format=csv
