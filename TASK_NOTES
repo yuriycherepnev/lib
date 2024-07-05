@@ -1,13 +1,27 @@
+Поиск:
 упростить код для своего понимания
 сгенерировать индекс в мантикоре
 настроить простой поиск
 
 По сео:
 не работает сео каталога
-маршрут - выбор кастомного маршрута?
 подгразука параметров при создании категории
-добавить кложенность категорий
+не работает сео каталог -> бренд -> модель
 
-ужасный непонятный визуал
+В работе:
+разобрать структуру кликхауса
+группы лежат в mysql а айтемы в кликхаусе?
+(дублирование данных?)
 
-http://localhost/web/export/download?good_alias=tyre&file_key=a0e730ef734f62d3788c3c4d9cfc29c1&settings%5Bid_store%5D=31%2C21&format=csv
+последующие миграции переписывают предыдущие (зачем?)
+
+
+мои доработки:
+нормальный список категорий
+реализация визуала вложенности
+
+
+https://b2b.tyres.spb.ru/web/export/download?file_key=aa79be7b96b2ea37c5c95207379b1f95&good_alias=tyre&format=xml&settings[id_store]=IP,BA,2I,2V,P1,49,IL,2H,G1,G6,G2,2W,G5,2R,IT,38,PP,2M,2N,IS,G4,2O
+
+
+https://b2b.tyres.spb.ru/web/export/download?good_alias=tyre&file_key=386b20616130886377be99ee57db6e6b&settings%5Bid_store%5D=31%2C21&format=xml
