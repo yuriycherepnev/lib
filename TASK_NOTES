@@ -4,24 +4,60 @@
 настроить простой поиск
 
 По сео:
-не работает сео каталога
+не работает сео модели
+(отвалились хлебные крошки)
 подгразука параметров при создании категории
-не работает сео каталог -> бренд -> модель
+(предзагрузка параметров миграцией?)
+
 
 В работе:
-разобрать структуру кликхауса
 группы лежат в mysql а айтемы в кликхаусе?
 (дублирование данных?)
 
+
+
+миграция данных из существующего сео?
 последующие миграции переписывают предыдущие (зачем?)
+уменьшить количество миграций?
 
 
 мои доработки:
 нормальный список категорий
 реализация визуала вложенности
+(отображение уровня вложенности)
 
 
-https://b2b.tyres.spb.ru/web/export/download?file_key=aa79be7b96b2ea37c5c95207379b1f95&good_alias=tyre&format=xml&settings[id_store]=IP,BA,2I,2V,P1,49,IL,2H,G1,G6,G2,2W,G5,2R,IT,38,PP,2M,2N,IS,G4,2O
+По коду:
+2 идентичных класса? ValidationFailedException RecordingFailedException
+
+Проверить таблицу parameter после заполнения сео ?
+
+однозначно лойс за снос старого кода:
+setSeoMask
+initReplikaSeo
+formatDescription
+getAllSeo
+SubstitutionString
+getDefaultCatalogSeo
+getSeoText
+getDefaultBrandModelSeo
+SeoCar
+SeoConsumables
+SeoNews
+SeoController - стал меньше и читабельнее
 
 
-https://b2b.tyres.spb.ru/web/export/download?good_alias=tyre&file_key=386b20616130886377be99ee57db6e6b&settings%5Bid_store%5D=31%2C21&format=xml
+За что не лойс:
+
+
+Обьясни что делает?
+replaceCriterionGroup
+ChoiceExplanation
+GroupMatch и RequestContext
+
+template file migration.php
+
+Данные миграции в будущем надо снести, очень сильно путает.
+tyres/console/models/seo/migrations/DiskFiller.php
+
+посмотреть остальные изменения коммита
