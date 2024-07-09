@@ -1,13 +1,63 @@
+Поиск:
 упростить код для своего понимания
 сгенерировать индекс в мантикоре
 настроить простой поиск
 
 По сео:
-не работает сео каталога
-маршрут - выбор кастомного маршрута?
+не работает сео модели
+(отвалились хлебные крошки)
 подгразука параметров при создании категории
-добавить кложенность категорий
+(предзагрузка параметров миграцией?)
 
-ужасный непонятный визуал
 
-http://localhost/web/export/download?good_alias=tyre&file_key=a0e730ef734f62d3788c3c4d9cfc29c1&settings%5Bid_store%5D=31%2C21&format=csv
+В работе:
+группы лежат в mysql а айтемы в кликхаусе?
+(дублирование данных?)
+
+
+
+миграция данных из существующего сео?
+последующие миграции переписывают предыдущие (зачем?)
+уменьшить количество миграций?
+
+
+мои доработки:
+нормальный список категорий
+реализация визуала вложенности
+(отображение уровня вложенности)
+
+
+По коду:
+2 идентичных класса? ValidationFailedException RecordingFailedException
+
+Проверить таблицу parameter после заполнения сео ?
+
+однозначно лойс за снос старого кода:
+setSeoMask
+initReplikaSeo
+formatDescription
+getAllSeo
+SubstitutionString
+getDefaultCatalogSeo
+getSeoText
+getDefaultBrandModelSeo
+SeoCar
+SeoConsumables
+SeoNews
+SeoController - стал меньше и читабельнее
+
+
+За что не лойс:
+
+
+Обьясни что делает?
+replaceCriterionGroup
+ChoiceExplanation
+GroupMatch и RequestContext
+
+template file migration.php
+
+Данные миграции в будущем надо снести, очень сильно путает.
+tyres/console/models/seo/migrations/DiskFiller.php
+
+посмотреть остальные изменения коммита
