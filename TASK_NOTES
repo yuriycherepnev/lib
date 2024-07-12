@@ -3,61 +3,42 @@
 сгенерировать индекс в мантикоре
 настроить простой поиск
 
-По сео:
-не работает сео модели
-(отвалились хлебные крошки)
-подгразука параметров при создании категории
-(предзагрузка параметров миграцией?)
-
-
-В работе:
-группы лежат в mysql а айтемы в кликхаусе?
-(дублирование данных?)
-
-
-
-миграция данных из существующего сео?
-последующие миграции переписывают предыдущие (зачем?)
-уменьшить количество миграций?
-
-
 мои доработки:
 нормальный список категорий
 реализация визуала вложенности
 (отображение уровня вложенности)
 
-
-По коду:
-2 идентичных класса? ValidationFailedException RecordingFailedException
-
-Проверить таблицу parameter после заполнения сео ?
-
-однозначно лойс за снос старого кода:
-setSeoMask
-initReplikaSeo
-formatDescription
-getAllSeo
-SubstitutionString
-getDefaultCatalogSeo
-getSeoText
-getDefaultBrandModelSeo
-SeoCar
-SeoConsumables
-SeoNews
-SeoController - стал меньше и читабельнее
+4kolesa:
+1. Проверить работу всех крон команд
+rsync +
+yml/generate +
+seo-links/generate-search-by-brand +
+optimize-photo +
+order/order-queue/make-order-from-queue +
+import-tyre-to-app/fix-params +
+import-tyre-to-app +
+deleted-brand/check +
+sitemap +
+import-provider +
+link-photo +
+photo-editor/update-goods-photo-existence +
+clean-duplicates/get-duplicates +
+import-group-restriction +
 
 
-За что не лойс:
+Можно удалить (не выполняются):
+php /var/www/4kolesa.spb.ru/workspace/yii import-valuation 
+php /var/www/4kolesa.spb.ru/workspace/yii parse-price 
 
 
-Обьясни что делает?
-replaceCriterionGroup
-ChoiceExplanation
-GroupMatch и RequestContext
+Доделать:
+test 4kolesa
+php /var/www/4kolesa.spb.ru/workspace/yii parse-ban-buy-tyre > /dev/null 2>&1 - нужен пример файлика /data/ban_buy_tyre_parsed/
+понизить версию php до 7.3?
+#asterisk calls cache
+#* * * * * php /var/www/4kolesa.spb.ru/workspace/yii asterisk/update-calls > /dev/null 2>&1
 
-template file migration.php
 
-Данные миграции в будущем надо снести, очень сильно путает.
-tyres/console/models/seo/migrations/DiskFiller.php
-
-посмотреть остальные изменения коммита
+2. Проверить работу приложения
+фотографирование
+новое поступление
