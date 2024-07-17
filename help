@@ -939,6 +939,7 @@ sudo apt install php7.4 php7.4-common php7.4-cli php7.4-fpm php7.4-gd php7.4-mys
 sudo apt install php-ssh2
 
 sudo apt-get install php7.4-ssh2
+sudo apt-get install php5.6-ssh2
 
 sudo apt install php5.6 php5.6-common php5.6-cli php5.6-fpm php5.6-gd php5.6-mysql php5.6-mbstring php5.6-curl php5.6-xml php5.6-zip php5.6-json php5.6-imagick php5.6-xmlrpc php5.6-bz2 php5.6-dev php5.6-opcache
 
@@ -1097,7 +1098,7 @@ composer require "yiisoft/yii2:~2.0.5" --update-with-dependencies
 
 composer require php:7.0.* --update-with-dependencies
 
-composer require php:>=7.3.0 --update-with-dependencies
+composer require php:>=7.4.0 --update-with-dependencies
 
 --------------------------------------------------------------------
 
