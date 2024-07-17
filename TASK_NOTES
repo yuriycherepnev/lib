@@ -3,15 +3,45 @@
 сгенерировать индекс в мантикоре
 настроить простой поиск
 
-Seo. My work bitch:
+мои доработки:
 нормальный список категорий
 реализация визуала вложенности
 (отображение уровня вложенности)
-Проверить таблицу parameter после заполнения сео ?
 
-4колеса:
-обновление пхп
-1. приложение - проверить весь функционал (фото, поступления)
-2. загрузка прайсов - проверить файлики
-3. проверка всех крон команд
+4kolesa:
+1. Обновление php + yii +
+order/order-queue/make-order-from-queue +
+rsync +
+yml/generate +
+seo-links/generate-search-by-brand +
+optimize-photo +
+import-tyre-to-app/fix-params +
+import-tyre-to-app +
+deleted-brand/check +
+sitemap +
+import-provider +
+link-photo +
+photo-editor/update-goods-photo-existence +
+clean-duplicates/get-duplicates +
+import-group-restriction +
+parse-ban-buy-tyre +
 
+Можно удалить (не выполняются):
+php /var/www/4kolesa.spb.ru/workspace/yii import-valuation
+php /var/www/4kolesa.spb.ru/workspace/yii parse-price
+
+
+2. Обновление звонков:
+информация о звонке
+подгрузка аудио звонка
+апдейт статуса и коммента звонка
+проверка консольных комманд
+
+Доделать:
+#* * * * * php /var/www/4kolesa.spb.ru/workspace/yii asterisk/update-calls > /dev/null 2>&1
+
+погрузить range picker в звонки?
+
+2. Проверить работу приложения
+фотографирование
+новое поступление
