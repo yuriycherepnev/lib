@@ -39,9 +39,10 @@ asterisk/update-calls +
 апдейт статуса и коммента звонка
 проверка консольных комманд
 
+погрузить range picker в звонки +
+
 -------------------------------------------------------------------
 Можно удалить (не выполняются):
 php /var/www/4kolesa.spb.ru/workspace/yii import-valuation 
 php /var/www/4kolesa.spb.ru/workspace/yii parse-price 
 
-погрузить range picker в звонки?
