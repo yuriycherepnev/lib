@@ -3,10 +3,12 @@
 сгенерировать индекс в мантикоре
 настроить простой поиск
 
-мои доработки:
+Seo:
 нормальный список категорий
 реализация визуала вложенности
 (отображение уровня вложенности)
+
+-------------------------------------------------------------------
 
 4kolesa:
 1. Обновление php + yii +
@@ -25,23 +27,21 @@ photo-editor/update-goods-photo-existence +
 clean-duplicates/get-duplicates +
 import-group-restriction +
 parse-ban-buy-tyre +
+asterisk/update-calls +
 
-Можно удалить (не выполняются):
-php /var/www/4kolesa.spb.ru/workspace/yii import-valuation 
-php /var/www/4kolesa.spb.ru/workspace/yii parse-price 
+2. Проверить работу приложения
+фотографирование
+новое поступление
 
-
-2. Обновление звонков:
+3. Функционал звонков: +
 информация о звонке
 подгрузка аудио звонка
 апдейт статуса и коммента звонка
 проверка консольных комманд
 
-Доделать:
-#* * * * * php /var/www/4kolesa.spb.ru/workspace/yii asterisk/update-calls > /dev/null 2>&1
+-------------------------------------------------------------------
+Можно удалить (не выполняются):
+php /var/www/4kolesa.spb.ru/workspace/yii import-valuation 
+php /var/www/4kolesa.spb.ru/workspace/yii parse-price 
 
 погрузить range picker в звонки?
-
-2. Проверить работу приложения
-фотографирование
-новое поступление
