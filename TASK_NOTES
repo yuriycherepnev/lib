@@ -8,6 +8,9 @@
 реализация визуала вложенности
 (отображение уровня вложенности)
 
+----------------------------------------------------------
+done:
+
 4kolesa:
 1. Обновление php + yii +
 order/order-queue/make-order-from-queue +
@@ -25,23 +28,16 @@ photo-editor/update-goods-photo-existence +
 clean-duplicates/get-duplicates +
 import-group-restriction +
 parse-ban-buy-tyre +
+asterisk/update-calls +
 
+2. Проверить работу приложения 
+фотографирование +
+новое поступление +
+
+----------------------------------------------------------
 Можно удалить (не выполняются):
-php /var/www/4kolesa.spb.ru/workspace/yii import-valuation 
-php /var/www/4kolesa.spb.ru/workspace/yii parse-price 
+
+php /var/www/4kolesa.spb.ru/workspace/yii import-valuation
+php /var/www/4kolesa.spb.ru/workspace/yii parse-price
 
 
-2. Обновление звонков:
-информация о звонке
-подгрузка аудио звонка
-апдейт статуса и коммента звонка
-проверка консольных комманд
-
-Доделать:
-#* * * * * php /var/www/4kolesa.spb.ru/workspace/yii asterisk/update-calls > /dev/null 2>&1
-
-погрузить range picker в звонки?
-
-2. Проверить работу приложения
-фотографирование
-новое поступление
