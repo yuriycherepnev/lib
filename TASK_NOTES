@@ -41,16 +41,6 @@ php /var/www/4kolesa.spb.ru/workspace/yii import-valuation
 php /var/www/4kolesa.spb.ru/workspace/yii parse-price
 
 ----------------------------------------------------------
-Задача по редактору б2б:
-
-Зарегаться:
-https://www.tiny.cloud
-
-Получить апи кей:
-https://www.tiny.cloud/my-account/integrate/#react
-
-Воткнуть его в реакт.
-
 
 
 
