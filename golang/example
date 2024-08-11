@@ -1,0 +1,723 @@
+генерация случайного расстояния в промежутке от 56000000 до 401000000 км.
+
+package main
+
+import (
+	"fmt"
+	"math/rand"
+)
+
+func main() {
+	var distance = rand.Intn(345000001) + 56000000
+	fmt.Println(distance)
+}
+
+------------------------------------------------------------
+вставка переменных в строку:
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Printf("а мой возраст равен %v годам.\n", 41*365/687)
+}
+
+------------------------------------------------------------
+Расчет скорости движения:
+
+package main
+
+import "fmt"
+
+func main() {
+	const hoursPerDay = 24
+	var days = 28
+	var distance = 56000000
+
+	fmt.Println(distance/(days*hoursPerDay), "км/ч")
+}
+
+------------------------------------------------------------
+Высокосный год:
+
+package main
+
+import (
+	"fmt"
+)
+
+var year = 2015
+
+func main() {
+	var leap = year%400 == 0 || (year%4 == 0 && year%100 != 0)
+	if leap {
+		fmt.Printf("%v год высокосный\n", year)
+	} else {
+		fmt.Printf("%v год не высокосный\n", year)
+	}
+}
+
+------------------------------------------------------------
+Switch case:
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var command = 1
+
+	switch command {
+	case 1:
+		fmt.Println(1)
+	case 2, 3:
+		fmt.Println(2, 3)
+	case 4:
+		fmt.Println(4)
+	default:
+		fmt.Println("Aloha")
+	}
+}
+
+------------------------------------------------------------
+fallthrough:
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var room = 2
+
+	switch {
+	case room == 1:
+		fmt.Println(1)
+	case room == 2:
+		fmt.Println(2)
+		fallthrough // Переходит на следующий случай
+	case room == 3:
+		fmt.Println(3)
+	}
+}
+
+------------------------------------------------------------
+For:
+
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	var count = 10 // Объявление и инициализация
+
+	for count > 0 { // Условие
+		fmt.Println(count)
+		time.Sleep(time.Second)
+		count-- // Обратный отсчет; в противном случае цикл будет длиться вечно
+	}
+	fmt.Println("Запуск!")
+}
+
+------------------------------------------------------------
+For без условия:
+
+package main
+
+import (
+	"fmt"
+	"math/rand"
+)
+
+func main() {
+	var degrees = 0
+
+	for {
+		fmt.Println(degrees)
+
+		degrees++
+		if degrees >= 360 {
+			degrees = 0
+			if rand.Intn(2) == 0 {
+				break
+			}
+		}
+	}
+}
+
+
+------------------------------------------------------------
+Бинарный поиск загаданного числа с помощью rand.Intn()
+
+package main
+
+import (
+	"fmt"
+	"math/rand"
+)
+
+func main() {
+	var number = 89
+	var bottomRange = 0
+	var topRange = 100
+
+	for {
+		var n = rand.Intn(topRange-bottomRange) + bottomRange
+		if n < number {
+			fmt.Printf("bottomRange %v\n", n)
+			bottomRange = n
+		} else if n > number {
+			fmt.Printf("topRange %v\n", n)
+			topRange = n
+		} else {
+			fmt.Printf("Done! %v\n", n)
+			break
+		}
+	}
+}
+
+------------------------------------------------------------
+Range
+ранжирование по срезу
+
+package main
+
+import "fmt"
+
+var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
+
+func main() {
+	for i, v := range pow {
+		fmt.Printf("2**%d = %d\n", i, v)
+	}
+}
+
+------------------------------------------------------------
+Среднее значение массива:
+
+package main
+
+import "fmt"
+
+func main() {
+	x := [5]float64{98, 93, 77, 82, 83}
+
+	var total float64 = 0
+	for _, value := range x {
+		total += value
+	}
+	fmt.Println(total / float64(len(x)))
+}
+
+------------------------------------------------------------
+Массивы, срезы, карты
+
+package main
+
+import "fmt"
+
+func main() {
+	arr := [5]float64{98, 93, 77, 82, 83}
+
+	var total float64 = 0
+	for _, value := range arr {
+		total += value
+	}
+	fmt.Println(total / float64(len(arr)))
+
+	slice1 := []int{1, 2, 3}
+	slice2 := make([]int, 2)
+
+	fmt.Println(slice2)
+
+	copy(slice2, slice1)
+	fmt.Println(slice1)
+	fmt.Println(slice2)
+
+	x := make(map[string]int)
+	x["key"] = 10
+	fmt.Println(x)
+
+	xArr := make(map[int]int)
+	xArr[1] = 10
+
+	delete(xArr, 1)
+	fmt.Println(xArr)
+
+	elements := make(map[string]string)
+	elements["H"] = "Hydrogen"
+	elements["He"] = "Helium"
+	elements["Li"] = "Lithium"
+	elements["Be"] = "Beryllium"
+	elements["B"] = "Boron"
+	elements["C"] = "Carbon"
+	elements["N"] = "Nitrogen"
+	elements["O"] = "Oxygen"
+	elements["F"] = "Fluorine"
+	elements["Ne"] = "Neon"
+
+	fmt.Println(elements)
+}
+
+------------------------------------------------------------
+Минимальное и максимальное значения массива:
+
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func main() {
+	x := []int{
+		48, 96, 86, 68,
+		57, 82, 63, 70,
+		37, 34, 83, 27,
+		19, 97, 9, 17,
+	}
+
+	// Отсортировать и взять последний элемент
+	sort.Ints(x)
+	// Вывод: 15
+	fmt.Println(x[0])
+	fmt.Println(x[len(x)-1])
+}
+------------------------------------------------------------
+Switch case:
+
+package main
+ 
+import (
+    "fmt"
+    "time"
+)
+ 
+func main() {
+ 
+    switch time.Now().Weekday() {
+ 
+    case time.Monday:
+        fmt.Println("Сегодня понедельник.")
+        
+    case time.Tuesday:
+        fmt.Println("Сегодня вторник.")
+        
+    case time.Wednesday:
+        fmt.Println("Сегодня среда.")
+        
+    case time.Thursday:
+        fmt.Println("Сегодня четверг.")
+        
+    case time.Friday:
+        fmt.Println("Сегодня пятница.")
+        
+    case time.Saturday:
+        fmt.Println("Сегодня суббота.")
+        
+    case time.Sunday:
+        fmt.Println("Сегодня воскресенье.")
+    }
+}
+
+------------------------------------------------------------
+перебор строки и конкатенация с помощью switch:
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var w string = "a b c\td\nefg hi"
+	var clear string = ""
+
+	for _, e := range w {
+		switch e {
+		case ' ', '\t', '\n':
+			break
+		default:
+			clear += string(e)
+		}
+	}
+
+	fmt.Println(clear)
+}
+
+------------------------------------------------------------
+switch без выражения:
+
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+
+	now := time.Now()
+
+	switch {
+	case now.Hour() < 12:
+		fmt.Println("AM")
+
+	default:
+		fmt.Println("PM")
+	}
+}
+
+------------------------------------------------------------
+fallthrough:
+
+package main
+
+import (
+	"fmt"
+)
+
+// A -> B -> C -> D -> E
+
+func main() {
+
+	nextstop := "A"
+
+	fmt.Println("Stops ahead of us:")
+
+	switch nextstop {
+
+	case "A":
+		fmt.Println("A")
+		fallthrough
+
+	case "B":
+		fmt.Println("B")
+		fallthrough
+
+	case "C":
+		fmt.Println("C")
+		fallthrough
+
+	case "D":
+		fmt.Println("D")
+		fallthrough
+
+	case "E":
+		fmt.Println("E")
+	}
+}
+
+------------------------------------------------------------
+switch по типу:
+
+package main 
+
+import "fmt"
+
+func main() { 
+
+    var data interface{} 
+    
+    data = 112523652346.23463246345
+
+    switch mytype:= data.(type) { 
+        
+    case string: 
+        fmt.Println("string")
+
+    case bool: 
+        fmt.Println("boolean") 
+
+    case float64: 
+        fmt.Println("float64 type") 
+
+    case float32: 
+        fmt.Println("float32 type") 
+
+    case int: 
+        fmt.Println("int") 
+
+    default: 
+        fmt.Printf("%T", mytype) 
+    } 
+}
+
+------------------------------------------------------------
+Генератор четных числе и факториал:
+
+package main
+
+import (
+	"fmt"
+)
+
+func makeEvenGenerator() func() uint {
+	i := uint(0)
+	return func() uint {
+		i += 2
+		return i
+	}
+}
+
+func factorial(x uint) uint {
+	if x == 0 {
+		return 1
+	}
+
+	return x * factorial(x-1)
+}
+
+func main() {
+	nextEven := makeEvenGenerator()
+	fmt.Println(nextEven()) // 0
+	fmt.Println(nextEven()) // 2
+
+	fmt.Println(factorial(10))
+}
+
+------------------------------------------------------------
+Пиоск максимума, деление и т.д.
+
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func main() {
+	fmt.Println(sum([]float64{1, 2, 3, 4, 5}))
+	fmt.Println(division(8))
+	fmt.Println(division(9))
+	fmt.Println(maximus(48, 96, 86, 68, 58))
+	fmt.Println(findMaximum())
+}
+
+func maximus(args ...int) int {
+	sort.Ints(args)
+	return args[len(args)-1]
+}
+
+func sum(xs []float64) float64 {
+	var total = 0.0
+	for _, v := range xs {
+		total += v
+	}
+	return total
+}
+
+func division(number int) bool {
+	return number%2 == 0
+}
+
+func findMaximum() int {
+	var numbers = []int{6, 7, 87, 49}
+	return maximum(numbers)
+
+}
+
+func maximum(numbers []int) int {
+	sort.Ints(numbers)
+	return numbers[len(numbers)-1]
+}
+
+------------------------------------------------------------
+Panic recover defer:
+
+package main
+
+import "fmt"
+
+func main() {
+    defer func() {    
+        str := recover()
+        fmt.Println(str)
+    }()
+    panic("PANIC")
+}
+
+------------------------------------------------------------
+Дождаться всех горутин:
+
+package main
+
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+func worker(id int, wg *sync.WaitGroup) {
+	defer wg.Done()
+	fmt.Printf("Worker %d starting\n", id)
+	time.Sleep(time.Second)
+	fmt.Printf("Worker %d done\n", id)
+}
+
+func main() {
+	var wg sync.WaitGroup
+
+	for i := 1; i <= 5; i++ {
+		wg.Add(1)
+		go worker(i, &wg)
+	}
+
+	wg.Wait() // Ожидаем завершения всех горутин
+}
+
+------------------------------------------------------------
+Коммуникация гоуртин:
+
+package main
+
+import (
+	"fmt"
+)
+
+func sayHello(i int, message chan string) {
+	message <- fmt.Sprint("Hello, world! I'm ", i, " goroutine!") // Отправляем сообщение в канал
+}
+
+func main() {
+	message := make(chan string) // Создаем канал для строк
+
+	for i := range 5 {
+		go sayHello(i, message)
+	}
+
+	for range 5 {
+		fmt.Println(<-message) // Читаем сообщения из канала
+	}
+	close(message)
+}
+
+------------------------------------------------------------
+Замена переменных переданных по указателю:
+
+package main
+
+import (
+	"fmt"
+)
+
+func swap(x *int, y *int) {
+	swapX := new(int)
+	swapY := new(int)
+
+	*swapX = *x
+	*swapY = *y
+
+	*x = *swapY
+	*y = *swapX
+}
+
+func main() {
+	x := 1
+	y := 2
+
+	swap(&x, &y)
+
+	fmt.Println(x)
+	fmt.Println(y)
+}
+
+------------------------------------------------------------
+Генерация 10 случайных дат:
+
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"strconv"
+)
+
+var era = "AD"
+
+func main() {
+	for count := 0; count < 10; count++ {
+		fmt.Println(generateDate())
+	}
+}
+
+func generateDate() string {
+	year := rand.Intn(28) + 1990
+	month := rand.Intn(12) + 1
+	daysInMonth := 31
+
+	switch month {
+	case 2:
+		if year%4 == 0 {
+			daysInMonth = 29
+		} else {
+			daysInMonth = 28
+		}
+	case 4, 6, 9, 11:
+		daysInMonth = 30
+	}
+
+	day := rand.Intn(daysInMonth) + 1
+
+	var array = []int{year, month, day}
+	var stringYear string
+
+	for _, e := range array {
+		stringYear += " " + strconv.Itoa(e)
+	}
+
+	return era + stringYear
+}
+
+------------------------------------------------------------
+Структуры и функции с получателем.
+Функция с получателем - аналог метода обьекта из пхп. Подвязывает метод к структуре, и в дальнейшем мы
+можем обратиться к этому методу из структуры.
+
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type Circle struct {
+	x, y, r float64
+}
+
+type Rectangle struct {
+	x1, y1, x2, y2 float64
+}
+
+func (rectangle *Rectangle) area() float64 {
+	l := distance(rectangle.x1, rectangle.y1, rectangle.x1, rectangle.y2)
+	w := distance(rectangle.x1, rectangle.y1, rectangle.x2, rectangle.y1)
+	return l * w
+}
+
+func (circle *Circle) area() float64 {
+	return math.Pi * circle.r * circle.r
+}
+
+func main() {
+	circle := Circle{0, 0, 5}
+	fmt.Println(circle.area())
+
+	rectangle := Rectangle{0, 0, 10, 10}
+	fmt.Println(rectangle.area())
+}
+
+func distance(x1, y1, x2, y2 float64) float64 {
+	a := x2 - x1
+	b := y2 - y1
+	return math.Sqrt(a*a + b*b)
+}
