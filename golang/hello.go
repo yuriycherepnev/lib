@@ -1,3 +1,4 @@
+// здесь на мой взгляд необходимо просто повысить точносоть вычислений
 package main
 
 import (
@@ -17,7 +18,7 @@ func main() {
 	var blocksCount int = 0
 	var goodsCount int = 0
 	var commissionPersent int = 0
-	var blockProfit int = 0
+	var blockProfit float64 = 0
 	var blockLostProfit float64 = 0.00
 
 	for i := 1; true; i++ {
@@ -44,15 +45,15 @@ func main() {
 
 		if i != 1 && !contain {
 			number, _ := strconv.Atoi(line)
-			numberProfit := number * commissionPersent / 100
-			numberLostProfit := float64(number) * float64(commissionPersent) / 100
+			numberProfit := float64(number) * (float64(commissionPersent) / 100)
+			numberLostProfit := float64(number) * (float64(commissionPersent) / 100)
 
-			blockProfit += numberProfit
-			blockLostProfit += numberLostProfit
+			blockProfit += math.Floor(numberProfit)
+			blockLostProfit += math.Floor(numberLostProfit*100) / 100
 		}
 
 		if i > 1 && goodsCount == 0 {
-			lostMoney := math.Floor((blockLostProfit-float64(blockProfit))*100) / 100
+			lostMoney := blockLostProfit - blockProfit
 
 			fmt.Printf("%.2f\n", lostMoney)
 
