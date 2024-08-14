@@ -41,6 +41,10 @@ docker-compose up --build
 
 docker-compose up --build -d
 
+Пересоздание:
+
+docker-compose up --force-recreate
+
 -------------------------------------------------------------------
 
 docker ps - список запущенных контейнеров
