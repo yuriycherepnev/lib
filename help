@@ -701,6 +701,8 @@ rm -rf /assets/*
 
 sudo rm -r assets/*
 
+sudo rm -r data/*
+
 -------------------------------------------------------------------
 css ширина по контенту:
 width: fit-content;
@@ -2846,3 +2848,19 @@ nginx config:
 sudo nano /etc/nginx/sites-available/your_domain
 
 sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+
+----------------------------------------------------------------
+Комментарий foreach
+
+data = [];
+foreach ($tyres as $tyre) {
+    /* @var $tyre Tyre */
+    $data[] = $tyre->getFullName();
+}
+
+----------------------------------------------------------------
+Manticore index rebuild:
+
+php yii manticore/drop-index
+php yii manticore/create-index
+php yii manticore/fill-index
