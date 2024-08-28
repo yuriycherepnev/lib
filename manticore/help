@@ -1,0 +1,54 @@
+Примеры запросов:
+
+SELECT name, WEIGHT() FROM tyres_search WHERE MATCH('pir') ORDER BY WEIGHT() ASC limit 5;
+SELECT name, WEIGHT() FROM tyres_search WHERE MATCH('pir') ORDER BY WEIGHT() DESC limit 5;
+
+-------------------------------------------------------------------
+
+Посмотреть формирование запроса:
+
+set profiling=1;
+select * from hn_small where match('dog|cat') limit 0;
+show plan;
+
+Информация о ключевых словах:
+
+SHOW META;
+
+-------------------------------------------------------------------
+
+Варианты настроек индекса:
+
+    private const SETTINGS = [
+        'min_word_len' => '1',
+        'rt_mem_limit' => '512M',
+        'morphology' => 'none',
+        'min_prefix_len' => '1',
+        'expand_keywords' => '1',
+        'regexp_filter' => self::REGEXP_FILTERS
+    ];
+
+    private const SETTINGS = [
+        'min_word_len' => '3',
+        'rt_mem_limit' => '512M',
+        'min_infix_len' => '3',
+        'morphology' => 'stem_en',
+        'min_prefix_len' => '3',
+        'expand_keywords' => '1',
+        'regexp_filter' => self::REGEXP_FILTERS
+    ];
+
+-------------------------------------------------------------------
+
+Зайти в мускул мантикоры (из докер контейнера):
+mysql -P9306 -h0
+
+-------------------------------------------------------------------
+
+Rebuild manticore:
+
+docker-compose down
+sudo rm -r data/*
+docker-compose up --build -d
+
+
