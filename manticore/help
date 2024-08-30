@@ -50,6 +50,13 @@ final query:
 SELECT *, weight()*custom_weight as weight, ceil(LEVENSHTEIN('195 60', name, {normalize=1})*100) as levenshtein
 FROM tyres_search WHERE MATCH('195 & 60') AND ANY(id_search_category)=1 AND ANY(levenshtein)>90 ORDER BY weight DESC LIMIT 5;
 
+Тестовый запрос:
+
+SELECT *, weight()*custom_weight as weight, ceil(LEVENSHTEIN('belshinak', name, {normalize=1})*100) as levenshtein
+FROM tyres_search 
+WHERE MATCH('(belshinka | *belshinka*)') 
+ORDER BY levenshtein ASC, weight DESC LIMIT 5;
+
 -------------------------------------------------------------------
 Посмотреть формирование запроса:
 
