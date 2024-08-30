@@ -40,3 +40,13 @@ m/t +
 сортировка по параметрам +
 
 belshinka - обьяснить кейс
+
+зайти в:
+tyres/docker/manticore
+
+Выполнить:
+docker-compose up --build -d
+
+Далее:
+php yii manticore/create-index
+php yii manticore/fill-index
