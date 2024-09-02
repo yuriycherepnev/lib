@@ -22,3 +22,10 @@
 9. Ранжирование
 
 10. Подведение итогов
+
+Вопросы:
+
+Откуда мантикора хватает морфологию?
+Необходимы ли файлы:
+docker/manticore/morphology/en.pak
+docker/manticore/morphology/ru.pak
