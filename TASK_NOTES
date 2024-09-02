@@ -44,7 +44,7 @@ belshinka - обьяснить кейс
 зайти в:
 tyres/docker/manticore
 
-Выполнить:
+Выполнить
 docker-compose up --build -d
 
 Далее:
