@@ -57,3 +57,12 @@ SELECT name, custom_weight, weight()*custom_weight as weight
 FROM tyres_search 
 WHERE MATCH('(195 60)') 
 ORDER BY weight DESC LIMIT 5;
+
+
+SELECT *, weight()*custom_weight as weight, ceil(LEVENSHTEIN('195 60', name, {normalize=1})*100) as levenshtein
+FROM tyres_search 
+WHERE MATCH('195 & 60') 
+AND ANY(id_search_category)=1 
+AND ANY(levenshtein)>90 
+ORDER BY weight 
+DESC LIMIT 5;

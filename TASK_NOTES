@@ -31,22 +31,9 @@ php /var/www/4kolesa.spb.ru/workspace/yii import-valuation
 php /var/www/4kolesa.spb.ru/workspace/yii parse-price
 
 ----------------------------------------------------------
-Поиск:
+Примерка дисков:
 
-кейс h18 +
-поиск по артикулу +
-m/t +
-16 235 cordiant +
-сортировка по параметрам +
+загрузка фото к примерке диска
+вывод списка дисков для примерки
+вывод списка фото авто
 
-belshinka - обьяснить кейс
-
-зайти в:
-tyres/docker/manticore
-
-Выполнить
-docker-compose up --build -d
-
-Далее:
-php yii manticore/create-index
-php yii manticore/fill-index
