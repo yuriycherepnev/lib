@@ -1,0 +1,166 @@
+Примеры запросов:
+
+SELECT name, WEIGHT() FROM tyres_search WHERE MATCH('pir') ORDER BY WEIGHT() ASC limit 5;
+SELECT name, WEIGHT() FROM tyres_search WHERE MATCH('pir') ORDER BY WEIGHT() DESC limit 5;
+
+Any:
+
+SELECT name, WEIGHT() FROM tyres_search WHERE MATCH('pir*') AND ANY(id_search_category)=1;
+
+Qourum operator:
+
+SELECT name, WEIGHT() FROM tyres_search WHERE MATCH('"pirel p zero 9*"/0.1') ORDER BY WEIGHT() ASC limit 5;
+SELECT name, WEIGHT() FROM tyres_search WHERE MATCH('"pirel p zero 9*"/0.1');
+SELECT name, WEIGHT() FROM stem_index_search WHERE MATCH('"ikon tyres 195 60"/0.5') ORDER BY WEIGHT() DESC limit 1000;
+
+custom weight:
+
+select weight() as w, w + delivery_state * 1000 as sort from idx order by sort desc
+
+SELECT *, if ( id_unique IN ('37zYSTX5R1614', '37zYSTX5R1201', '37zYSTX5R1306'), 10, 1) as multi, 
+weight() as w, 
+w*multi as wfinal 
+FROM tyres_search WHERE MATCH('YSTX5*')
+order by wfinal desc;
+
+SELECT *, weight()*custom_weight as weight 
+FROM tyres_search WHERE MATCH('195 60')
+ORDER BY weight desc
+LIMIT 5;
+
+Levenstein:
+
+SELECT LEVENSHTEIN('датчики', name) AS levenshtein, name, WEIGHT() 
+FROM tyres_search WHERE MATCH('датчики') ORDER BY WEIGHT() ASC limit 100;
+
+SELECT LEVENSHTEIN('датчики', name, {normalize=1}) AS levenshtein, name, WEIGHT() 
+FROM tyres_search WHERE MATCH('датчики') ORDER BY WEIGHT() ASC limit 100;
+
+SELECT ceil(LEVENSHTEIN('датчики', name, {normalize=1})*100) AS levenshtein, name, WEIGHT() 
+FROM tyres_search WHERE MATCH('датчики') ORDER BY WEIGHT() ASC limit 100;
+
+SELECT ceil(LEVENSHTEIN('датчики', name, {normalize=1})*100) AS levenshtein, name, WEIGHT() 
+FROM tyres_search 
+WHERE MATCH('датчики') 
+AND ANY(levenshtein)<90
+ORDER BY WEIGHT() ASC limit 100;
+
+final query:
+
+SELECT *, weight()*custom_weight as weight, ceil(LEVENSHTEIN('195 60', name, {normalize=1})*100) as levenshtein
+FROM tyres_search WHERE MATCH('195 & 60') AND ANY(id_search_category)=1 AND ANY(levenshtein)>90 ORDER BY weight DESC LIMIT 5;
+
+Тестовый запрос:
+
+SELECT *, weight()*custom_weight as weight, ceil(LEVENSHTEIN('belshinak', name, {normalize=1})*100) as levenshtein
+FROM tyres_search 
+WHERE MATCH('(belshinka | *belshinka*)') 
+ORDER BY levenshtein ASC, weight DESC LIMIT 5;
+
+-------------------------------------------------------------------
+Посмотреть формирование запроса:
+
+set profiling=1;
+select * from hn_small where match('dog|cat') limit 0;
+show plan;
+
+Информация о ключевых словах:
+
+SHOW META;
+
+-------------------------------------------------------------------
+Варианты настроек индекса:
+
+    private array $fields = [
+        'name' => ['type' => 'text'],
+        'article' => ['type' => 'text'],
+        'id_unique' => ['type' => 'string'],
+        'id_good_type' => ['type' => 'int'],
+        'id_search_category' => ['type' => 'int'],
+        'custom_weight' => ['type' => 'float'],
+    ];
+
+    private const SETTINGS = [
+        'min_word_len' => '1',
+        'rt_mem_limit' => '512M',
+        'morphology' => 'none',
+        'min_prefix_len' => '1',
+        'expand_keywords' => '1',
+        'regexp_filter' => self::REGEXP_FILTERS
+    ];
+
+    private const SETTINGS = [
+        'min_word_len' => 2,
+        'min_prefix_len' => 2,
+        'min_infix_len' => 2,
+        'expand_keywords' => 1,
+        'rt_mem_limit' => '512M',
+        'morphology' => 'Stem_en',
+        'regexp_filter' => self::REGEXP_FILTERS
+    ];
+
+        private const REGEXP_FILTERS = [
+        //синтаксис regexp - RE2 Google https://github.com/google/re2/wiki/Syntax
+        //Удаляет R перед числом
+        '(?i)\b(R1) => 1',
+        '(?i)\b(R2) => 2',
+        //Замена английских c на k
+        '(C|c) => k',
+        //Транслитерация
+        '(А|а) => a',
+        '(Б|б) => b',
+        '(В|в) => v',
+        '(Г|г) => g',
+        '(Д|д) => d',
+        '(Е|е) => e',
+        '(Ё|ё) => y',
+        '(Ж|ж) => zh',
+        '(З|з) => z',
+        '(И|и) => i',
+        '(Й|й) => jj',
+        '(К|к) => k',
+        '(Л|л) => l',
+        '(М|м) => m',
+        '(Н|н) => n',
+        '(О|о) => o',
+        '(П|п) => p',
+        '(Р|р) => r',
+        '(С|с) => s',
+        '(Т|т) => t',
+        '(У|у) => u',
+        '(Ф|ф) => f',
+        '(Х|х) => h',
+        '(Ц|ц) => c',
+        '(Ч|ч) => ch',
+        '(Ш|ш) => sh',
+        '(Щ|щ) => sh',
+        '(Ъ|ъ) => ',
+        '(Ы|ы) => y',
+        '(Ь|ь) => ',
+        '(Э|э) => eh',
+        '(Ю|ю) => ju',
+        '(Я|я) => ja'
+    ];
+
+-------------------------------------------------------------------
+Зайти в мускул мантикоры (из докер контейнера):
+
+docker exec -it  bash
+
+mysql -P9306 -h0
+
+-------------------------------------------------------------------
+Rebuild manticore:
+
+docker-compose down
+sudo rm -r data/*
+docker-compose up --build -d
+
+----------------------------------------------------------------
+Manticore index rebuild:
+
+php yii manticore/drop-index
+php yii manticore/create-index
+php yii manticore/fill-index
+
+

@@ -922,3 +922,12 @@ SELECT `price`.`id` FROM `price`
 ')->queryAll();
 
 $this->delete('price', ['in', 'id', array_column($doubleIds, 'id')]);
+
+--------------------------------------------------------------------
+Выборка по 2 с группы:
+
+SELECT * FROM ( SELECT search_group.*, @num:=if(@category=id_search_category,@num+1,1) as num, @category:=id_search_category as category
+    FROM search_group, (select @category:='',@num:=0) group_restriction 
+    ORDER BY id_search_category 
+    ) 
+group_restriction WHERE NUM<=2;
