@@ -1031,6 +1031,8 @@ class Model extends Model
 --------------------------------------------------------------------
 Консольные команды для запуска модулей в frontend:
 
+php frontend/web/index.php postman parseTryOnCar
+
 php frontend/web/index.php postman parseMtmXml
 
 php frontend/web/index.php postman updateCarDb
