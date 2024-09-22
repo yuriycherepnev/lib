@@ -179,7 +179,7 @@ home/new-root/.bashrc
 пример:
 
 alias phpswap='sudo update-alternatives --config php'
-alias brd='git branch -D '
+alias gbd='git branch -D '
 -----------------------------------------------------------
 очистка кеша:
 
@@ -2610,6 +2610,7 @@ VPN exclusive:
 Cherepnev
 oKvSitG7
 
+pre-shared key
 nRe5KJllcv0
 
 --------------------------------------------------------------------
