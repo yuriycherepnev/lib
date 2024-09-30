@@ -1,0 +1,25 @@
+Перевод числа в слайс:
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	salary := 1234
+	intSlice := IntToSlice(salary, make([]int, 0))
+	fmt.Println(intSlice)
+}
+
+func IntToSlice(n int, sequence []int) []int {
+	for n > 0 {
+		i := n % 10
+		sequence = append([]int{i}, sequence...)
+		n = n / 10
+	}
+	return sequence
+}
+
+------------------------------------------------------------
+
