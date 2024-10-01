@@ -1,3 +1,21 @@
+Длина числа:
+Функция utf8.RuneCountInString подсчитывает юникодные символы без записи в память. 
+Поэтому, если вам нужно только число символов, эта функция будет быстрее, чем len([]rune(txt)).
+
+package main
+
+import (
+    "fmt"
+    "unicode/utf8"
+)
+
+func main() {
+	textNumber := strconv.Itoa(123)
+    fmt.Println(utf8.RuneCountInString(textNumber))
+}
+
+------------------------------------------------------------
+
 Перевод числа в слайс:
 
 package main

@@ -1,6 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"unicode/utf8"
+)
+
+func main() {
+	textNumber := strconv.Itoa(123)
+	numberLength := utf8.RuneCountInString(textNumber)
+	fmt.Println(numberLength)
+}
 
 func main() {
 	salary := 990778866
@@ -10,12 +20,10 @@ func main() {
 	fmt.Println(newSlice)
 }
 
-func IntToSlice(salary int, sliceSalary []int) ([]int, int) {
-	minNumber := 9
-	reverseIndex := 1
-	currentIndex := 1
+func IntToSlice(number int, numberCount int) ([]int, int) {
+	numberSlice = make([]int, 0, numberCount)
 
-	for salary > 0 {
+	for number > 0 {
 		currentNumber := salary % 10
 		sliceSalary = append([]int{currentNumber}, sliceSalary...)
 		salary = salary / 10
@@ -30,4 +38,14 @@ func IntToSlice(salary int, sliceSalary []int) ([]int, int) {
 	}
 
 	return sliceSalary, currentIndex - reverseIndex
+}
+
+func splitInt(n int) []int {
+	slc := []int{}
+
+	for n > 0 {
+		slc = append(slc, n%10)
+		n = n / 10
+	}
+	return slc
 }
