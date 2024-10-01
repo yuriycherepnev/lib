@@ -172,8 +172,8 @@ scp root@172.27.100.240:/var/spool/asterisk/monitor/2022/09/13/in-3279474-911900
 callController
 235 строка
 
-$callInfo['src'] = '9214466933';
-$callInfo['linkedid'] = '1714635770.8884272';
+$callInfo['src'] = '9817733303';
+$callInfo['linkedid'] = '1727686005.88507';
 $callInfo['channel'] = '300';
 $callInfo['userChannel'] = '400';
 
