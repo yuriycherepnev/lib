@@ -1,3 +1,5 @@
+//проблема reverse number!
+
 package main
 
 import (
@@ -7,25 +9,24 @@ import (
 )
 
 func main() {
-	textNumber := strconv.Itoa(123)
-	numberLength := utf8.RuneCountInString(textNumber)
-	fmt.Println(numberLength)
-}
-
-func main() {
-	salary := 990778866
-	sliceSalary, minNumberIndex := IntToSlice(salary, make([]int, 0))
+	salary := 990778876
+	sliceSalary, minNumberIndex := getSliceSalary(salary)
 	newSlice := append(sliceSalary[:minNumberIndex], sliceSalary[minNumberIndex+1:]...)
 
 	fmt.Println(newSlice)
 }
 
-func IntToSlice(number int, numberCount int) ([]int, int) {
-	numberSlice = make([]int, 0, numberCount)
+func getSliceSalary(salary int) ([]int, int) {
+	textNumber := strconv.Itoa(123)
+	numberCount := utf8.RuneCountInString(textNumber)
+	sliceSalary := make([]int, 0, numberCount)
+	minNumber := 9
+	currentIndex := 0
+	reverseIndex := 0
 
-	for number > 0 {
+	for salary > 0 {
 		currentNumber := salary % 10
-		sliceSalary = append([]int{currentNumber}, sliceSalary...)
+		sliceSalary = append(sliceSalary, currentNumber)
 		salary = salary / 10
 
 		if currentNumber <= minNumber {
@@ -38,14 +39,4 @@ func IntToSlice(number int, numberCount int) ([]int, int) {
 	}
 
 	return sliceSalary, currentIndex - reverseIndex
-}
-
-func splitInt(n int) []int {
-	slc := []int{}
-
-	for n > 0 {
-		slc = append(slc, n%10)
-		n = n / 10
-	}
-	return slc
 }

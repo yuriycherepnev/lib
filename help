@@ -983,13 +983,15 @@ composer require happyworm/jPlayer
 
 composer require marcelog/pami:2.*
 
+composer require exclusive/yii2-call:2.2.22
+
 Удалить пакет:
 
 composer remove php-ffmpeg/php-ffmpeg
 
 composer remove happyworm/jPlayer
 
-composer update exclusive/yii2-call
+composer remove exclusive/yii2-call
 
 composer update yiisoft/yii2
 
@@ -1031,7 +1033,7 @@ class Model extends Model
 --------------------------------------------------------------------
 Консольные команды для запуска модулей в frontend:
 
-php frontend/web/index.php postman parseTryOnCar
+php frontend/web/index.php postman parseSelectionCar
 
 php frontend/web/index.php postman parseMtmXml
 
