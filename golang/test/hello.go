@@ -1,4 +1,5 @@
 //проблема reverse number!
+//скорее всего самый удобный способ - привести число к строке и через итерирование строки заполнять slice
 
 package main
 
@@ -17,7 +18,7 @@ func main() {
 }
 
 func getSliceSalary(salary int) ([]int, int) {
-	textNumber := strconv.Itoa(123)
+	textNumber := strconv.Itoa(salary)
 	numberCount := utf8.RuneCountInString(textNumber)
 	sliceSalary := make([]int, 0, numberCount)
 	minNumber := 9
