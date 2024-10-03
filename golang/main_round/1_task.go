@@ -78,7 +78,6 @@ func cutSalary(salary int) int {
 
 	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
 
-	fmt.Println(sliceSalary)
 	for index, value := range sliceSalary {
 		if cutSalary == 0 {
 			cutSalary = value
