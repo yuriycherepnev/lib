@@ -5,13 +5,12 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"strconv"
 	"unicode/utf8"
 )
 
 func main() {
-	salary := 9311377
+	salary := 20000
 	cutSalary := cutSalary(salary)
 	fmt.Println(cutSalary)
 }
@@ -41,12 +40,18 @@ func cutSalary(salary int) int {
 	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
 
 	fmt.Println(sliceSalary)
-	for index, value := range sliceSalary {
+
+	//проблема нескольких нулей подряд!
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	for _, value := range sliceSalary {
+
 		if cutSalary == 0 {
 			cutSalary = value
 		} else {
-			factor := math.Pow(10, float64(index))
-			cutSalary += value * int(factor)
+			cutSalary = cutSalary * 10
+			if value != 0 {
+				cutSalary += value
+			}
 		}
 	}
 
