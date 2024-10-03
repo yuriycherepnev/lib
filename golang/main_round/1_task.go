@@ -6,16 +6,17 @@
 Если встречаем число меньше - обновляем даннные
 по окончанию итерирования - удаляем число по индексу, склеиваем массив в число и возвращаем
 */
-
 package main
 
 import (
 	"bufio"
 	"fmt"
 	"io"
+	"math"
 	"os"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 func main() {
@@ -54,5 +55,38 @@ func main() {
 }
 
 func cutSalary(salary int) int {
-	return salary
+	cutSalary := 0
+	textNumber := strconv.Itoa(salary)
+	sliceSalary := make([]int, 0, utf8.RuneCountInString(textNumber))
+	minNumber := 9
+	minIndex := 0
+	currentIndex := 0
+
+	for salary > 0 {
+		currentNumber := salary % 10
+		sliceSalary = append(sliceSalary, currentNumber)
+		salary = salary / 10
+
+		if currentNumber <= minNumber {
+			minNumber = currentNumber
+			minIndex = currentIndex
+		}
+		if salary != 0 {
+			currentIndex++
+		}
+	}
+
+	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
+
+	fmt.Println(sliceSalary)
+	for index, value := range sliceSalary {
+		if cutSalary == 0 {
+			cutSalary = value
+		} else {
+			factor := math.Pow(10, float64(index))
+			cutSalary += value * int(factor)
+		}
+	}
+
+	return cutSalary
 }

@@ -83,4 +83,6 @@ func getSliceSalary(salary int) ([]int, int) {
 	return sliceSalary, minIndex
 }
 
+массив числе в инт
+инт в массив
 
