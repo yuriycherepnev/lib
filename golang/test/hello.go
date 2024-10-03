@@ -4,26 +4,38 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"unicode/utf8"
 )
 
 func main() {
 	salary := 990778876
-	sliceSalary, minNumberIndex := getSliceSalary(salary)
-	newSlice := append(sliceSalary[:minNumberIndex], sliceSalary[minNumberIndex+1:]...)
+	textNumber := strconv.Itoa(salary)
+	numberCount := utf8.RuneCountInString(textNumber)
+	sliceSalary := make([]int, 0, numberCount)
 
-	fmt.Println(newSlice)
+	for _, currentTextNumber := range textNumber {
+		currentNumber, _ := strconv.Atoi(string(currentTextNumber))
+		sliceSalary = append(sliceSalary, currentNumber)
+	}
 }
 
 func getSliceSalary(salary int) ([]int, int) {
 	textNumber := strconv.Itoa(salary)
-	numberCount := utf8.RuneCountInString(textNumber)
-	sliceSalary := make([]int, 0, numberCount)
+	sliceSalary := make([]int, 0, utf8.RuneCountInString(textNumber))
 	minNumber := 9
-	currentIndex := 0
-	reverseIndex := 0
+	minIndex := 0
+
+	for _, currentTextNumber := range textNumber {
+		currentNumber, _ := strconv.Atoi(string(currentTextNumber))
+		sliceSalary = append(sliceSalary, currentNumber)
+
+		if currentNumber < minNumber {
+			minNumber = currentNumber
+
+			minIndexя
+		}
+	}
 
 	for salary > 0 {
 		currentNumber := salary % 10

@@ -41,3 +41,46 @@ func IntToSlice(n int, sequence []int) []int {
 
 ------------------------------------------------------------
 
+//проблема reverse number!
+//скорее всего самый удобный способ - привести число к строке и через итерирование строки заполнять slice
+
+package main
+
+import (
+	"fmt"
+	"strconv"
+	"unicode/utf8"
+)
+
+func main() {
+	salary := 990778876
+
+	salarySlice, minIndex := getSliceSalary(salary)
+
+	fmt.Println(salarySlice)
+	fmt.Println(minIndex)
+}
+
+func getSliceSalary(salary int) ([]int, int) {
+	textNumber := strconv.Itoa(salary)
+	sliceSalary := make([]int, 0, utf8.RuneCountInString(textNumber))
+	minNumber := 9
+	minIndex := 0
+	currentIndex := 0
+
+	for _, currentTextNumber := range textNumber {
+		currentNumber, _ := strconv.Atoi(string(currentTextNumber))
+		sliceSalary = append(sliceSalary, currentNumber)
+		if currentNumber < minNumber {
+			minNumber = currentNumber
+			minIndex = currentIndex
+		}
+		currentIndex++
+	}
+
+	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[+minIndex:]...)
+	
+	return sliceSalary, minIndex
+}
+
+
