@@ -17,6 +17,7 @@ func main() {
 
 func cutSalary(salary int) int {
 	cutSalary := 0
+	degree := 0
 	textNumber := strconv.Itoa(salary)
 	sliceSalary := make([]int, 0, utf8.RuneCountInString(textNumber))
 	minNumber := 9
@@ -44,13 +45,21 @@ func cutSalary(salary int) int {
 	//проблема нескольких нулей подряд!
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	for _, value := range sliceSalary {
-
-		if cutSalary == 0 {
-			cutSalary = value
+		if value == 0 {
+			degree++
 		} else {
-			cutSalary = cutSalary * 10
-			if value != 0 {
-				cutSalary += value
+
+			if cutSalary == 0 {
+				cutSalary = value
+			} else {
+				if degree > 0 {
+
+				}
+
+				cutSalary = cutSalary * 10
+				if value != 0 {
+					cutSalary += value
+				}
 			}
 		}
 	}

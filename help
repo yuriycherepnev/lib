@@ -1539,6 +1539,10 @@ b2b:
 bakashoff@gmail.com
 Keykeykey0
 
+b2b test:
+ooleg.chern@gmail.com
+123123
+
 4kolesa:
 bakashoff@gmail.com
 UtybfkmysqGfhjkmLkz4Rjktc
@@ -2026,11 +2030,11 @@ lsof -ti tcp:8001
 --------------------------------------------------------------------
 Реверт:
 
-git revert -m1578e08748
+git log --pretty=format:"%h %s" --graph
 
-git revert -m952261521c
+git revert -m1 578e08748
 
-git revert -m1d7382c2
+git revert -m1 c8e3483f5
 
 --------------------------------------------------------------------
 Wifi exclusive private:
@@ -2869,3 +2873,7 @@ Manticore index rebuild:
 php yii manticore/drop-index
 php yii manticore/create-index
 php yii manticore/fill-index
+
+----------------------------------------------------------------
+git log
+git log --pretty=format:"%h %s" --graph
