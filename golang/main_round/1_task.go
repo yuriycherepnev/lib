@@ -12,7 +12,6 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -30,7 +29,7 @@ func main() {
 		line = strings.TrimSpace(line)
 
 		if i > 1 {
-			var salary int = 0
+			var salary int64 = 0
 			if len(line) > 1 {
 				salaryNumber, _ := strconv.Atoi(line)
 				salary = cutSalary(salaryNumber)
@@ -54,8 +53,9 @@ func main() {
 	}
 }
 
-func cutSalary(salary int) int {
-	cutSalary := 0
+func cutSalary(salary int) int64 {
+	var cutSalary int64 = 0
+	var multiplier int64 = 10
 	textNumber := strconv.Itoa(salary)
 	sliceSalary := make([]int, 0, utf8.RuneCountInString(textNumber))
 	minNumber := 9
@@ -76,15 +76,18 @@ func cutSalary(salary int) int {
 		}
 	}
 
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	//проблема длины числа
+
 	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
 
 	for index, value := range sliceSalary {
-		if cutSalary == 0 {
-			cutSalary = value
+		if index == 0 {
+			multiplier = 1
 		} else {
-			factor := math.Pow(10, float64(index))
-			cutSalary += value * int(factor)
+			multiplier = multiplier * 10
 		}
+		cutSalary = int64(value)*multiplier + cutSalary
 	}
 
 	return cutSalary

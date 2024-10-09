@@ -1,6 +1,3 @@
-//проблема reverse number!
-//скорее всего самый удобный способ - привести число к строке и через итерирование строки заполнять slice
-
 package main
 
 import (
@@ -10,14 +7,15 @@ import (
 )
 
 func main() {
-	salary := 20000
+	salary := 30101023
+	fmt.Println(salary)
 	cutSalary := cutSalary(salary)
 	fmt.Println(cutSalary)
 }
 
 func cutSalary(salary int) int {
 	cutSalary := 0
-	degree := 0
+	multiplier := 10
 	textNumber := strconv.Itoa(salary)
 	sliceSalary := make([]int, 0, utf8.RuneCountInString(textNumber))
 	minNumber := 9
@@ -40,28 +38,13 @@ func cutSalary(salary int) int {
 
 	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
 
-	fmt.Println(sliceSalary)
-
-	//проблема нескольких нулей подряд!
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	for _, value := range sliceSalary {
-		if value == 0 {
-			degree++
+	for index, value := range sliceSalary {
+		if index == 0 {
+			multiplier = 1
 		} else {
-
-			if cutSalary == 0 {
-				cutSalary = value
-			} else {
-				if degree > 0 {
-
-				}
-
-				cutSalary = cutSalary * 10
-				if value != 0 {
-					cutSalary += value
-				}
-			}
+			multiplier = multiplier * 10
 		}
+		cutSalary = value*multiplier + cutSalary
 	}
 
 	return cutSalary
