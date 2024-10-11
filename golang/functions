@@ -47,9 +47,6 @@ func IntToSlice(n int, sequence []int) []int {
 
 ------------------------------------------------------------
 
-//проблема reverse number!
-//скорее всего самый удобный способ - привести число к строке и через итерирование строки заполнять slice
-
 package main
 
 import (
@@ -59,35 +56,49 @@ import (
 )
 
 func main() {
-	salary := 990778876
-
-	salarySlice, minIndex := getSliceSalary(salary)
-
-	fmt.Println(salarySlice)
-	fmt.Println(minIndex)
+	salary := 30101023
+	fmt.Println(salary)
+	cutSalary := cutSalary(salary)
+	fmt.Println(cutSalary)
 }
 
-func getSliceSalary(salary int) ([]int, int) {
+func cutSalary(salary int) int {
+	cutSalary := 0
+	multiplier := 10
 	textNumber := strconv.Itoa(salary)
 	sliceSalary := make([]int, 0, utf8.RuneCountInString(textNumber))
 	minNumber := 9
 	minIndex := 0
 	currentIndex := 0
 
-	for _, currentTextNumber := range textNumber {
-		currentNumber, _ := strconv.Atoi(string(currentTextNumber))
+	for salary > 0 {
+		currentNumber := salary % 10
 		sliceSalary = append(sliceSalary, currentNumber)
-		if currentNumber < minNumber {
+		salary = salary / 10
+
+		if currentNumber <= minNumber {
 			minNumber = currentNumber
 			minIndex = currentIndex
 		}
-		currentIndex++
+		if salary != 0 {
+			currentIndex++
+		}
 	}
 
-	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[+minIndex:]...)
-	
-	return sliceSalary, minIndex
+	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
+
+	for index, value := range sliceSalary {
+		if index == 0 {
+			multiplier = 1
+		} else {
+			multiplier = multiplier * 10
+		}
+		cutSalary = value*multiplier + cutSalary
+	}
+
+	return cutSalary
 }
+
 
 массив числе в инт
 инт в массив
