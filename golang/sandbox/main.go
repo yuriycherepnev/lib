@@ -1,5 +1,5 @@
-//проблема reverse number!
-//скорее всего самый удобный способ - привести число к строке и через итерирование строки заполнять slice
+//с числом работаем как со строкой!
+//в типе инт не хватает длины цифры для обработки всего числа
 
 package main
 
@@ -10,58 +10,33 @@ import (
 )
 
 func main() {
-	salary := 20000
+	salary := "2003004005678"
+	fmt.Println(salary)
 	cutSalary := cutSalary(salary)
 	fmt.Println(cutSalary)
 }
 
-func cutSalary(salary int) int {
-	cutSalary := 0
-	degree := 0
-	textNumber := strconv.Itoa(salary)
-	sliceSalary := make([]int, 0, utf8.RuneCountInString(textNumber))
+func cutSalary(salary string) string {
+	cutSalary := ""
+	sliceSalary := make([]string, 0, utf8.RuneCountInString(salary))
 	minNumber := 9
 	minIndex := 0
-	currentIndex := 0
 
-	for salary > 0 {
-		currentNumber := salary % 10
-		sliceSalary = append(sliceSalary, currentNumber)
-		salary = salary / 10
+	for index, value := range salary {
+		stringNumber := string(value)
+		currentNumber, _ := strconv.Atoi(stringNumber)
+		sliceSalary = append(sliceSalary, stringNumber)
 
-		if currentNumber <= minNumber {
+		if currentNumber < minNumber {
 			minNumber = currentNumber
-			minIndex = currentIndex
-		}
-		if salary != 0 {
-			currentIndex++
+			minIndex = index
 		}
 	}
 
 	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
 
-	fmt.Println(sliceSalary)
-
-	//проблема нескольких нулей подряд!
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	for _, value := range sliceSalary {
-		if value == 0 {
-			degree++
-		} else {
-
-			if cutSalary == 0 {
-				cutSalary = value
-			} else {
-				if degree > 0 {
-
-				}
-
-				cutSalary = cutSalary * 10
-				if value != 0 {
-					cutSalary += value
-				}
-			}
-		}
+		cutSalary += value
 	}
 
 	return cutSalary

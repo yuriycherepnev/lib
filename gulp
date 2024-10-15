@@ -55,6 +55,14 @@ defined('YII_ENV') or define('YII_ENV', 'dev');
 defined('NODE_PATH') or define('NODE_PATH', '/home/new-root/.nvm/versions/node/v17.9.1/bin/node');
 
 --------------------------------------------------------------------
+Сменить версию node:
+
+node -v
+
+nvm list
+nvm use v16.3.0
+
+--------------------------------------------------------------------
 Сборка реакта для тайреса:
 
 npm run watch
