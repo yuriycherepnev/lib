@@ -102,4 +102,3 @@ func cutSalary(salary int) int {
 
 массив числе в инт
 инт в массив
-

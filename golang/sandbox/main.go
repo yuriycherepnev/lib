@@ -6,42 +6,38 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"unicode/utf8"
 )
 
 func main() {
-	salary := 12345678
+	salary := "2003004005678"
 	fmt.Println(salary)
 	cutSalary := cutSalary(salary)
 	fmt.Println(cutSalary)
 }
 
-func cutSalary(salary int) int {
-	textNumber := strconv.Itoa(salary)
-	//sliceSalary := make([]string, 0, utf8.RuneCountInString(textNumber))
-	//minNumber := 9
-	//minIndex := 0
-	//currentIndex := 0
+func cutSalary(salary string) string {
+	cutSalary := ""
+	sliceSalary := make([]string, 0, utf8.RuneCountInString(salary))
+	minNumber := 9
+	minIndex := 0
 
-	for i, v := range textNumber {
-		fmt.Println(i)
-		fmt.Println(v)
+	for index, value := range salary {
+		stringNumber := string(value)
+		currentNumber, _ := strconv.Atoi(stringNumber)
+		sliceSalary = append(sliceSalary, stringNumber)
+
+		if currentNumber < minNumber {
+			minNumber = currentNumber
+			minIndex = index
+		}
 	}
 
-	//for salary > 0 {
-	//	currentNumber := salary % 10
-	//	sliceSalary = append(sliceSalary, currentNumber)
-	//	salary = salary / 10
-	//
-	//	if currentNumber <= minNumber {
-	//		minNumber = currentNumber
-	//		minIndex = currentIndex
-	//	}
-	//	if salary != 0 {
-	//		currentIndex++
-	//	}
-	//}
-	//
-	//sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
+	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
 
-	return 10
+	for _, value := range sliceSalary {
+		cutSalary += value
+	}
+
+	return cutSalary
 }

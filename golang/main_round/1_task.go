@@ -29,13 +29,12 @@ func main() {
 		line = strings.TrimSpace(line)
 
 		if i > 1 {
-			var salary int64 = 0
+			salary := "0"
 			if len(line) > 1 {
-				salaryNumber, _ := strconv.Atoi(line)
-				salary = cutSalary(salaryNumber)
+				salary = cutSalary(line)
 			}
-			lineCount++
 			fmt.Println(salary)
+			lineCount++
 		}
 
 		if i == 1 {
@@ -53,41 +52,29 @@ func main() {
 	}
 }
 
-func cutSalary(salary int) int64 {
-	var cutSalary int64 = 0
-	var multiplier int64 = 10
-	textNumber := strconv.Itoa(salary)
-	sliceSalary := make([]int, 0, utf8.RuneCountInString(textNumber))
+func cutSalary(salary string) string {
+	cutSalary := ""
+	sliceSalary := make([]string, 0, utf8.RuneCountInString(salary))
 	minNumber := 9
 	minIndex := 0
-	currentIndex := 0
 
-	for salary > 0 {
-		currentNumber := salary % 10
-		sliceSalary = append(sliceSalary, currentNumber)
-		salary = salary / 10
+	fmt.Printf("len: %d, cap: %d\n", len(sliceSalary), cap(sliceSalary))
 
-		if currentNumber <= minNumber {
+	for index, value := range salary {
+		stringNumber := string(value)
+		currentNumber, _ := strconv.Atoi(stringNumber)
+		sliceSalary = append(sliceSalary, stringNumber)
+
+		if currentNumber < minNumber {
 			minNumber = currentNumber
-			minIndex = currentIndex
-		}
-		if salary != 0 {
-			currentIndex++
+			minIndex = index
 		}
 	}
 
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//проблема длины числа
-
 	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
 
-	for index, value := range sliceSalary {
-		if index == 0 {
-			multiplier = 1
-		} else {
-			multiplier = multiplier * 10
-		}
-		cutSalary = int64(value)*multiplier + cutSalary
+	for _, value := range sliceSalary {
+		cutSalary += value
 	}
 
 	return cutSalary
