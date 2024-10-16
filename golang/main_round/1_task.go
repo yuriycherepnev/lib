@@ -15,7 +15,6 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"unicode/utf8"
 )
 
 func main() {
@@ -53,29 +52,20 @@ func main() {
 }
 
 func cutSalary(salary string) string {
-	cutSalary := ""
-	sliceSalary := make([]string, 0, utf8.RuneCountInString(salary))
-	minNumber := 9
-	minIndex := 0
-
-	fmt.Printf("len: %d, cap: %d\n", len(sliceSalary), cap(sliceSalary))
-
-	for index, value := range salary {
-		stringNumber := string(value)
-		currentNumber, _ := strconv.Atoi(stringNumber)
-		sliceSalary = append(sliceSalary, stringNumber)
-
-		if currentNumber < minNumber {
-			minNumber = currentNumber
-			minIndex = index
+	for i := 0; i < len(salary)-1; i++ {
+		if salary[i] < salary[i+1] {
+			return salary[:i] + salary[i+1:]
 		}
 	}
-
-	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
-
-	for _, value := range sliceSalary {
-		cutSalary += value
-	}
-
-	return cutSalary
+	return salary[:len(salary)-1]
 }
+
+/*
+	При сравнении строк в Go происходит побайтовое сравнение (основанное на значениях байтов в UTF-8).
+	Так как в нашем случае цифры в зарплате представлены строками (например, "5", "3", "6"),
+	их сравнение работает как побайтовое сравнение ASCII кодов этих символов.
+	Когда мы сравниваем символы (цифры) как строки, Go сравнивает их значения в таблице ASCII, и это дает корректный результат для цифр.
+	'0' = 48, '1' = 49 и т.д.
+	Это работает корректно только для цифр, так как они упорядочены в таблице ASCII последовательно,
+	но в общем случае для других символов такое поведение может привести к непредсказуемым результатам.
+*/

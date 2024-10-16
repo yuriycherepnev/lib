@@ -1,12 +1,7 @@
-//с числом работаем как со строкой!
-//в типе инт не хватает длины цифры для обработки всего числа
-
 package main
 
 import (
 	"fmt"
-	"strconv"
-	"unicode/utf8"
 )
 
 func main() {
@@ -17,27 +12,10 @@ func main() {
 }
 
 func cutSalary(salary string) string {
-	cutSalary := ""
-	sliceSalary := make([]string, 0, utf8.RuneCountInString(salary))
-	minNumber := 9
-	minIndex := 0
-
-	for index, value := range salary {
-		stringNumber := string(value)
-		currentNumber, _ := strconv.Atoi(stringNumber)
-		sliceSalary = append(sliceSalary, stringNumber)
-
-		if currentNumber < minNumber {
-			minNumber = currentNumber
-			minIndex = index
+	for i := 0; i < len(salary)-1; i++ {
+		if salary[i] < salary[i+1] {
+			return salary[:i] + salary[i+1:]
 		}
 	}
-
-	sliceSalary = append(sliceSalary[:minIndex], sliceSalary[minIndex+1:]...)
-
-	for _, value := range sliceSalary {
-		cutSalary += value
-	}
-
-	return cutSalary
+	return salary[:len(salary)-1]
 }
