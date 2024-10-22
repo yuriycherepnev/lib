@@ -1,0 +1,8 @@
+rembg up:
+
+sudo pip install -r requirements.txt
+
+
+удалить все пакеты:
+
+sudo pip uninstall -r requirements.txt -y
