@@ -2,9 +2,16 @@ python3 u2net_convert.py --model-path /home/yuriy/projects/u2net/saved_models/u2
 
 rembg i 55.jpg oprigin.png
 
-rembg i -m u2net_custom -x '{'model_path': ''~/.u2net/u2net_converted.onnx'}' 55.jpg custom.png
+rembg i -m u2net_custom -x '{"model_path": "~/.u2net/u2net_converted.onnx"}' 55.jpg custom.png
 
-rembg i -m u2net_custom -x '{"model_path": "~/.u2net/u2net_converted_2.onnx"}' 1.jpg 1.png
+rembg i -m u2net_custom -x '{"model_path": "~/.u2net/u2net_custom.onnx"}' 1.jpg 1.png
+
+rembg i -x '{"model_path": "~/.u2net/u2net_converted_2.onnx"}' 1.jpg 1.png
+
+rembg i -m u2net -x '{"model_path": "~/.u2net/u2net_custom.onnx"}' 1.jpg 1.png
+
+rembg i -x '{"model_path": "~/.u2net/u2net_custom.onnx"}' 1.jpg 1.png
+
 
 mask:
 
@@ -14,7 +21,7 @@ Custom model:
 
 rembg i -om -m u2net_custom -x '{"model_path": "~/.u2net/u2net_converted.onnx"}' 55.jpg custom_mask.png
 
-rembg i -om -m u2net_custom -x '{"model_path": "~/.u2net/u2net_converted_2.onnx"}' 33.jpg 33.png\
+rembg i -om -m u2net_custom -x '{"model_path": "~/.u2net/u2net_converted_2.onnx"}' 33.jpg 33.png
 
 
 вызов из php скрипта:
