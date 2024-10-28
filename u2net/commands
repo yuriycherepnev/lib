@@ -8,8 +8,6 @@ rembg i -m u2net_custom -x '{"model_path": "~/.u2net/u2net_custom.onnx"}' 1.jpg 
 
 rembg i -x '{"model_path": "~/.u2net/u2net_converted_2.onnx"}' 1.jpg 1.png
 
-rembg i -m u2net -x '{"model_path": "~/.u2net/u2net_custom.onnx"}' 1.jpg 1.png
-
 rembg i -x '{"model_path": "~/.u2net/u2net_custom.onnx"}' 1.jpg 1.png
 
 
