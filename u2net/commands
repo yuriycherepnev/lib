@@ -1,0 +1,36 @@
+python3 u2net_convert.py --model-path /home/yuriy/projects/u2net/saved_models/u2net/u2net.pth --output-path /home/yuriy/projects/u2net/saved_models/u2net/u2net_converted.onnx
+
+rembg i 55.jpg oprigin.png
+
+rembg i -m u2net_custom -x '{"model_path": "~/.u2net/u2net_converted.onnx"}' 55.jpg custom.png
+
+rembg i -m u2net_custom -x '{"model_path": "~/.u2net/u2net_custom.onnx"}' 1.jpg 1.png
+
+rembg i -x '{"model_path": "~/.u2net/u2net_converted_2.onnx"}' 1.jpg 1.png
+
+rembg i -x '{"model_path": "~/.u2net/u2net_custom.onnx"}' 1.jpg 1.png
+
+
+mask:
+
+rembg i -om 55.jpg oprigin_mask.png
+
+Custom model:
+
+rembg i -om -m u2net_custom -x '{"model_path": "~/.u2net/u2net_converted.onnx"}' 55.jpg custom_mask.png
+
+rembg i -om -m u2net_custom -x '{"model_path": "~/.u2net/u2net_converted_2.onnx"}' 33.jpg 33.png
+
+
+вызов из php скрипта:
+
+putenv("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
+putenv("NUMBA_DISABLE_JIT=1");
+$result = shell_exec("/usr/local/bin/rembg --help 2>&1");
+
+putenv("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
+putenv("NUMBA_DISABLE_JIT=1");
+$result = shell_exec("rembg i -m u2net_custom -x '{\"model_path\": \"/home/username/.u2net/u2net_converted_2.onnx\"}' $inputImg $outputImg 2>&1");
+echo '<pre>';
+var_dump($result);
+die;

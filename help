@@ -244,6 +244,32 @@ modules:
       part: init
       cleanup: false
 
+
+class_name: AcceptanceTester
+modules:
+  enabled:
+    - WebDriver:
+        url: http://tyres
+        browser: chrome
+        window_size: maximize
+        wait: 1
+        capabilities:
+          chromeOptions:
+            w3c: false
+    - Yii2:
+        configFile: 'common/config/test-local.php'
+        part: init
+        cleanup: false
+
+actor: ApiTester
+modules:
+  enabled:
+    - \Helper\Api
+    - REST:
+        url: http://tyres/api/
+        depends: PhpBrowser
+        part: Json
+
 ------------------------------------------------------------------
 tests/api.suite.yml:
 
@@ -950,26 +976,13 @@ require_once __DIR__ . '/vendor/autoload.php';
 --------------------------------------------------------------------
 Установить пакеты для PHP (нужную версию прописать):
 
-sudo apt install php5.4 php5.4-common php5.4-cli php5.4-fpm php5.4-gd php5.4-mysql php5.4-mbstring php5.4-curl php5.4-xml php5.4-zip php5.4-json php5.4-imagick php5.4-xmlrpc php5.4-bz2 php5.4-dev php5.4-opcache
+sudo apt install php5.4 php5.4-common php5.4-cli php5.4-fpm php5.4-gd php5.4-mysql php5.4-mbstring php5.4-curl php5.4-xml php5.4-zip php5.4-json php5.4-imagick php5.4-xmlrpc php5.4-bz2 php5.4-dev php5.4-opcache php5.6-ssh2
 
-sudo apt-get install libapache2-mod-php7.4 php7.4-common php7.4-gd php7.4-mysql php7.4-curl php7.4-intl php7.4-xsl php7.4-mbstring php7.4-zip php7.4-bcmath php7.4-soap php7.4-xdebug php7.4-imagick
+sudo apt install php5.6 php5.6-common php5.6-cli php5.6-fpm php5.6-gd php5.6-mysql php5.6-mbstring php5.6-curl php5.6-xml php5.6-zip php5.6-json php5.6-imagick php5.6-xmlrpc php5.6-bz2 php5.6-dev php5.6-opcache php5.6-ssh2
 
-sudo apt install php7.4 php7.4-common php7.4-cli php7.4-fpm php7.4-gd php7.4-mysql php7.4-mbstring php7.4-curl php7.4-xml php7.4-zip php7.4-json php7.4-imagick php7.4-xmlrpc php7.4-bz2 php7.4-dev php7.4-opcache
-sudo apt install php-ssh2
+sudo apt install php7.4 php7.4-common php7.4-cli php7.4-fpm php7.4-gd php7.4-mysql php7.4-mbstring php7.4-curl php7.4-xml php7.4-zip php7.4-json php7.4-imagick php7.4-xmlrpc php7.4-bz2 php7.4-dev php7.4-opcache php7.4-intl php7.4-xsl php7.4-bcmath php7.4-soap php7.4-xdebug
 
-sudo apt-get install php7.4-ssh2
-sudo apt-get install php5.6-ssh2
-
-sudo apt install php5.6 php5.6-common php5.6-cli php5.6-fpm php5.6-gd php5.6-mysql php5.6-mbstring php5.6-curl php5.6-xml php5.6-zip php5.6-json php5.6-imagick php5.6-xmlrpc php5.6-bz2 php5.6-dev php5.6-opcache
-
-sudo apt install php8.0 php8.0-common php8.0-cli php8.0-fpm php8.0-gd php8.0-mysql php8.0-mbstring php8.0-curl php8.0-xml php8.0-zip php8.0-json php8.0-imagick php8.0-xmlrpc php8.0-bz2 php8.0-dev php8.0-opcache
-
-sudo apt-get install libapache2-mod-php8.0 php8.0-common php8.0-gd php8.0-mysql php8.0-curl php8.0-intl php8.0-xsl php8.0-mbstring php8.0-zip php8.0-bcmath php8.0-soap php8.0-xdebug php8.0-imagick
-
-sudo apt-get install php8.0 php8.0-common php8.0-cli php8.0-fpm php8.0-gd php8.0-mysql php8.0-mbstring php8.0-curl php8.0-xml php8.0-zip php8.0-json php8.0-imagick php8.0-xmlrpc php8.0-bz2 php8.0-dev php8.0-opcache libapache2-mod-php8.0 php8.0-intl php8.0-xsl php8.0-bcmath php8.0-soap php8.0-xdebug
-
-sudo apt install php5.6-mysql
-sudo apt install php7.4-mysql
+sudo apt install php8.0 php8.0-common php8.0-cli php8.0-fpm php8.0-gd php8.0-mysql php8.0-mbstring php8.0-curl php8.0-xml php8.0-zip php8.0-json php8.0-imagick php8.0-xmlrpc php8.0-bz2 php8.0-dev php8.0-opcache php8.0-intl php8.0-xsl php8.0-bcmath php8.0-soap php8.0-xdebug
 --------------------------------------------------------------------
 Переключить версию composer:
 composer self-update --1 
@@ -1250,6 +1263,8 @@ clickhouse:
 systemctl stop clickhouse-server
 
 sudo systemctl disable clickhouse-server
+
+sudo systemctl start clickhouse-server
 
 --------------------------------------------------------------------
 windows:
@@ -1862,8 +1877,6 @@ git clone ssh://gituser@git.tyres.spb.ru/Exclusive/back.b2b.tyres.spb.ru.git
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/tyres_satellites.git
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/1c_exchange.git
 git clone ssh://gituser@git.tyres.spb.ru/Exclusive/new.revosp.com.git
-
-git clone https://github.com/FreePBX/core.git
 
 В репозитории:
 git remote -v 
