@@ -4,8 +4,6 @@ server {
         server_name tyres;
 #deny all;
 
-    
-
         set $base_root /home/yuriy/projects/tyres;
          root $base_root/frontend/web;
           
@@ -106,14 +104,12 @@ server {
                 fastcgi_send_timeout 300;
                 fastcgi_read_timeout 300;
                 fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                fastcgi_pass unix:/run/php/php7.4-fpm.sock; # подключаем сокет php-fpm
+                fastcgi_pass localhost:9900; # подключаем сокет php-fpm
                 fastcgi_index index.php;
                 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
                 include fastcgi_params;
         }
-
     
-
         #access_log  /var/log/tyres/tyres.spb.ru.nginx.access.https.log;
         #error_log /var/log/tyres/tyres.spb.ru.nginx.error.https.log;
 

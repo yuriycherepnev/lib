@@ -72,19 +72,20 @@ docker build -t my-php-app .
 
 docker exec -it 73fc4e24b6d6 bash
 
+docker exec -it php_7.4 bash
+
+docker exec -it mysql_8 bash
+
 -------------------------------------------------------------------
 Закачать бд в контейнер:
 
 docker exec -i 49a16ad89b06 mysql -uroot -proot b2b < ~/database/b2b.sql
 
--------------------------------------------------------------------
-Docker Compose — это средство для определения и запуска приложений Docker с несколькими контейнерами. 
-При работе в Compose вы используете файл YAML для настройки служб приложения. 
-Затем вы создаете и запускаете все службы из конфигурации путем выполнения одной команды.
+docker exec -i mysql_8 mysql -uroot -proot tyres < ~/database/tyres.sql
 
-Docker-compose — это надстройка над докером, приложение написанное на Python, 
-которое позволяет запускать множество контейнеров одновременно и 
-маршрутизировать потоки данных между ними.
+docker exec -it mysql_8 mysql -uroot -proot b2b
+
+SOURCE ~/database/b2b.sql
 
 -------------------------------------------------------------------
 Rebuild manticore:
@@ -92,3 +93,29 @@ Rebuild manticore:
 docker-compose down
 sudo rm -r data/*
 docker-compose up --build -d
+
+-------------------------------------------------------------------
+
+Конфиг бд для работы с docker контейнером:
+
+<?php
+
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=127.0.0.1;port=3307;dbname=b2b',
+    'username' => 'root',
+    'password' => 'root',
+    'charset' => 'utf8',
+
+    // Schema cache options (for production environment)
+    //'enableSchemaCache' => true,
+    //'schemaCacheDuration' => 60,
+    //'schemaCache' => 'cache',
+];
+
+-------------------------------------------------------------------
+Пересобрать 1 контейнер:
+
+docker stop php_7.4
+docker rm php_7.4
+docker-compose up --build php
