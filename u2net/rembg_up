@@ -19,6 +19,7 @@ rembg i -om -x '{"model_path": "../../../data/u2net/u2net.onnx"}' 29.jpg 29.png
 rembg i -x '{"model_path": "../../data/u2net.onnx"}' 29.jpg 29.png
 
 ----------------------------------------------------------
+
 удалить все пакеты:
 
 sudo pip uninstall -r requirements.txt -y

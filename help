@@ -69,7 +69,7 @@ mysql> set global sql_mode='';  (установить глобальную пе�
 Или постоянно:
 
 Файл конфигурации: /etc/mysql/my.cnf
-[mysqld] 
+[mysqld]  
 sql_mode = NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 default_authentication_plugin = mysql_native_password
 (сбросить авторизацию до старой версии)
@@ -2898,3 +2898,13 @@ php yii manticore/fill-index
 ----------------------------------------------------------------
 git log
 git log --pretty=format:"%h %s" --graph
+
+----------------------------------------------------------------
+Интернет:
+
+sudo systemctl restart NetworkManager
+
+nmcli connection show --active
+
+nmcli connection down <имя_вашего_подключения>
+

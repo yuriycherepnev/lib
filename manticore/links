@@ -1,0 +1,23 @@
+manticore docs:
+https://manual.manticoresearch.com/Creating_a_table/NLP_and_tokenization/Morphology#morphology
+
+manticore operators:
+https://manual.manticoresearch.com/Searching/Full_text_matching/Operators
+
+manticore php docs:
+https://github.com/manticoresoftware/manticoresearch-php/tree/master/docs
+
+manticore php sql:
+https://github.com/manticoresoftware/manticoresearch-php/blob/master/docs/sql.md
+
+manticore php query builder:
+https://github.com/manticoresoftware/manticoresearch-php/blob/master/docs/query.md
+
+manticore weight:
+https://github.com/manticoresoftware/manticoresearch-php/issues/42
+
+article:
+https://habr.com/ru/articles/550690/
+
+custom ranging:
+https://forum.manticoresearch.com/t/topic/2103

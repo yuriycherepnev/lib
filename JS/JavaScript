@@ -112,8 +112,8 @@ console.log(bubbleSort([3, 2, 10, -2, 0]));
     storeSort(cartList, storeItem);
 
 --------------------------------------------------------------------
-Функциональынй компонент реакт:
-
+Функциональный компонент реакт:
+ 
 export interface SearchFilterProps {
     name: string;
     setName: Dispatch<SetStateAction<string>>;
