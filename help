@@ -2908,3 +2908,24 @@ nmcli connection show --active
 
 nmcli connection down <имя_вашего_подключения>
 
+----------------------------------------------------------------
+установка jetbrains из архива:
+
+sudo tar xf ~/Downloads/jetbrains/WebStorm-2024.2.2.tar.gz -C /opt/
+
+sudo mv /opt/WebStorm-242.22855.79 /opt/webstorm
+
+ссылка на исполняемый файл:
+sudo ln -s /opt/webstorm/bin/webstorm.sh /usr/local/bin/webstorm
+
+ярлык:
+sudo nano /usr/share/applications/webstorm.desktop
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=WebStorm
+Exec=/opt/webstorm/bin/webstorm.sh
+Icon=/opt/webstorm/bin/webstorm.png
+Terminal=false
+Categories=Development;IDE;
