@@ -174,7 +174,7 @@ alias phpswap='sudo update-alternatives --config php'
 
 Постоянные алиасы надо указывать в файле:
 
-home/new-root/.bashrc
+home/yuriy/.bashrc
 
 пример:
 
@@ -2929,3 +2929,15 @@ Exec=/opt/webstorm/bin/webstorm.sh
 Icon=/opt/webstorm/bin/webstorm.png
 Terminal=false
 Categories=Development;IDE;
+
+----------------------------------------------------------------
+constraint_name
+
+<?php return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=127.0.0.1:3307;dbname=pulsprice',
+    'username' => 'root',
+    'password' => 'root',
+    'charset' => 'utf8',
+    'attributes' => [PDO::ATTR_CASE => PDO::CASE_LOWER],
+];
