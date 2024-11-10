@@ -1,24 +1,26 @@
 проверка + обновлений драйверов bios
 драйвера nvidia для ubuntu
 
-git + ssh ключи
-repository Lib
+git генерация + добавление ssh ключа
+download repository Lib
+download repository Docker
 
 рабочий vpn
+paper vpn
 
 sublime text 
-discord telegram
+discord 
+telegram
 google chrome + закладки
 
 aliases Git
 phpstorm goland webstorm
 
 nginx (строго по гайду - может быть ошибка с путями и правами на папки)
+nginx конфиги сайтов + hosts
+
+composer 1, 2
+mysql container up
+rabbit container up
 
 php 5.6 7.4
-mysql
-phpMyAdmin 4.9.11 (php 5.6)
-composer 1, 2
-docker (mysql)
-rabbit
-golang

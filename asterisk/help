@@ -31,7 +31,7 @@ return [
 sshAsterisk:
 
 <?php
-$host = '172.27.100.240';
+$host = '10.172.100.240';
 $password = '8iNsHmpeS1';
 $user = 'root';
 
