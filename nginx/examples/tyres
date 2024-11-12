@@ -104,7 +104,7 @@ server {
                 fastcgi_send_timeout 300;
                 fastcgi_read_timeout 300;
                 fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                fastcgi_pass localhost:9900; # подключаем сокет php-fpm
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
                 fastcgi_index index.php;
                 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
                 include fastcgi_params;
