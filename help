@@ -177,9 +177,9 @@ alias phpswap='sudo update-alternatives --config php'
 home/yuriy/.bashrc
 
 пример:
-
 alias phpswap='sudo update-alternatives --config php'
-alias gbd='git branch -D '
+alias sshkey='cat ~/.ssh/id_ed25519.pub'
+
 -----------------------------------------------------------
 очистка кеша:
 
@@ -1238,8 +1238,16 @@ sudo systemctl enable nginx
 ps -ax | grep nginx
 
 Создание нового сайта:
+
 sudo nano /etc/nginx/sites-available/your_domain
 sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+
+папка где лежат проекты должна иметь нужные права:
+
+sudo chmod +x /home/yuriy
+
+Флаг +x означает добавление права на выполнение (execute) для указанной директории. 
+Применительно к директории это означает разрешение на её просмотр и доступ внутрь.
 
 --------------------------------------------------------------------
 clickhouse:
@@ -2911,22 +2919,22 @@ nmcli connection down <имя_вашего_подключения>
 ----------------------------------------------------------------
 установка jetbrains из архива:
 
-sudo tar xf ~/Downloads/jetbrains/WebStorm-2024.2.2.tar.gz -C /opt/
+sudo tar xf ~/Downloads/jetbrains/PhpStorm-2024.2.2.tar.gz -C /opt/
 
-sudo mv /opt/WebStorm-242.22855.79 /opt/webstorm
+sudo mv /opt/PhpStorm-242.22855.79 /opt/webstorm
 
 ссылка на исполняемый файл:
-sudo ln -s /opt/webstorm/bin/webstorm.sh /usr/local/bin/webstorm
+sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/local/bin/phpstorm
 
 ярлык:
-sudo nano /usr/share/applications/webstorm.desktop
+sudo nano /usr/share/applications/phpstorm.desktop
 
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=WebStorm
-Exec=/opt/webstorm/bin/webstorm.sh
-Icon=/opt/webstorm/bin/webstorm.png
+Name=PhpStorm
+Exec=/opt/phpstorm/bin/phpstorm.sh
+Icon=/opt/phpstorm/bin/phpstorm.png
 Terminal=false
 Categories=Development;IDE;
 

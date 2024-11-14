@@ -14,12 +14,14 @@ telegram
 google chrome + закладки
 
 aliases Git
+
 phpstorm goland webstorm
 
 nginx (строго по гайду - может быть ошибка с путями и правами на папки)
 nginx конфиги сайтов + hosts
 
 composer 1, 2
+docker
 mysql container up
 rabbit container up
 
