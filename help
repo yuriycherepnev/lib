@@ -2936,7 +2936,12 @@ Name=PhpStorm
 Exec=/opt/phpstorm/bin/phpstorm.sh
 Icon=/opt/phpstorm/bin/phpstorm.png
 Terminal=false
+StartupWMClass=jetbrains-phpstorm
 Categories=Development;IDE;
+Comment=PhpStorm IDE
+
+выдать права на исполнение:
+sudo chmod +x /usr/share/applications/phpstorm.desktop
 
 ----------------------------------------------------------------
 constraint_name
