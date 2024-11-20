@@ -153,6 +153,7 @@ SELECT * FROM `cel` WHERE `exten` LIKE '%9118248378'
 
 SELECT * FROM `cdr` WHERE `dst` LIKE '%9118248378'
 
+
 SELECT * FROM cdr 
 WHERE `dst` LIKE '%9119924429'
 AND calldate > '2024-04-11' AND calldate < '2024-04-13'
@@ -160,6 +161,14 @@ AND calldate > '2024-04-11' AND calldate < '2024-04-13'
 SELECT * FROM cdr
 WHERE linkedid = '1712935225.8320527'
 AND calldate > '2024-04-11' AND calldate < '2024-04-13'
+
+поиск входящего:
+
+SELECT * FROM cdr 
+WHERE `src` LIKE '%9215997404'
+AND calldate > '2024-11-17' 
+AND calldate < '2024-11-19'
+GROUP BY linkedid
 
 --------------------------------------------------------------------
 Скачать файл разговора:
