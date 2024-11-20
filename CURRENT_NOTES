@@ -15,10 +15,9 @@ php /var/www/4kolesa.spb.ru/workspace/yii parse-price
 добавить ширину на мобилке
 пересчет координат при смене модификации
 
+
 откатывать изменения если произошла ошибка
 
-скрыть модуль - оставить только прямую ссылку
-добавить nonindex
 
 добавить seo для примерки дисков?
 прямая ссылка в модуль
@@ -26,29 +25,12 @@ php /var/www/4kolesa.spb.ru/workspace/yii parse-price
 http://tyres/cars_disks?selection_disk=1
 
 ----------------------------------------------------------
-79241 юлтэк
+https://help.tyres.spb.ru/issues/79191
 
-скачивание файла
-
-
-нет:
-
-runflat
-
-позиции где нет 
-
-vendorCode:
-695276
-
-w:
-Шины 33/12,5 R22 Arivo Rock Trak R/T 109Q
-
-d:
-Шины 16/7,5 Kumho RS02 121/120M 
-
-есть такие строки :
-Диски R16 4x100 6J ET41 D60,1 iFree КС893 Алмаз черный
-и как их парсить хуй его знает
+suv 
+runFlat
+extra_load усиленная xl
+light_truck антипрокол cs
 
 шины:
 всего 4336
