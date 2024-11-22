@@ -1,0 +1,15 @@
+часы:
+6.11 9 часов труктурес админка
+7.11 8 часов труктурес админка
+удалить часы: 15.11
+
+----------------------------------------------------------
+https://help.tyres.spb.ru/issues/73472
+все консольные команды проверены
+
+Можно удалить (не выполняются):
+
+php /var/www/4kolesa.spb.ru/workspace/yii import-valuation
+php /var/www/4kolesa.spb.ru/workspace/yii parse-price
+
+
