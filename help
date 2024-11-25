@@ -957,14 +957,14 @@ sudo apt-get install php5.6 php5.6-common php5.6-cli php5.6-fpm php5.6-gd php5.6
 
 sudo apt-get install php5.6-mysql
 
-sudo apt-get install libapache2-mod-php7.4 php7.4 php7.4-common php7.4-cli php7.4-fpm php7.4-gd php7.4-mysql php7.4-curl php7.4-intl php7.4-xsl php7.4-mbstring php7.4-zip php7.4-json php7.4-imagick php7.4-xmlrpc php7.4-bz2 php7.4-dev php7.4-opcache php7.4-ssh2 php7.4-bcmath php7.4-soap php7.4-xdebug
+sudo apt-get install libapache2-mod-php7.4 php7.4 php7.4-common php7.4-cli php7.4-fpm php7.4-gd php7.4-mysql php7.4-curl php7.4-intl php7.4-xsl php7.4-mbstring php7.4-zip php7.4-json php7.4-imagick php7.4-xmlrpc php7.4-bz2 php7.4-dev php7.4-opcache php7.4-ssh2 php7.4-bcmath php7.4-soap
 
 
 sudo apt-get install php8.0 php8.0-common php8.0-cli php8.0-fpm php8.0-gd php8.0-mysql php8.0-mbstring php8.0-curl php8.0-xml php8.0-zip php8.0-json php8.0-imagick php8.0-xmlrpc php8.0-bz2 php8.0-dev php8.0-opcache
 
-sudo apt-get install libapache2-mod-php8.0 php8.0-common php8.0-gd php8.0-mysql php8.0-curl php8.0-intl php8.0-xsl php8.0-mbstring php8.0-zip php8.0-bcmath php8.0-soap php8.0-xdebug php8.0-imagick
+sudo apt-get install libapache2-mod-php8.0 php8.0-common php8.0-gd php8.0-mysql php8.0-curl php8.0-intl php8.0-xsl php8.0-mbstring php8.0-zip php8.0-bcmath php8.0-soap  php8.0-imagick
 
-sudo apt-get install php8.0 php8.0-common php8.0-cli php8.0-fpm php8.0-gd php8.0-mysql php8.0-mbstring php8.0-curl php8.0-xml php8.0-zip php8.0-json php8.0-imagick php8.0-xmlrpc php8.0-bz2 php8.0-dev php8.0-opcache libapache2-mod-php8.0 php8.0-intl php8.0-xsl php8.0-bcmath php8.0-soap php8.0-xdebug
+sudo apt-get install php8.0 php8.0-common php8.0-cli php8.0-fpm php8.0-gd php8.0-mysql php8.0-mbstring php8.0-curl php8.0-xml php8.0-zip php8.0-json php8.0-imagick php8.0-xmlrpc php8.0-bz2 php8.0-dev php8.0-opcache libapache2-mod-php8.0 php8.0-intl php8.0-xsl php8.0-bcmath php8.0-soap
 
 
 --------------------------------------------------------------------
@@ -2645,7 +2645,7 @@ VPN exclusive:
 Cherepnev
 oKvSitG7
 
-pre-shared key
+pre-shared key:
 nRe5KJllcv0
 
 --------------------------------------------------------------------
@@ -2921,9 +2921,10 @@ nmcli connection down <имя_вашего_подключения>
 
 sudo tar xf ~/Downloads/jetbrains/PhpStorm-2024.2.2.tar.gz -C /opt/
 
-sudo mv /opt/PhpStorm-242.22855.79 /opt/webstorm
+sudo mv /opt/PhpStorm-242.22855.79 /opt/phpstorm
 
 ссылка на исполняемый файл:
+
 sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/local/bin/phpstorm
 
 ярлык:
@@ -2982,3 +2983,20 @@ cat ~/.ssh/id_ed25519.pub
 clickhouse миграции:
 
 php yii migrate-clickhouse/up
+
+----------------------------------------------------------------
+install nodeJs:
+
+cd ~
+
+sudo apt install curl
+
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
+source ~/.bashrc
+
+nvm list-remote
+
+nvm install [version.number]
+
+nvm list

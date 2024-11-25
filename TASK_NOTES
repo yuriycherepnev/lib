@@ -12,4 +12,14 @@ https://help.tyres.spb.ru/issues/73472
 php /var/www/4kolesa.spb.ru/workspace/yii import-valuation
 php /var/www/4kolesa.spb.ru/workspace/yii parse-price
 
+----------------------------------------------------------
+
+Кнопка примерк
+Попап окно по примерке
+проверка наличия фото примерки
+
+выбор авто в попапе
+вьюшка примерки
+
+
 
