@@ -23,6 +23,8 @@ nginx (строго по гайду - может быть ошибка с пут
 
 composer 1, 2
 docker
+nodejs
+
 mysql container up
 rabbit container up
 
