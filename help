@@ -3000,3 +3000,12 @@ nvm list-remote
 nvm install [version.number]
 
 nvm list
+
+----------------------------------------------------------------
+Сбросить все процессы юзера:
+
+killall -u $USER
+
+Завершение всех процессов кроме системных:
+
+sudo pkill -TERM -u $USER

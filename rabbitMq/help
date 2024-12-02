@@ -66,6 +66,18 @@ return [
     ]
 ];
 
+connectionRabbit mq Docker:
+
+return [
+    [
+        'host' => '127.0.0.1',
+        'port' => '5673',
+        'user' => 'admin',
+        'password' => 'admin',
+        'vhost' => '/',
+    ]
+];
+
 --------------------------------------------------------------------
 совместимые версии rabbit и erlang:
 https://www.rabbitmq.com/which-erlang.html
