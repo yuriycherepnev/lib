@@ -1213,7 +1213,7 @@ sudo ufw enable
 Статус:
 sudo ufw status
 
-Проверка работы веб-сервера:
+Статус:
 systemctl status nginx
 
 Остановить:
@@ -1355,7 +1355,6 @@ $goodObject = $goodFactory->createGoodObject('disks');
 $good = $goodObject::findOne('37zWHS219518');
 var_dump($good->getCardUrl());
 die;
-
 
 Генерация uniqueId:
 
@@ -3009,3 +3008,16 @@ killall -u $USER
 Завершение всех процессов кроме системных:
 
 sudo pkill -TERM -u $USER
+
+----------------------------------------------------------------
+телефоны кейсы:
+
++7-911-264-78-38
++7-9112647838
++79112647838
+8-911-264-78-38
+8-9112647838
+89112647838
+911-264-78-38
+911-2647838
+9112647838
