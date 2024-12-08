@@ -10,36 +10,39 @@ php /var/www/4kolesa.spb.ru/workspace/yii parse-price
 Раскидать часы за первую неделю ноября
 
 ----------------------------------------------------------
-создать свою базу данных под проект
-
-добавить миграции
-создать миграции
-добавить модели
-
-
+перенести базу данных call_api
+перенсти модели в call_api
+реализовать asterisk и asterisk_search
+реализовать api контроллер
+погрузить все это в docker
+написать документацию
 
 перенос таблиц:
 
 call_group
-#name id_store did queue
-#calg_numbers переносим в call_group
+#name id_store
 #добавить имена магазинов
 
+call_group_queue
+#id_call_group did queue
+
 call_group_extension
-call_group_user
+#id_call_group extension
 
 call_info 
-#id_status id_tag comment created updated linkedid
-
 call_status
-call_tag
-#call_tag_record переносим в call_info
+#id_status id_tag comment created updated linkedid
+#call_tag_record убираем и переносим в call_info
 
+call_group_user
 call_redirect_extension
 
 модели:
-asterusk 
-asterisk search
+call_group
+call_group_queue
+call_group_extension
+asterisk 
+asterisk_search
 
 вопросы:
 comagic - какая у него роль?
@@ -47,7 +50,7 @@ comagic processing
 
 минусуем:
 cell
-phone info
-call tag
-call group numbers
+phone_info
+call_tag
+
 
