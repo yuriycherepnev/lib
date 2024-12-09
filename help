@@ -3021,3 +3021,17 @@ sudo pkill -TERM -u $USER
 911-264-78-38
 911-2647838
 9112647838
+
+----------------------------------------------------------------
+раздать (расшарить) файл:
+
+кладем файл в директорию:
+
+/home/yuriy/projects/tyres/newfrontend/web/
+
+mainController:
+
+$filePath = Yii::getAlias('@newfrontend') . '/web/ty.sql';
+if (file_exists($filePath)) {
+    return Yii::$app->response->sendFile($filePath);
+}
