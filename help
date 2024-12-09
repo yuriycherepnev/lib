@@ -469,30 +469,40 @@ die($this->view->returnDataJSON(
 Переустановить phpstorm:
 
 sudo snap list
+
 sudo snap remove phpstorm
-
-cd ~/.config/
-
-cd JetBrains/
-ls
-sudo rm -r PhpStorm2021.1/
-
-rm -rf ~/.java/.userprefs/jetbrains
-rm -rf ~/.PhpStorm2021.2
 
 sudo snap install phpstorm --classic
 
+----------------------------------------------------------------
+установка jetbrains из архива:
 
-Обновить phpstorm не удаляя:
+sudo tar xf ~/Downloads/jetbrains/PhpStorm-2024.2.2.tar.gz -C /opt/
 
-cd ~/.config/
+cd /opt/
 
-cd JetBrains/
-ls
-sudo rm -r PhpStorm2021.1/
+sudo mv PhpStorm-242.22855.79 phpstorm
 
-rm -rf ~/.java/.userprefs/jetbrains
-rm -rf ~/.PhpStorm2019.2
+ссылка на исполняемый файл:
+
+sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/local/bin/phpstorm
+
+ярлык:
+sudo nano /usr/share/applications/phpstorm.desktop
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PhpStorm
+Exec=/opt/phpstorm/bin/phpstorm.sh
+Icon=/opt/phpstorm/bin/phpstorm.png
+Terminal=false
+StartupWMClass=jetbrains-phpstorm
+Categories=Development;IDE;
+Comment=PhpStorm IDE
+
+выдать права на исполнение:
+sudo chmod +x /usr/share/applications/phpstorm.desktop
 
 -------------------------------------------------------------------
 
@@ -512,18 +522,40 @@ sudo tar xf ~/Downloads/PhpStorm-2024.2.1.tar.gz -C /opt/
 sudo ln -s /opt/PhpStorm-2024.2.1.tar.gz/bin/phpstorm.sh /usr/local/bin/phpstorm
 
 -------------------------------------------------------------------
+
+взлом phpstorm:
+
+настройки хостов:
+
+127.0.0.1
+9999
+
+чистка:
+
+sudo find / -type d -iname jetbrains 2>/dev/null
+
+sudo rm -r /home/yuriy/.cache/JetBrains
+sudo rm -r /home/yuriy/.local/share/JetBrains
+sudo rm -r /home/yuriy/.config/JetBrains
+sudo rm -r /home/yuriy/.java/.userPrefs/jetbrains
+sudo > /home/yuriy/.java/.userPrefs/prefs.xml
+
+-------------------------------------------------------------------
+
 Заблокировать phpstorm в хостах:
 
 sudo gedit /etc/hosts
 
 0.0.0.0 account.jetbrains.com
 0.0.0.0 www.jetbrains.com
+0.0.0.0 jetbrains.com
 0.0.0.0 www-weighted.jetbrains.com
 0.0.0.0 entry.prod-eu.w3jbcom.aws.intellij.net
 0.0.0.0 entry.prod.w3jbcom.aws.intellij.net
 
 ::1 account.jetbrains.com
 ::1 www.jetbrains.com
+::1 jetbrains.com
 ::1 www-weighted.jetbrains.com
 ::1 entry.prod-eu.w3jbcom.aws.intellij.net
 ::1 entry.prod.w3jbcom.aws.intellij.net
@@ -2916,34 +2948,6 @@ nmcli connection show --active
 nmcli connection down <имя_вашего_подключения>
 
 ----------------------------------------------------------------
-установка jetbrains из архива:
-
-sudo tar xf ~/Downloads/jetbrains/PhpStorm-2024.2.2.tar.gz -C /opt/
-
-sudo mv /opt/PhpStorm-242.22855.79 /opt/phpstorm
-
-ссылка на исполняемый файл:
-
-sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/local/bin/phpstorm
-
-ярлык:
-sudo nano /usr/share/applications/phpstorm.desktop
-
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=PhpStorm
-Exec=/opt/phpstorm/bin/phpstorm.sh
-Icon=/opt/phpstorm/bin/phpstorm.png
-Terminal=false
-StartupWMClass=jetbrains-phpstorm
-Categories=Development;IDE;
-Comment=PhpStorm IDE
-
-выдать права на исполнение:
-sudo chmod +x /usr/share/applications/phpstorm.desktop
-
-----------------------------------------------------------------
 constraint_name
 
 <?php return [
@@ -3010,7 +3014,7 @@ killall -u $USER
 sudo pkill -TERM -u $USER
 
 ----------------------------------------------------------------
-телефоны кейсы:
+номера телефоны кейсы:
 
 +7-911-264-78-38
 +7-9112647838
