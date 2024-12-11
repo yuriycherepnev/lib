@@ -1109,6 +1109,8 @@ php yii asta/generate-files
 
 php yii asta/brands
 
+php yii city/fill-city
+
 php yii getter/parse-one
 
 php yii catalog/counting-goods
@@ -1721,7 +1723,7 @@ Yii::$app->request->getCsrfTokenFromHeader()
         die;
 
 --------------------------------------------------------------------
- Сортировка одного массива по значениям другого:
+Сортировка одного массива по значениям другого:
 
 $order = [15,16,9 ];
 $sort = array_flip($order);
