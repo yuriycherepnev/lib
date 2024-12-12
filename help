@@ -2,7 +2,7 @@ env tyres file:
 
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
-defined('NODE_PATH') or define('NODE_PATH', '/home/new-root/.nvm/versions/node/v17.9.1/bin/node');
+defined('NODE_PATH') or define('NODE_PATH', '/home/yuriy/.nvm/versions/node/v22.2.0/bin/node');
 
 ---------------------------------------------------------- 
 db tyres:
@@ -1109,6 +1109,8 @@ php yii asta/generate-files
 
 php yii asta/brands
 
+php yii city/fill-city
+
 php yii getter/parse-one
 
 php yii catalog/counting-goods
@@ -1721,7 +1723,7 @@ Yii::$app->request->getCsrfTokenFromHeader()
         die;
 
 --------------------------------------------------------------------
- Сортировка одного массива по значениям другого:
+Сортировка одного массива по значениям другого:
 
 $order = [15,16,9 ];
 $sort = array_flip($order);
