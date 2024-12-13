@@ -3041,3 +3041,10 @@ $filePath = Yii::getAlias('@newfrontend') . '/web/ty.sql';
 if (file_exists($filePath)) {
     return Yii::$app->response->sendFile($filePath);
 }
+
+----------------------------------------------------------------
+Удалить неотслеживаемые файлы git:
+
+git clean -f
+git clean -fd
+

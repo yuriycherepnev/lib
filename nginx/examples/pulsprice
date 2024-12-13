@@ -2,7 +2,7 @@ server {
         listen   80;
         server_name pulsprice;
 
-        set $base_root /home/new-root/projects/pulsprice;
+        set $base_root /home/yuriy/projects/pulsprice;
         root $base_root/web;
 
         index index.php;
