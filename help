@@ -2875,6 +2875,8 @@ $('form').on('afterValidateAttribute', function(event, attr, msg) {
 
 curl -O 172.27.178.36/tyres1103.sql
 
+curl -O 172.27.178.184/tyres1612.sql
+
 ----------------------------------------------------------------
 
 select db:
