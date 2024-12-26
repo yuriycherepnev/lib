@@ -2850,7 +2850,6 @@ git rm -r --cached newfrontend/assets/react/src/catalog/build
 
 git rm -r --cached newfrontend/assets/react/src/cart/build
 
-
 ----------------------------------------------------------------
 Анаграмма:
 
@@ -3056,3 +3055,9 @@ if (file_exists($filePath)) {
 git clean -f
 git clean -fd
 
+----------------------------------------------------------------
+
+git push origin master — отправляет изменения из локальной ветки master в удалённый репозиторий.
+
+git push origin/master — некорректно в контексте git push. 
+Используйте origin/master для ссылок на удалённые ветки в других командах (например, git diff, git merge).
