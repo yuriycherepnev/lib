@@ -2846,7 +2846,10 @@ date('d.m.Y H:i', $timestamp)
 ----------------------------------------------------------------
 Удалить папку из коммита:
 
-git reset dir
+git rm -r --cached newfrontend/assets/react/src/catalog/build
+
+git rm -r --cached newfrontend/assets/react/src/cart/build
+
 
 ----------------------------------------------------------------
 Анаграмма:
