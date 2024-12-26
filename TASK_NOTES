@@ -1,12 +1,3 @@
-https://help.tyres.spb.ru/issues/73472
-все консольные команды проверены
-
-Можно удалить (не выполняются):
-
-php /var/www/4kolesa.spb.ru/workspace/yii import-valuation
-php /var/www/4kolesa.spb.ru/workspace/yii parse-price
-
-----------------------------------------------------------
 перенести базу данных call_api
 перенсти модели в call_api
 реализовать asterisk и asterisk_search
