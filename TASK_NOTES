@@ -1,44 +1,12 @@
-перенести базу данных call_api
-перенести модели в call_api
-реализовать asterisk и asterisk_search
-реализовать api контроллер
-погрузить все это в docker
+реализация:
+перетащить метод за методом asterisk search
++ asterisk ssh
+(лишнее убрать и зарефакторить)
 
-перенос таблиц:
+настроить передачу гет параметров
 
-call_group
-#name id_store
-#добавить имена магазинов
+сделать фильтры по гет параметрам
 
-call_group_queue
-#id_call_group did queue
-
-call_group_extension
-#id_call_group extension
-
-call_info
-call_status
-#id_status id_tag comment created updated linkedid
-#call_tag_record убираем и переносим в call_info
-
-call_group_user
-call_redirect_extension
-
-модели:
-call_group
-call_group_queue
-call_group_extension
-asterisk
-asterisk_search
-
-вопросы:
-comagic - какая у него роль?
-comagic processing
-
-минусуем:
-cell
-phone_info
-call_tag
 
 --------------------------------------------------------------------
 Работа с моделями Laravel:
