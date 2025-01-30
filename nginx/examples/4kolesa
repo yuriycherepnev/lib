@@ -1,10 +1,10 @@
 server {
         listen 80;
         
-        server_name  4kolesa;
+        server_name 4kolesa;
     #deny all;
 
-        set $base_root /home/new-root/projects/4kolesa;
+        set $base_root /home/yuriy/projects/4kolesa;
         root $base_root/web;
 
         index index.php;
@@ -47,8 +47,8 @@ server {
             rewrite ^/(.*)$ http://4kolesa.com/$1  permanent;
         }
 
-        #access_log /home/new-root/projects/logs/nginx.access.log;
-        #error_log /home/new-root/projects/logs/nginx.error.log;
+        #access_log /home/yuriy/projects/logs/nginx.access.log;
+        #error_log /home/yuriy/projects/logs/nginx.error.log;
 
         charset utf8;
 
