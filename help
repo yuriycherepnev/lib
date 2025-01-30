@@ -1,4 +1,3 @@
-
 env tyres file:
 
 defined('YII_DEBUG') or define('YII_DEBUG', true);
@@ -560,14 +559,6 @@ sudo gedit /etc/hosts
 ::1 www-weighted.jetbrains.com
 ::1 entry.prod-eu.w3jbcom.aws.intellij.net
 ::1 entry.prod.w3jbcom.aws.intellij.net
-
--------------------------------------------------------------------
-
-ссылкы на утановку phpstorm:
-
-https://dzen.ru/a/ZrqcOQybsyYTJoYY
-
-https://losst.pro/ustanovka-phpstorm-v-ubuntu-18-04
 
 -------------------------------------------------------------------
 Хз зачем. Потом выясню.
