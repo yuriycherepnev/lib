@@ -1739,7 +1739,7 @@ $sort = array_flip($order);
 usort($data, function($a,$b) use($sort){
                 return $sort[$a['num_block']] - $sort[$b['num_block']];
             });
-            
+
 --------------------------------------------------------------------
 Наибольшее значение вложенного массива:
 
@@ -2034,7 +2034,7 @@ https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/0f087af174bb8c60f5e1
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b17d31bd651c1bf331f2cb4239fa058629318e52
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/5d8de7a42396182a5c1df8b01fd03c4bfd1697d2
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/76a37d40f55e4ab8abbb1f68ef3ed7b738814e58
 
 7787692957c779ca794c5708ee9962674aa475d2
 
@@ -3074,8 +3074,6 @@ git push origin/master — некорректно в контексте git push
 wireguard:
 
 https://serverspace.ru/support/help/kak-ustanovit-wireguard-vpn-client-na-ubuntu-linux/
-
-sudo wg show
 
 sudo wg-quick up wg0
 
