@@ -2034,7 +2034,7 @@ https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/0f087af174bb8c60f5e1
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b17d31bd651c1bf331f2cb4239fa058629318e52
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/76a37d40f55e4ab8abbb1f68ef3ed7b738814e58
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/834673544043a85742d03c5594ed8252d2cdb4bd
 
 7787692957c779ca794c5708ee9962674aa475d2
 
@@ -2048,7 +2048,7 @@ pull/4009/head
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/4456/files
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/4469/files
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/6877/files
 --------------------------------------------------------------------
 Очистка input перед вставкой:
 
@@ -3078,3 +3078,11 @@ https://serverspace.ru/support/help/kak-ustanovit-wireguard-vpn-client-na-ubuntu
 sudo wg-quick up wg0
 
 sudo wg-quick down wg0
+sudo systemctl restart NetworkManager
+
+----------------------------------------------------------------
+Скачать дамп tyres:
+
+sudo scp webmaster@10.172.100.163:/var/backups/mysql/tyres.sql tyres2901.sql
+
+ПушистыеКроты
