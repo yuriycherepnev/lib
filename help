@@ -1739,7 +1739,7 @@ $sort = array_flip($order);
 usort($data, function($a,$b) use($sort){
                 return $sort[$a['num_block']] - $sort[$b['num_block']];
             });
-            
+
 --------------------------------------------------------------------
 Наибольшее значение вложенного массива:
 
@@ -3074,8 +3074,6 @@ git push origin/master — некорректно в контексте git push
 wireguard:
 
 https://serverspace.ru/support/help/kak-ustanovit-wireguard-vpn-client-na-ubuntu-linux/
-
-sudo wg show
 
 sudo wg-quick up wg0
 
