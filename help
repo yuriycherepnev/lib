@@ -3075,6 +3075,20 @@ wireguard:
 
 https://serverspace.ru/support/help/kak-ustanovit-wireguard-vpn-client-na-ubuntu-linux/
 
+sudo nano /etc/wireguard/wg0.conf
+
+[Interface]
+PrivateKey = EJIuTDfU6FBB1abdHuRKV5qmSWAHOZhd/allPsUTrXk=
+Address = 10.12.0.89/32
+DNS = 8.8.8.8
+
+[Peer]
+PublicKey = dC8Cke9mTzXzRu4dnevr7rcj8OSEhDT+DEHyRU5NQUs=
+Endpoint = vpnfr03.fornex.org:3389
+AllowedIPs = 0.0.0.0/0
+PresharedKey = 0fSHqnPltiIUX5aNUkzVtr1twNguQkOSqHD1EeIZMzs=
+PersistentKeepalive = 16
+
 sudo wg-quick up wg0
 
 sudo wg-quick down wg0
