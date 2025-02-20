@@ -2888,6 +2888,8 @@ curl -O 172.27.178.36/tyres1103.sql
 
 curl -O 172.27.178.184/tyres1612.sql
 
+curl -O 172.27.181.98/tyres1402.sql
+
 ----------------------------------------------------------------
 
 select db:
@@ -3083,6 +3085,6 @@ sudo systemctl restart NetworkManager
 ----------------------------------------------------------------
 Скачать дамп tyres:
 
-sudo scp webmaster@10.172.100.163:/var/backups/mysql/tyres.sql tyres2901.sql
+sudo scp webmaster@10.172.100.163:/var/backups/mysql/tyres.sql tyres1402.sql
 
 ПушистыеКроты
