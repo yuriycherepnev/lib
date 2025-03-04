@@ -54,11 +54,11 @@ return [
 --------------------------------------------------------------------
 PBX authorization:
 
-http://172.27.100.240/admin/config.php
+http://10.172.100.240/admin/config.php
 oleg
 oleg1039
 
-http://172.27.100.240/admin/config.php?display=cdr&action=cel_show&uid=1658951302.2775573
+http://10.172.100.240/admin/config.php?display=cdr&action=cel_show&uid=1658951302.2775573
 
 --------------------------------------------------------------------
 Скачать файл с сервера:
