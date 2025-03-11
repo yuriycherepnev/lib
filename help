@@ -3079,6 +3079,8 @@ git push origin/master — некорректно в контексте git push
 ----------------------------------------------------------------
 wireguard:
 
+https://fornex.com/my/vpn/
+
 https://serverspace.ru/support/help/kak-ustanovit-wireguard-vpn-client-na-ubuntu-linux/
 
 sudo wg-quick up wg0
@@ -3092,3 +3094,37 @@ sudo systemctl restart NetworkManager
 sudo scp webmaster@10.172.100.163:/var/backups/mysql/tyres.sql tyres1402.sql
 
 ПушистыеКроты
+
+----------------------------------------------------------------
+
+tg bot tyres:
+
+rabbit.php
+
+<?php
+
+return [
+    'host' => '10.172.100.139',
+    'port' => 5672,
+    'user' => 'user1c',
+    'password' => 'Pr0gress',
+    'botExchange' => [
+        'name' => 'service_bot',
+        'routing' => [
+            'botBill' => 'service_bill',
+            'botChat' => 'service_chat',
+        ]
+    ]
+];
+
+env.php
+
+<?php
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'dev');
+defined('NODE_PATH') or define('NODE_PATH', '/home/yuriy/.nvm/versions/node/v22.11.0/bin/node');
+defined('DEFAULT_HOST') or define('DEFAULT_HOST', '172.27.178.72');
+
+.env
+MIX_REACT_DOMAIN=.172.27.178.72
+MIX_YAMAP_API_V3_KEY=key
