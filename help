@@ -2772,7 +2772,7 @@ die;
 }
 
 --------------------------------------------------------------------
-exchange ветки:
+1c_exchange ветки:
 
 new_master:
 tyres
@@ -3093,6 +3093,8 @@ sudo systemctl restart NetworkManager
 
 sudo scp webmaster@10.172.100.163:/var/backups/mysql/tyres.sql tyres1402.sql
 
+sudo scp root@10.172.100.181:/var/backups/mysql/service.sql service1403.sql
+
 ПушистыеКроты
 
 ----------------------------------------------------------------
@@ -3128,3 +3130,16 @@ defined('DEFAULT_HOST') or define('DEFAULT_HOST', '172.27.178.72');
 .env
 MIX_REACT_DOMAIN=.172.27.178.72
 MIX_YAMAP_API_V3_KEY=key
+
+----------------------------------------------------------------
+telegram debug panel:
+
+npm install eruda
+
+добавление в реакт:
+
+import eruda from 'eruda';
+
+добавить внутрь компонента строку:
+
+eruda.init();
