@@ -3143,3 +3143,7 @@ import eruda from 'eruda';
 добавить внутрь компонента строку:
 
 eruda.init();
+
+удалить reuda:
+
+npm uninstall eruda
