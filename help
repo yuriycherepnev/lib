@@ -372,6 +372,7 @@ common/components/rbac/items.php
 
 -----------------------------------------------------------------
 Запуск геттера:
+
 php yii getter/parse-one tyre
 
 php yii getter/parse-one disk
@@ -381,6 +382,7 @@ php yii getter/parse-one accum
 php yii orderApi/order-queue/make-order-from-queue
 
 геттер контроллер:
+
 console/controllers/GetterController.php
 
 Provider:
