@@ -195,3 +195,65 @@ N (Shift +n) → предыдущее совпадение.
 
 h
 вывод информации по программен пейджере (less)
+
+-------------------------------------------------------------------
+
+разница which и whereis
+
+which - Ищет только исполняемый файл команды в $PATH.
+
+whereis - Ищет все связанные файлы: бинарник, документацию (man), исходники.
+
+$PATH — это системная переменная окружения, которая содержит список директорий, 
+где Linux ищет исполняемые файлы (программы и команды). 
+Когда вы вводите команду (например, ls, python), система просматривает 
+эти директории по порядку и запускает первый найденный совпадающий файл.
+
+which date
+/usr/bin/date
+
+which nano
+/usr/bin/nano
+
+which mc
+/usr/bin/mc
+
+-------------------------------------------------------------------
+
+yuriy@yuriy-comp:~/projects/lib$ man -k passwd
+chgpasswd (8)        - обновляет пароли групп в пакетном режиме
+chpasswd (8)         - обновляет пароли в пакетном режиме
+gpasswd (1)          - administer /etc/group and /etc/gshadow
+passwd (1)           - изменяет пароль пользователя
+passwd (5)           - файл паролей
+update-passwd (8)    - безопасное обновление файлов /etc/passwd, /etc/shadow и /etc/group
+fgetpwent_r (3)      - get passwd file entry reentrantly
+getpwent_r (3)       - get passwd file entry reentrantly
+grub-mkpasswd-pbkdf2 (1) - generate hashed password for GRUB
+htpasswd (1)         - Manage user files for basic authentication
+openssl-passwd (1ssl) - compute password hashes
+pam_localuser (8)    - require users to be listed in /etc/passwd
+passwd (1ssl)        - OpenSSL application commands
+passwd2des (3)       - RFS password encryption
+
+man 5 passwd
+
+man passwd
+
+-------------------------------------------------------------------
+
+find /usr/share/doc -name '*HOWTO*'
+
+find /etc -name 'net*' -type d
+
+-type d - фильтрует только директории (папки).
+d = directory (англ. "директория").
+Если нужно найти файлы, используйте -type f.
+
+
+find / -name '*.so' -type f
+
+/mtime
+
+
+sudo find /var/log -type f -mtime -1
