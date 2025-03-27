@@ -372,6 +372,7 @@ common/components/rbac/items.php
 
 -----------------------------------------------------------------
 Запуск геттера:
+
 php yii getter/parse-one tyre
 
 php yii getter/parse-one disk
@@ -381,6 +382,7 @@ php yii getter/parse-one accum
 php yii orderApi/order-queue/make-order-from-queue
 
 геттер контроллер:
+
 console/controllers/GetterController.php
 
 Provider:
@@ -2886,13 +2888,11 @@ $('form').on('afterValidateAttribute', function(event, attr, msg) {
 ----------------------------------------------------------------
 Скачать файл curl:
 
+curl -O 172.27.178.72/asteriskcdrdb.sql
+
 curl -O 172.27.178.36/tyres1103.sql
 
 curl -O 172.27.178.184/tyres1612.sql
-
-curl -O 172.27.181.98/tyres1402.sql
-
-curl -O 172.27.178.184/service0403.sql
 
 ----------------------------------------------------------------
 
