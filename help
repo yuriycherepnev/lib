@@ -2966,15 +2966,6 @@ git log
 git log --pretty=format:"%h %s" --graph
 
 ----------------------------------------------------------------
-Интернет:
-
-sudo systemctl restart NetworkManager
-
-nmcli connection show --active
-
-nmcli connection down <имя_вашего_подключения>
-
-----------------------------------------------------------------
 constraint_name
 
 <?php return [
@@ -3083,6 +3074,15 @@ git push origin/master — некорректно в контексте git push
 Используйте origin/master для ссылок на удалённые ветки в других командах (например, git diff, git merge).
 
 ----------------------------------------------------------------
+Интернет:
+
+sudo systemctl restart NetworkManager
+
+nmcli connection show --active
+
+nmcli connection down <имя_вашего_подключения>
+
+----------------------------------------------------------------
 wireguard:
 
 https://fornex.com/my/vpn/
@@ -3092,6 +3092,7 @@ https://serverspace.ru/support/help/kak-ustanovit-wireguard-vpn-client-na-ubuntu
 sudo wg-quick up wg0
 
 sudo wg-quick down wg0
+
 sudo systemctl restart NetworkManager
 
 ----------------------------------------------------------------
@@ -3155,7 +3156,38 @@ eruda.init();
 npm uninstall eruda
 
 ----------------------------------------------------------------
-
 Дата наперед:
 
 date --date="+84 days"
+
+----------------------------------------------------------------
+направить вывод команды в файл:
+
+ll > textfile
+
+Создать файл 3 с текстом одной командой:
+
+echo "Текст для файла 3" > 3
+
+содержимое из файла 4 записать в файл textfile:
+
+cat 4 > textfile
+
+добавление вывода в конец файла:
+
+echo "Текст для добавления" >> textfile
+
+вывод пользователей:
+
+who 
+
+количесвто пользователей в системе:
+
+who | wc -l
+
+запись в файл с помощь cat:
+
+cat > 2 << EOF
+$(date)
+EOF
+
