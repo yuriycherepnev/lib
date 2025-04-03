@@ -172,3 +172,42 @@ passwd
 id
 uid=1001(testuser) gid=1002(testuser) группы=1002(testuser)
 
+**********
+1.3.1
+
+Добавьте пользователя в группу sudo
+
+usermod -aG sudo testuser
+
+cat /etc/group | grep sudo
+sudo:x:27:yuriy,testuser
+
+Измените описательную информацию (finger) по пользователю testuser
+
+cat /etc/passwd | grep testuser
+testuser:x:1001:1002:Linux course test user,111,444,444,Class XXX:/home/testuser:/bin/bash
+
+getent passwd testuser
+используется для получения информации о пользователе testuser из базы данных учетных записей пользователей.
+
+**********
+1.3.2
+
+Создайте группу team
+sudo groupadd mygroup
+
+посмотреть все группы:
+getent group
+
+Добавьте пользователя student в эту группу:
+sudo usermod -aG mygroup testuser
+
+Убедитесь что пользователь student входит в группу team
+getent group mygroup
+mygroup:x:1003:
+
+**********
+1.4.1
+
+/etc/sudoers – это главный конфигурационный файл для sudo 
+

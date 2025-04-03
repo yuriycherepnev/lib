@@ -2034,7 +2034,7 @@ crontab -r
 --------------------------------------------------------------------
 Найти коммит/реквест по хешу:
 
-PhpStorm аннотации -> showDiff -> копируем хеш справа вверху, вставляем в урл
+PhpStorm аннотации -> showDiff -> копируем хеш справа сверху, вставляем в урл
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/4a88ec4e707c459c5cd8c6ac2dd4fd1edf6e657e
 
@@ -2044,7 +2044,7 @@ https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/0f087af174bb8c60f5e1
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/b17d31bd651c1bf331f2cb4239fa058629318e52
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/834673544043a85742d03c5594ed8252d2cdb4bd
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/commit/f3a68e51902075aa195eaeed0cac101d6393b3a4
 
 7787692957c779ca794c5708ee9962674aa475d2
 
@@ -2058,7 +2058,7 @@ pull/4009/head
 
 https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/6877/files
 
-https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/6877/files
+https://git.tyres.spb.ru:3000/Exclusive/tyres.spb.ru/pulls/3612/files
 --------------------------------------------------------------------
 Очистка input перед вставкой:
 
