@@ -211,3 +211,12 @@ mygroup:x:1003:
 
 /etc/sudoers – это главный конфигурационный файл для sudo 
 
+**********
+1.4.2
+
+who
+yuriy    tty2         2025-04-03 16:37 (tty2)
+
+last
+yuriy    tty2         tty2             Thu Apr  3 16:37   still logged in
+reboot   system boot  6.8.0-57-generic Thu Apr  3 16:37   still running
