@@ -2113,6 +2113,8 @@ lsof -ti tcp:8001
 
 git log --pretty=format:"%h %s" --graph
 
+git log --all --decorate --oneline --graph
+
 git revert -m1 a89f10d65
 
 git revert -m1 c8e3483f5
