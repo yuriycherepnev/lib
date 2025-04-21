@@ -1020,6 +1020,9 @@ composer install --ignore-platform-reqs
 composer update --ignore-platform-reqs
 
 И update каждого плагина по отдельности:
+
+composer update exclusive/yii2-call
+
 composer update yiisoft/yii2-composer
 
 composer update exclusive/yii2-url-manager
@@ -3227,3 +3230,8 @@ visudo — это специальная утилита для безопасн�
 Поиск открытых файлов phpstorm
 
 Ctrl + E
+
+----------------------------------------------------------------
+поиск и удаление файлов в директории /var/log, которые старше 7 дней.
+
+find /var/log -type f -mtime +7 -exec rm {} \;
