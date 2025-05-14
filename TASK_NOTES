@@ -1,3 +1,8 @@
+часы:
+https://help.tyres.spb.ru/issues/86270
+07.05 - 9 часов
+
+-------------------------------------------------------------------
 https://help.tyres.spb.ru/issues/80063
 
 - история по бонусам
@@ -27,7 +32,9 @@ bonusCount - кол-во бонусов
     "idUser": b89ef299-041f-11ec-b3c0-ac1f6b4daebb,
     "idEvent": 3,
     "bonusCount": 300,
-    "idOperation": 1
+    "idOperation": 1,
+    "idOrder": 3,
+    "idService": 2
   }
 }]
 
