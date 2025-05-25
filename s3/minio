@@ -1,0 +1,27 @@
+MinIO — это высокопроизводительное объектный хранилище с открытым исходным кодом, 
+совместимый с Amazon S3 API. 
+Оно предназначено для хранения и управления неструктурированными данными 
+(файлами, изображениями, видео, бэкапами и т. д.).
+
+установка:
+
+# Скачать бинарный файл MinIO
+wget https://dl.min.io/server/minio/release/linux-amd64/minio
+
+# Дать права на выполнение
+chmod +x minio
+
+# Переместить в директорию для бинарных файлов
+sudo mv minio /usr/local/bin/
+
+
+# Создать пользователя minio-user
+sudo useradd -r minio-user -s /sbin/nologin
+
+# Создать директорию для данных
+sudo mkdir /var/lib/minio
+sudo chown minio-user:minio-user /var/lib/minio
+
+# Создать директорию для конфигурации
+sudo mkdir /etc/minio
+sudo chown minio-user:minio-user /etc/minio
