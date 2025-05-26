@@ -2972,7 +2972,6 @@ php yii manticore/fill-index
 
 ----------------------------------------------------------------
 найти хеш merge:
-
 git log
 git log --pretty=format:"%h %s" --graph
 
