@@ -1027,6 +1027,8 @@ composer update exclusive/yii2-call
 
 composer update yiisoft/yii2-composer
 
+yiisoft/yii2
+
 composer update exclusive/yii2-url-manager
 
 composer update exclusive/yii2-order-api
@@ -1042,6 +1044,8 @@ composer require happyworm/jPlayer
 composer require marcelog/pami:2.*
 
 composer require exclusive/yii2-call:2.2.22
+
+composer require mikemadisonweb/yii2-rabbitmq:^2.5
 
 Удалить пакет:
 
