@@ -10,29 +10,17 @@
 
 наброски команд:
 
-sudo nano rabbitmq-consumer
-
-при запуске слушателя через systemd, если я сделаю var_dump в коде, куда будет идти вывод?
-
 journalctl -u rabbitmq-consumer.service -f
 
 php yii rabbit/test-bonus
+
+sudo systemctl start rabbitmq-consumer.service
 
 sudo systemctl restart rabbitmq-consumer.service
 
 sudo systemctl stop rabbitmq-consumer.service
 
 journalctl -u rabbitmq-consumer.service -f
-
-
-/home/yuriy/projects/tyres/docker/rabbitMq/rabbitmq-consumer.service
-
-
-/home/yuriy/projects/tyres/rabbit.sh
-
-зачем так усложнять в этой строке
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-если можно просто ввести pwd?
 
 -------------------------------------------------------------------
 рэббит на тайресе для бонусов
