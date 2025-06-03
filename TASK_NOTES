@@ -1,13 +1,54 @@
+часы:
+
+26.05 - 5 рэббит бонусы
+27.05 - 9 рэббит бонусы
+28.05 - 9 рэббит бонусы
+29.05 - 9 рэббит бонусы
+30.05 - 8 рэббит бонусы
+
+-------------------------------------------------------------------
+
+наброски команд:
+
+sudo nano rabbitmq-consumer
+
+при запуске слушателя через systemd, если я сделаю var_dump в коде, куда будет идти вывод?
+
+journalctl -u rabbitmq-consumer.service -f
+
+php yii rabbit/test-bonus
+
+sudo systemctl restart rabbitmq-consumer.service
+
+sudo systemctl stop rabbitmq-consumer.service
+
+journalctl -u rabbitmq-consumer.service -f
+
+
+/home/yuriy/projects/tyres/docker/rabbitMq/rabbitmq-consumer.service
+
+
+/home/yuriy/projects/tyres/rabbit.sh
+
+зачем так усложнять в этой строке
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+если можно просто ввести pwd?
+
+-------------------------------------------------------------------
 рэббит на тайресе для бонусов
-- логирование рэббита
-- перенос rabbitSh в systemD
 
-что к понедельнику:
+- readme файл с интсрукцией и командами для работы с докер
+- документация для 1с апи бонусов
+- прокинуть новый параметр бонусы к шинам на тайресе
 
-рэббит очереди + система таблиц и обьектов
-документация
-слушатель сервис в systemd
-тестировочный контроллер
+- бэк бонусов в каталоге
+- фронт бонусов в каталоге
+
+- бэк истории бонусов для лк
+- фронт истории бонусов для лк
+
+- добавить галку в корзину
+- прокинуть новый параметр в апи заказа
 
 ***
 поднять тестовый минио на компе
@@ -55,7 +96,7 @@ date - дата сделки
 bonus_operation_type
 id name
 
-bonus_event_type 
+bonus_event_type
 id name
 
 bonus_event
