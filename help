@@ -1133,6 +1133,10 @@ php yii catalog/counting-goods
 
 php yii sitemap/vasya-zapili-mne-sitemap-da
 
+php yii rabbit/test-bonus
+
+php yii rabbitmq/consume bonus-consumer
+
 --------------------------------------------------------------------
 Проверка модуля postman:
 

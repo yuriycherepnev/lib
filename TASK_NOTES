@@ -1,13 +1,13 @@
 рэббит на тайресе для бонусов
-- поднять рэббит на тайресе
-- доработать баш скрипт для поднятия rabbit consumers
-- настроить очереди
-- создать котнроллеры
-- создать тестовые контроллеры
-- создать тестовые данные для rabbitqMq
-- прописать документацию для бонусов
+- логирование рэббита
+- перенос rabbitSh в systemD
 
-переносим rabbitSh в systemd
+что к понедельнику:
+
+рэббит очереди + система таблиц и обьектов
+документация
+слушатель сервис в systemd
+тестировочный контроллер
 
 ***
 поднять тестовый минио на компе
@@ -44,6 +44,33 @@ https://help.tyres.spb.ru/issues/80063
 3 - пуш кол-ва бонусов в exchange новым свойствам к гудам
 
 1:
+
+idUser - идентификатор юзера
+idOperationType - тип операции (списание, начисление)
+bonusCount - количество бонусов
+idEventType - тип события (заказ, услуга)
+idEvent - идентификатор события (заказа, услуги)
+date - дата сделки
+
+bonus_operation_type
+id name
+
+bonus_event_type 
+id name
+
+bonus_event
+id idUser idOperationType idEventType idEvent createdAt bonusCount
+
+[{
+  "body": {
+    "id_user": b89ef299-041f-11ec-b3c0-ac1f6b4daebb,
+    "id_operation_type": 2,
+    "bonus_count": 300,
+    "id_event_type": 3,
+    "id_event", 47,
+    "date": 456456234
+  }
+}]
 
 набросок структуры сообщения в рэббит:
 

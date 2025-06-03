@@ -38,6 +38,8 @@ http://127.0.0.1:15673
 --------------------------------------------------------------------
 Запустить rabbit:
 
+php yii rabbitmq/consume order-web
+
 bash rabbit.sh
 
 bash rabbitReboot.sh
