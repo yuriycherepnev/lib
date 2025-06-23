@@ -30,7 +30,7 @@ sudo rm -r ~/go
 
 git clone https://git.gocommunity.ru/chertkov/code_runner.git
 
-go mod init name
+go mod init golang
 
 go mod tidy
 
