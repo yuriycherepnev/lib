@@ -1,0 +1,68 @@
+install go:
+
+cd ~/Downloads/
+
+wget https://go.dev/dl/go1.23.10.linux-amd64.tar.gz
+
+sudo tar -C /usr/local -xzf go1.23.10.linux-amd64.tar.gz
+
+*****
+
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+source ~/.bashrc
+----------------------------------------------------------
+delete go:
+
+sudo rm -rf /usr/local/go
+
+sudo apt remove golang-go golang-go.tools  
+sudo apt autoremove
+
+sudo snap remove go       
+
+sudo rm -r ~/go               
+
+----------------------------------------------------------
+Поднять проект на go:
+
+git clone https://git.gocommunity.ru/chertkov/code_runner.git
+
+go mod init golang
+
+go mod tidy
+
+go mod download
+
+скачать отдельно гит модуль:
+
+go get github.com/gofiber/fiber/v2
+
+скачивание всех зависимостей проекта:
+
+go get ./...
+
+с обновлением пакетов до последних версий:
+
+go get -u ./...
+
+----------------------------------------------------------
+очистка кеша:
+
+go clean -modcache
+
+----------------------------------------------------------
+очистка сборки:
+
+go clean -cache
+
+----------------------------------------------------------
+полная очистка:
+
+go clean -modcache && go clean -cache
+
+sudo rm {go.mod,go.sum}
+
+sudo rm -r ~/go/*
