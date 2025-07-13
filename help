@@ -3252,3 +3252,8 @@ find /var/log -type f -mtime +7 -exec rm {} \;
 Запуск сервера laravel:
 
 php -S localhost:8001 -t public
+
+----------------------------------------------------------------
+xml в читаемый вид:
+
+xmllint --format input.xml > output.xml

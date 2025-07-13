@@ -26,6 +26,8 @@ https://help.tyres.spb.ru/issues/87265
 добавить запрос 1 позиции по артикулу с уточнением по кастому
 https://test.ty.ru/api/getter/v1/tyres?goodType=disk
 
+https://test.ty.ru/api/getter/v1/tyres?goodType=disk&idGood=&idCustom=
+
 делаем все на тайресе
 
 -------------------------------------------------------------------
