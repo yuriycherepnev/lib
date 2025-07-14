@@ -386,6 +386,10 @@ php yii getter/parse-one accum
 
 php yii orderApi/order-queue/make-order-from-queue
 
+Base parsing getter:
+
+php yii getter/base-parse tyre
+
 геттер контроллер:
 
 console/controllers/GetterController.php
