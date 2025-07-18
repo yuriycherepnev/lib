@@ -388,7 +388,9 @@ php yii orderApi/order-queue/make-order-from-queue
 
 Base parsing getter:
 
-php yii getter/base-parse tyre
+php yii getter/catalog-parse tyre
+
+php yii getter/catalog-parse disk
 
 геттер контроллер:
 
