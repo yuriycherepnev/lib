@@ -19,14 +19,27 @@
 -------------------------------------------------------------------
 Геттер 1с:
 
-таблицы + модели остатков
-запись остатков
 добавить остатки ко всем поставщикам
+пуш данных в редис
+доработать апи редиса
 
 бонусы без ндс
 бонус с ндс 
 бонус в рублях
 бонусы по городам
+
+        $redis = Yii::$app->redis;
+            $hashKey = 'getter:catalog:' . $type;
+            $redis->unlink($hashKey);
+            $redis->multi();
+
+          $catalogAttributes = $validateCatalogGood->getCatalogAttributes();
+          
+                            $redis->hmset($hashKey, $good['id'], json_encode($catalogAttributes));
+                        $redis->sadd('getter:catalog:' . $type . ":custom:" . $good['custom'], $good['id']);
+                        $redis->sadd('getter:catalog:type:' . $idGoodType, $good['id']);
+
+                                    $redis->exec();
 
 -------------------------------------------------------------------
 бонусы:
