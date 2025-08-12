@@ -1,25 +1,7 @@
 Геттер 1с:
 
-        SELECT 
-            t1.id_module_catalog, t1.qnt  
-        FROM 
-            getter_catalog_rest t1 
-        INNER JOIN 
-            getter_catalog_rest_log t2 
-            ON t1.id_module_catalog = t2.id_module_catalog 
-        WHERE 
-            t2.time = 1754920010 
-            AND t1.qnt != t2.qnt
-            
-хеш индекс?
-
-вынести все в новые миграции
-
-апи разницы остатков
 чистка лога
 обновление каталога 1с
-
-доработать систему айдишников
 
 -------------------------------------------------------------------
 бонусы:
