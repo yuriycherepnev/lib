@@ -392,6 +392,8 @@ php yii getter/catalog-parse tyre
 
 php yii getter/catalog-parse disk
 
+php yii getter/update-catalog-one-c
+
 геттер контроллер:
 
 console/controllers/GetterController.php
