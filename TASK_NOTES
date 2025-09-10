@@ -4,6 +4,18 @@
 определить функционал
 
 -------------------------------------------------------------------
-по магазинам:
 
-сделать сдвоенные точки
+SELECT partner.title as партнер, contractor.title as контрагент, users.name as админ FROM `partner` 
+LEFT JOIN users ON users.id = partner.idAdmin
+LEFT JOIN contractor ON partner.id = contractor.idPartner
+WHERE idAdmin != 0
+AND partner.deleted = 0
+AND contractor.deleted = 0
+AND partner.title != 'тестОлег'
+ORDER BY partner.title ASC
+
+-------------------------------------------------------------------
+https://help.tyres.spb.ru/issues/91075
+
+инструкция по файлу
+привести магазины к одному виду
