@@ -11,8 +11,12 @@ https://help.tyres.spb.ru/issues/90196
 https://help.tyres.spb.ru/issues/90148
 https://help.tyres.spb.ru/issues/91036
 
+часы за сентябрь
+
 -------------------------------------------------------------------
 доработка каталога геттера:
+
+parseParamsFromModel
 
 добавить параметры антипрокол и антишум
 в генерацию uniqId
