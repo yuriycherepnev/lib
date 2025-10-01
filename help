@@ -3272,3 +3272,8 @@ php -S localhost:8001 -t public
 xml в читаемый вид:
 
 xmllint --format input.xml > output.xml
+
+----------------------------------------------------------------
+скачать бэкап б2б:
+
+sudo scp webmaster@10.172.100.163:/var/backups/mysql/b2b.sql /var/www/b2b.sql
